@@ -2,8 +2,8 @@
   <br />
   <div class="container loginform">
     <div class="row">
-      <div class="col-sm-6 Logoform"></div>
-      <div class="col-sm-6">
+      <div class="col-md-6 Logoform"></div>
+      <div class="col-md-6 Loginform">
         <h2>SIGN IN</h2>
         <form>
           <br />
@@ -142,27 +142,25 @@ export default {
 .loginform {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
+  max-width: 1200px;
+  max-height: 1000px;
+  margin: 0 auto;
 }
-.login-form-1 {
-  padding: 9%;
-  background: #282726;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+.Loginform {
+  width: 50%;
 }
-.login-form-1 h3 {
-  text-align: center;
-  margin-bottom: 12%;
-  color: #fff;
+.Logoform {
+  background: url("../assets/LogoOnemeasure.png");
+  background-size: cover;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 50%;
+  height: 600px;
+  background-position: center;
+  /* margin: 0 auto;
+  padding-bottom: 20cm auto; */
 }
-.login-form-2 {
-  padding: 9%;
-  background: #f05837;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form-2 h3 {
-  text-align: center;
-  margin-bottom: 12%;
-  color: #fff;
-}
+
 .btnSubmit {
   font-weight: 600;
   width: 50%;
@@ -186,7 +184,7 @@ h2 {
   font-size: 50px;
   text-align: center;
 }
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .Logoform {
     background: url("../assets/LogoOnemeasure.png");
     background-size: cover;
@@ -194,7 +192,7 @@ h2 {
     width: 650px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    /* border-right: 3px solid rgb(85, 48, 3); */
+   
   }
 }
 @media (max-width: 416px) {
@@ -203,9 +201,8 @@ h2 {
     background-size: cover;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    /* border-right: 3px solid rgb(85, 48, 3); */
   }
-}
+} */
 
 /* ::selection {
   color: blue;
