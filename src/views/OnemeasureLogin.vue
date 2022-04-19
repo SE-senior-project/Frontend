@@ -1,10 +1,11 @@
 <template>
-  <div class="container">
+  <br />
+  <div class="container loginform">
     <div class="row">
-      <div class="col-md-6" id="logo"></div>
-      <div class="col-md-6">
+      <div class="col-sm-6 Logoform"></div>
+      <div class="col-sm-6">
+        <h2>SIGN IN</h2>
         <form>
-          <h2>SIGN IN</h2>
           <br />
           <div class="form-group">
             <label for="exampleInputPassword1">Username:</label>
@@ -31,6 +32,66 @@
       </div>
     </div>
   </div>
+
+  <br />
+  <!-- <div class="container login-container">
+    <div class="row">
+      <div class="col-md-6 login-form-1">
+        <h3>Login Form 1</h3>
+        <form>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your Email *"
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Your Password *"
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btnSubmit" value="Login" />
+          </div>
+          <div class="form-group">
+            <a href="#" class="btnForgetPwd">Forget Password?</a>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 login-form-2">
+        <h3>Login Form 2</h3>
+        <form>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your Email *"
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Your Password *"
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btnSubmit" value="Login" />
+          </div>
+          <div class="form-group">
+            <a href="#" class="btnForgetPwd" value="Login">Forget Password?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
 
   <!-- <form @submit.prevent="onLogin"> -->
 </template>
@@ -78,42 +139,74 @@ export default {
 </script>
 
 <style scoped>
-.container-fluid {
-  border: 1px solid rgb(60, 74, 125);
+.loginform {
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
 }
-#fuildtemplate {
-  padding-left: 150px;
-  padding-right: 150px;
+.login-form-1 {
+  padding: 9%;
+  background: #282726;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3 {
+  text-align: center;
+  margin-bottom: 12%;
+  color: #fff;
+}
+.login-form-2 {
+  padding: 9%;
+  background: #f05837;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3 {
+  text-align: center;
+  margin-bottom: 12%;
+  color: #fff;
+}
+.btnSubmit {
+  font-weight: 600;
+  width: 50%;
+  color: #282726;
+  background-color: #fff;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+}
+.btnForgetPwd {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btnForgetPwd:hover {
+  text-decoration: none;
+  color: #fff;
 }
 h2 {
   padding-top: 0.5cm;
   font-size: 50px;
   text-align: center;
 }
-#con2 {
-  background-size: cover;
-  border-top: 1px solid rgb(60, 74, 125);
-  border-left: 1px solid rgb(60, 74, 125);
-  border-right: 1px solid rgb(60, 74, 125);
-  border-bottom: 1px solid rgb(60, 74, 125);
+@media (min-width: 576px) {
+  .Logoform {
+    background: url("../assets/LogoOnemeasure.png");
+    background-size: cover;
+    height: 650px;
+    width: 650px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* border-right: 3px solid rgb(85, 48, 3); */
+  }
 }
-#logo {
-  background: url("../assets/LogoOnemeasure.png");
-  background-size: cover;
-  height: 650px;
-  width: 650px;
-  /* border-right: 3px solid rgb(85, 48, 3); */
+@media (max-width: 416px) {
+  .Logoform {
+    background: url("../assets/LogoOnemeasure.png");
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* border-right: 3px solid rgb(85, 48, 3); */
+  }
 }
-.container {
-  margin-top: 5%;
-  color: black;
-  background-size: cover;
-  border-top: 3px solid rgb(85, 48, 3);
-  border-left: 3px solid rgb(85, 48, 3);
-  border-right: 3px solid rgb(85, 48, 3);
-  border-bottom: 3px solid rgb(85, 48, 3);
-  height: 100%;
-}
+
 /* ::selection {
   color: blue;
   background-color: slateblue;
