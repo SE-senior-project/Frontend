@@ -1,7 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import OnemeasureLogin from "../views/OnemeasureLogin.vue";
 
 const routes = [
+  {
+    path: "/login",
+    name: "login",
+    component: OnemeasureLogin,
+  },
   {
     path: "/",
     name: "home",
