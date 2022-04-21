@@ -6,7 +6,7 @@
       <div class="col-md-6 Logoform"></div>
       <div class="col-md-6 Loginform">
         <br />
-        <h2>SIGN IN</h2>
+        <h2>SIGN UP</h2>
         <form>
           <br />
           <div class="form-group username">
@@ -36,7 +36,7 @@
           <div class="form-group Signup">
             <p>
               Don't have an account?
-              <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
+              <router-link to="/about">SIGN UP</router-link>
             </p>
           </div>
         </form>
