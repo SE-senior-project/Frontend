@@ -5,7 +5,7 @@
         <img src="../assets/logonav.jpg" alt="" />
       </div>
       <br />
-      <div class="Nameorg">Onemeasure</div>
+      <div class="Nameorg"><b>Onemeasure</b></div>
       <ul v-show="!mobile" class="navigation">
         <li>
           <router-link class="link" :to="{ name: 'home' }"> Home</router-link>
@@ -14,11 +14,11 @@
           <router-link class="link" :to="{ name: '' }"> Hi</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ name: '' }"> Heiei</router-link>
+          <router-link class="link" :to="{ name: '' }"> peter</router-link>
         </li>
         <li>
           <button type="submit" class="btn btn-light btnSubmit">
-            <b>Sign Out</b>
+            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
           </button>
         </li>
       </ul>
@@ -36,6 +36,9 @@ export default {
 </script>
 
 <style scoped>
+#icon {
+  padding-left: 20px;
+}
 .btnSubmit {
   color: #282726;
   background-color: #fff;
@@ -89,12 +92,13 @@ li {
   border-bottom: 1px solid transparent;
 }
 .link:hover {
-  color: skyblue;
-  border-color: blue;
+  color: rgb(214, 63, 33);
+  border-color: rgb(201, 112, 44);
 }
 .Nameorg {
   display: flex;
   align-items: center;
+  font-size: 1.2em;
   padding-left: 20px;
   text-transform: uppercase;
 }
@@ -103,7 +107,7 @@ li {
   align-items: center;
 }
 img {
-  width: 50px;
+  width: 90px;
   transition: 0.5s ease all;
 }
 .navigation {

@@ -6,8 +6,28 @@
       <div class="col-md-6 Logoform"></div>
       <div class="col-md-6 Loginform">
         <br />
-        <h2>SIGN IN</h2>
+        <h2>SIGN UP</h2>
         <form>
+          <br />
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>First name</h5></label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="input firstname"
+              v-model="firstname"
+            />
+          </div>
+          <br />
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>Last name</h5></label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="input lastname"
+              v-model="lastname"
+            />
+          </div>
           <br />
           <div class="form-group inputform">
             <label for="exampleInputPassword1"><h5>Email</h5></label>
@@ -30,15 +50,9 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-light btnSubmit">Sign In</button>
-          <br />
-          <br />
-          <div class="form-group Signup">
-            <p>
-              Don't have an account?
-              <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
-            </p>
-          </div>
+          <button type="submit" class="btn btn-light btnSubmit">
+            Sign Up<font-awesome-icon icon="user-plus" id="icon" />
+          </button>
         </form>
       </div>
     </div>
@@ -52,7 +66,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "OnemeasureLogin",
+  name: "OnemeasureRegister",
   //   inject: ["GStore"],
   //   components: {},
   data() {
@@ -92,6 +106,9 @@ export default {
 </script>
 
 <style scoped>
+#icon {
+  padding-left: 20px;
+}
 .Signup {
   text-align: center;
 }
@@ -100,7 +117,6 @@ export default {
   padding-right: 20px;
   text-align: left;
 }
-
 .loginform {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
@@ -138,6 +154,11 @@ export default {
     0 9px 26px 0 rgba(245, 103, 1, 0.19);
   font-style: italic;
 }
+/* h2 {
+  padding-top: 0.5cm;
+  font-size: 50px;
+  text-align: center;
+} */
 /* @media (min-width: 576px) {
   .Logoform {
     background: url("../assets/LogoOnemeasure.png");
@@ -161,5 +182,36 @@ export default {
 /* ::selection {
   color: blue;
   background-color: slateblue;
-}*/
+}
+
+#text {
+  color: black;
+  text-shadow: 2px 2px rgba(77, 108, 202, 0.755);
+  font-style: italic;
+}
+
+#text2 {
+  color: black;
+  text-shadow: 2px 2px rgba(77, 108, 202, 0.755);
+  font-style: italic;
+  transition: all 0.5s;
+}
+#text2:hover {
+  color: rgb(24, 24, 91);
+  border-bottom: 2px solid rgb(39, 39, 138);
+  font-style: italic;
+}
+
+#text1 {
+  color: rgb(51, 51, 194);
+  text-shadow: 2px 2px rgba(77, 108, 202, 0.755);
+  font-style: italic;
+  transition: all 0.5s;
+}
+
+#text1:hover {
+  color: rgb(24, 24, 91);
+  border-bottom: 2px solid rgb(39, 39, 138);
+  font-style: italic;
+} */
 </style>
