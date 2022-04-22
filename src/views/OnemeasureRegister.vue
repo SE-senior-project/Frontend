@@ -9,17 +9,37 @@
         <h2>SIGN UP</h2>
         <form>
           <br />
-          <div class="form-group username">
-            <label for="exampleInputPassword1"><h5>Username</h5></label>
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>First name</h5></label>
             <input
               class="form-control"
               type="text"
-              placeholder="input username"
-              v-model="username"
+              placeholder="input firstname"
+              v-model="firstname"
             />
           </div>
           <br />
-          <div class="form-group password">
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>Last name</h5></label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="input lastname"
+              v-model="lastname"
+            />
+          </div>
+          <br />
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>Email</h5></label>
+            <input
+              class="form-control"
+              type="email"
+              placeholder="input @Email"
+              v-model="email"
+            />
+          </div>
+          <br />
+          <div class="form-group inputform">
             <label for="exampleInputPassword1"><h5>Password</h5></label>
             <input
               type="password"
@@ -30,15 +50,7 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-light btnSubmit">Sign In</button>
-          <br />
-          <br />
-          <div class="form-group Signup">
-            <p>
-              Don't have an account?
-              <router-link to="/about">SIGN UP</router-link>
-            </p>
-          </div>
+          <button type="submit" class="btn btn-light btnSubmit">Sign Up</button>
         </form>
       </div>
     </div>
@@ -52,7 +64,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "OnemeasureLogin",
+  name: "OnemeasureRegister",
   //   inject: ["GStore"],
   //   components: {},
   data() {
@@ -95,12 +107,7 @@ export default {
 .Signup {
   text-align: center;
 }
-.username {
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: left;
-}
-.password {
+.inputform {
   padding-left: 20px;
   padding-right: 20px;
   text-align: left;
