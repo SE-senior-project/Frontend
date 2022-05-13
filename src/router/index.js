@@ -3,10 +3,16 @@ import HomeView from "../views/HomeView.vue";
 import OnemeasureLogin from "../views/OMLogin.vue";
 import OnemeasureRegister from "../views/OMRegister.vue";
 import OnemeasureProjectManagement from "../views/OMProjectManagement.vue";
+import OneMeasureCreateNewProject from "../views/CreateProject.vue";
 
 const routes = [
   {
-    path: "/pjmanagement",
+    path: "/createProject",
+    name: "createProject",
+    component: OneMeasureCreateNewProject,
+  },
+  {
+    path: "/management",
     name: "projectmanagement",
     component: OnemeasureProjectManagement,
   },

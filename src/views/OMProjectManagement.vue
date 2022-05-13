@@ -8,15 +8,19 @@
       <li>
         <div class="buttonPM">
           <button type="submit" class="btn btn-light btnSubmit">
-            <b>Create New Project</b>
+            <router-link id="createnewbutt" :to="{ name: 'createProject' }">
+              <b>Create New Project</b></router-link
+            >
           </button>
         </div>
       </li>
     </ul>
     <br />
-    <div class="row">
-      <OnemeasurePM v-for="x in users" :key="x.id" :user="x" />
-    </div>
+    <ul class="my-row">
+      <li>
+        <OnemeasurePM v-for="x in users" :key="x.id" :user="x" />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -70,6 +74,10 @@ ul.my-row {
 
 ul.my-row > li {
   display: table-cell;
+}
+#createnewbutt {
+  text-decoration: none;
+  color: black;
 }
 .buttonPM {
   text-align: right;
