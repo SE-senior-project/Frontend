@@ -4,8 +4,14 @@ import OnemeasureLogin from "../views/OMLogin.vue";
 import OnemeasureRegister from "../views/OMRegister.vue";
 import OnemeasureProjectManagement from "../views/OMProjectManagement.vue";
 import OneMeasureCreateNewProject from "../views/CreateProject.vue";
+import OMMateriallist from "../views/MaterialList.vue";
 
 const routes = [
+  {
+    path: "/materiallist/:id",
+    name: "OMmateriallist",
+    component: OMMateriallist,
+  },
   {
     path: "/createProject",
     name: "createProject",
