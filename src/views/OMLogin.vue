@@ -30,7 +30,9 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-light btnSubmit">Sign In</button>
+          <button type="submit" class="btn btn-light btnSubmit">
+            Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
+          </button>
           <br />
           <br />
           <div class="form-group Signup">
@@ -92,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+#icon {
+  padding-left: 20px;
+}
 .Signup {
   text-align: center;
 }
