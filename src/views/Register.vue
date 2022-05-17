@@ -66,7 +66,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "OnemeasureRegister",
+  name: "register",
   //   inject: ["GStore"],
   //   components: {},
   data() {

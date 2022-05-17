@@ -54,7 +54,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "OMmateriallist",
+  name: "material_list",
   //   inject: ["GStore"],
   //   components: {},
   data() {

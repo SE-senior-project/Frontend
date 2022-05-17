@@ -54,7 +54,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "createProject",
+  name: "create_project",
   //   inject: ["GStore"],
   //   components: {},
   data() {

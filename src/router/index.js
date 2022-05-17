@@ -1,36 +1,35 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import OnemeasureLogin from "../views/OMLogin.vue";
-import OnemeasureRegister from "../views/OMRegister.vue";
-import OnemeasureProjectManagement from "../views/OMProjectManagement.vue";
-import OneMeasureCreateNewProject from "../views/CreateProject.vue";
-import OMMateriallist from "../views/MaterialList.vue";
-
+import login from "../views/Login.vue";
+import register from "../views/Register.vue";
+import project from "../views/Project.vue";
+import createProject from "../views/CreateProject.vue";
+import materialList from "../views/MaterialList.vue";
 const routes = [
   {
-    path: "/materiallist/:id",
-    name: "OMmateriallist",
-    component: OMMateriallist,
+    path: "/material_list/:id",
+    name: "material_list",
+    component: materialList,
   },
   {
-    path: "/createProject",
-    name: "createProject",
-    component: OneMeasureCreateNewProject,
+    path: "/create_project",
+    name: "create_project",
+    component: createProject,
   },
   {
-    path: "/management",
-    name: "projectmanagement",
-    component: OnemeasureProjectManagement,
+    path: "/project",
+    name: "project",
+    component: project,
   },
   {
     path: "/register",
     name: "register",
-    component: OnemeasureRegister,
+    component: register,
   },
   {
     path: "/",
     name: "login",
-    component: OnemeasureLogin,
+    component: login,
   },
   {
     path: "/home",
