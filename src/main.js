@@ -1,6 +1,12 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import GStore from "./store";
+import "bootstrap/dist/css/bootstrap.css";
+import { FontAwesomeIcon } from "./plugin/font.js";
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App)
+  .provide("GStore", GStore)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .use(router)
+  .mount("#app");

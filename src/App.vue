@@ -1,11 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <OnemeasureNavigation />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <!-- <font-awesome-icon icon="user" />
+  <br />
+  <font-awesome-icon icon="user-plus" />
+  <font-awesome-icon icon="fas fa-chart-line" />
+  <br />
+  <font-awesome-icon icon="sign-in-alt" />
+  <br />
+  <font-awesome-icon icon="sign-out-alt" /> -->
+  <!-- <font-awesome-icon icon="address-book" />
+  <font-awesome-icon icon="user" />
+  <font-awesome-icon icon="city" /> -->
   <router-view />
 </template>
-
+<script>
+import OnemeasureNavigation from "./components/OMNavigation.vue";
+export default {
+  components: {
+    OnemeasureNavigation,
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,18 +33,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #212326de;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #524c47e9;
-}
-
-nav a.router-link-exact-active {
-  color: #f25a38;
 }
 </style>
