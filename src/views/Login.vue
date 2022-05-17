@@ -54,7 +54,7 @@
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "login",
+  name: "OMlogin",
   //   inject: ["GStore"],
   //   components: {},
   data() {
