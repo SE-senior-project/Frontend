@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "OMNavigation",
+  name: "OMnavigation",
   data() {
     return {};
   },
