@@ -2,20 +2,8 @@
   <div class="col-3">
     <router-link
       class="link"
-      :to="{ name: 'OMmateriallist', params: { id: user.id } }"
+      :to="{ name: 'material_list', params: { id: user.id } }"
     >
-      <!-- <div class="card">
-        <div class="card-body">
-          <span>
-            <strong>Peter in the wood</strong>
-          </span>
-          <hr />
-          <span>
-            <p>hello my name is {{ user.name }}</p>
-          </span>
-        </div>
-      </div> -->
-
       <div class="cards_wrap">
         <div class="card_item">
           <div class="card_inner">
