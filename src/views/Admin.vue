@@ -1,6 +1,6 @@
 <template>
   <div class="contractor">
-    <a :href="''">Approval Account</a>
+    <a :href="'admin'">Approval Account</a>
     | <a :href="'manage_account'">Manage Account</a>
   </div>
   <div class="container">
