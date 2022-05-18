@@ -7,14 +7,10 @@
       <br />
       <div class="Nameorg"><b>Onemeasure</b></div>
       <ul v-show="!mobile" class="navigation">
+        <li></li>
+        <li></li>
         <li>
-          <router-link class="link" :to="{ name: 'home' }"> Home</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ name: '' }"> Hi</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ name: '' }"> peter</router-link>
+          <router-link class="link" :to="{ name: 'login' }"> Login</router-link>
         </li>
         <li>
           <router-link :to="{ name: 'login' }">
