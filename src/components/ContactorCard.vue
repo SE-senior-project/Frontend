@@ -1,20 +1,18 @@
 <template>
   <div class="col-3">
-    <router-link class="link" :to="{ name: 'admin', params: { id: user.id } }">
-      <div class="cards_wrap">
-        <div class="card_item">
-          <div class="card_inner">
-            <div class="role_name">
-              <b>Project {{ user.id }}</b>
-            </div>
-            <div class="real_name">
-              <b>{{ user.name }} </b>
-            </div>
-            <button>Disable</button>
+    <div class="cards_wrap">
+      <div class="card_item">
+        <div class="card_inner">
+          <div class="role_name">
+            <b>Project {{ user.id }}</b>
           </div>
+          <div class="real_name">
+            <b>{{ user.name }} </b>
+          </div>
+          <button>Disable</button>
         </div>
       </div>
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
