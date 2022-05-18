@@ -7,7 +7,7 @@
       <div class="col-md-6 Loginform">
         <br />
         <h2>SIGN IN</h2>
-        <form>
+        <form @submit.prevent="onLogin">
           <br />
           <div class="form-group inputform">
             <label for="exampleInputPassword1"><h5>Email</h5></label>
@@ -47,8 +47,6 @@
   </div>
 
   <br />
-
-  <!-- <form @submit.prevent="onLogin"> -->
 </template>
 
 <script>
@@ -59,37 +57,45 @@ export default {
   //   components: {},
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       checked: null,
     };
   },
-
-  //   methods: {
-  //     onLogin() {
-  //       let data = {
-  //         username: this.username,
-  //         password: this.password,
-  //       };
-  //       Service.Login(data)
-  //         .then((response) => {
-  //           this.GStore.currentUserid = response.data[0].userid;
-  //           this.GStore.currentUser = response.data[0].user;
-  //           this.checked = response.data[0].check;
-  //           console.log(this.checked);
-  //           if (this.checked == true) {
-  //             this.$router.push({
-  //               name: "Searchlist",
-  //             });
-  //           } else {
-  //             location.reload();
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //         });
-  //     },
-  //   }
+  methods: {
+    onLogin() {
+      let data = {
+        username: this.email,
+        password: this.password,
+      };
+      if (data.username == "kong@gmail.com") {
+        this.$router.push({
+          name: "project",
+        });
+      } else {
+        this.$router.push({
+          name: "register",
+        });
+      }
+      // Service.Login(data)
+      //   .then((response) => {
+      //     this.GStore.currentUserid = response.data[0].userid;
+      //     this.GStore.currentUser = response.data[0].user;
+      //     this.checked = response.data[0].check;
+      //     console.log(this.checked);
+      //     if (this.checked == true) {
+      //       this.$router.push({
+      //         name: "Searchlist",
+      //       });
+      //     } else {
+      //       location.reload();
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    },
+  },
 };
 </script>
 

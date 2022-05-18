@@ -50,9 +50,11 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-light btnSubmit">
-            Sign Up<font-awesome-icon icon="user-plus" id="icon" />
-          </button>
+          <router-link :to="{ name: 'login' }">
+            <button type="submit" class="btn btn-light btnSubmit">
+              Sign Up<font-awesome-icon icon="user-plus" id="icon" />
+            </button>
+          </router-link>
         </form>
       </div>
     </div>

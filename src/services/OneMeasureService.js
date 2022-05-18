@@ -1,10 +1,6 @@
 import apiClient from "./AxiosClient.js";
 
 export default {
-  inject: ["GStore"],
-  Move() {
-    return this.$router.reload();
-  },
   UnMarktoData(data) {
     return apiClient.post("/unmark_data", {
       id: data.id,
