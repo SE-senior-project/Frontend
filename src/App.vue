@@ -19,7 +19,7 @@
   <router-view />
 </template>
 <script>
-import OnemeasureNavigation from "./components/OMNavigation.vue";
+import OnemeasureNavigation from "./components/Navigation.vue";
 export default {
   components: {
     OnemeasureNavigation,
