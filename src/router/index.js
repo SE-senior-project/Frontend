@@ -5,6 +5,8 @@ import register from "../views/Register.vue";
 import project from "../views/Project.vue";
 import createProject from "../views/CreateProject.vue";
 import materialList from "../views/MaterialList.vue";
+import admin from "../views/Admin.vue";
+import manageAccount from "../views/ManageAccount.vue";
 const routes = [
   {
     path: "/material_list/:id",
@@ -30,6 +32,16 @@ const routes = [
     path: "/",
     name: "login",
     component: login,
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: admin,
+  },
+  {
+    path: "/manage_account",
+    name: "manage_account",
+    component: manageAccount,
   },
   {
     path: "/home",
