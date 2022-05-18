@@ -17,9 +17,10 @@
           <router-link class="link" :to="{ name: '' }"> peter</router-link>
         </li>
         <li>
-          <button type="submit" class="btn btn-light btnSubmit">
-            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
-          </button>
+          <router-link :to="{ name: 'login' }">
+            <button type="submit" class="btn btn-light btnSubmit">
+              <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" /></button
+          ></router-link>
         </li>
       </ul>
     </nav>
