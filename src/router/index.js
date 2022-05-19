@@ -1,21 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
+//AUTH//
 import HomeView from "../views/HomeView.vue";
-import login from "../views/Login.vue";
-import register from "../views/Register.vue";
-import project from "../views/Project.vue";
-import createProject from "../views/CreateProject.vue";
-import materialList from "../views/MaterialList.vue";
-import admin from "../views/Admin.vue";
-import manageAccount from "../views/ManageAccount.vue";
-
-import bogGenration from "../views/BOQGeneration.vue";
-import materialSelection from "../views/MaterialSelection.vue";
-import materialType from "../views/MaterialType.vue";
-import totalMaterialSelection from "../views/TotalMaterialSelection.vue";
-import boqTemplate from "../views/BOQTemplate.vue";
-import boqTemplateSelection from "../views/BOQTemplateSelection.vue";
-import boqConfirmation from "../views/BOQConfirmation.vue";
-import showTemplate from "../views/ShowTemplate.vue";
+import login from "../views/Auth/Login.vue";
+import register from "../views/Auth/Register.vue";
+//ADMIN//
+import admin from "../views/Admins/Admin.vue";
+import manageAccount from "../views/Admins/ManageAccount.vue";
+//PM//
+import project from "../views/PM/Project.vue";
+import materialList from "../views/PM/MaterialList.vue";
+import createProject from "../views/PM/CreateProject.vue";
+import materialSelection from "../views/PM/MaterialSelection.vue";
+import materialType from "../views/PM/MaterialType.vue";
+import totalMaterialSelection from "../views/PM/TotalMaterialSelection.vue";
+//BOQ//
+import boqTemplate from "../views/BOQ/BOQTemplate.vue";
+import boqTemplateSelection from "../views/BOQ/BOQTemplateSelection.vue";
+import boqConfirmation from "../views/BOQ/BOQConfirmation.vue";
+import showTemplate from "../views/BOQ/ShowTemplate.vue";
+import bogGenration from "../views/BOQ/BOQGeneration.vue";
 const routes = [
   {
     path: "/material_list/:id",

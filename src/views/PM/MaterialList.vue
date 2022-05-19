@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import SearchMaterial from "../components/SearchMaterial.vue";
+import SearchMaterial from "../../components/SearchMaterial.vue";
 export default {
   name: "material_list",
   components: {
@@ -84,7 +84,7 @@ export default {
   width: 50%;
 }
 .Logoform {
-  background: url("../assets/LogoOnemeasure.png");
+  background: url("../../assets/LogoOnemeasure.png");
   background-size: cover;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;

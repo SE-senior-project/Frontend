@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import OnemeasurePM from "../components/ProjectCard.vue";
+import OnemeasurePM from "../../components/ProjectCard.vue";
 export default {
   name: "OMprojectmanagement",
   components: {
