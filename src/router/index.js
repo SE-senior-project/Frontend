@@ -4,8 +4,8 @@ import HomeView from "../views/HomeView.vue";
 import login from "../views/Auth/Login.vue";
 import register from "../views/Auth/Register.vue";
 //ADMIN//
-import admin from "../views/Admins/Admin.vue";
-import manageAccount from "../views/Admins/ManageAccount.vue";
+import admin from "../views/Admin/Admin.vue";
+import manageAccount from "../views/Admin/ManageAccount.vue";
 //PM//
 import project from "../views/PM/Project.vue";
 import materialList from "../views/PM/MaterialList.vue";
