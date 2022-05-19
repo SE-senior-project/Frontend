@@ -7,6 +7,15 @@ import createProject from "../views/CreateProject.vue";
 import materialList from "../views/MaterialList.vue";
 import admin from "../views/Admin.vue";
 import manageAccount from "../views/ManageAccount.vue";
+
+import bogGenration from "../views/BOQGeneration.vue"
+import materialSelection from "../views/MaterialSelection.vue"
+import materialType from "../views/MaterialType.vue"
+import totalMaterialSelection from "../views/TotalMaterialSelection.vue"
+import boqTemplate from "../views/BOQTemplate.vue"
+import boqTemplateSelection from "../views/BOQTemplateSelection.vue"
+import boqConfirmation from "../views/BOQConfirmation.vue"
+import showTemplate from "../views/ShowTemplate.vue"
 const routes = [
   {
     path: "/material_list/:id",
