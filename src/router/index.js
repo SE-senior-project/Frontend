@@ -8,14 +8,14 @@ import materialList from "../views/MaterialList.vue";
 import admin from "../views/Admin.vue";
 import manageAccount from "../views/ManageAccount.vue";
 
-import bogGenration from "../views/BOQGeneration.vue"
-import materialSelection from "../views/MaterialSelection.vue"
-import materialType from "../views/MaterialType.vue"
-import totalMaterialSelection from "../views/TotalMaterialSelection.vue"
-import boqTemplate from "../views/BOQTemplate.vue"
-import boqTemplateSelection from "../views/BOQTemplateSelection.vue"
-import boqConfirmation from "../views/BOQConfirmation.vue"
-import showTemplate from "../views/ShowTemplate.vue"
+import bogGenration from "../views/BOQGeneration.vue";
+import materialSelection from "../views/MaterialSelection.vue";
+import materialType from "../views/MaterialType.vue";
+import totalMaterialSelection from "../views/TotalMaterialSelection.vue";
+import boqTemplate from "../views/BOQTemplate.vue";
+import boqTemplateSelection from "../views/BOQTemplateSelection.vue";
+import boqConfirmation from "../views/BOQConfirmation.vue";
+import showTemplate from "../views/ShowTemplate.vue";
 const routes = [
   {
     path: "/material_list/:id",
@@ -51,6 +51,46 @@ const routes = [
     path: "/manage_account",
     name: "manage_account",
     component: manageAccount,
+  },
+  {
+    path: "/boq_generation",
+    name: "boq_generation",
+    component: bogGenration,
+  },
+  {
+    path: "/material_selection",
+    name: "material_selection",
+    component: materialSelection,
+  },
+  {
+    path: "/material_type",
+    name: "material_type",
+    component: materialType,
+  },
+  {
+    path: "/total_material_selection",
+    name: "total_material_selection",
+    component: totalMaterialSelection,
+  },
+  {
+    path: "/boq_template",
+    name: "boq_template",
+    component: boqTemplate,
+  },
+  {
+    path: "/boq_template_selection",
+    name: "boq_template_selection",
+    component: boqTemplateSelection,
+  },
+  {
+    path: "/boq_confirmation",
+    name: "boq_confirmation",
+    component: boqConfirmation,
+  },
+  {
+    path: "/show_template",
+    name: "show_template",
+    component: showTemplate,
   },
   {
     path: "/home",
