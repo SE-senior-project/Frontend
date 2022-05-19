@@ -1,7 +1,7 @@
 <template>
   <br />
   <br />
-  <div class="container loginform">
+  <!-- <div class="container loginform">
     <div class="row">
       <div class="col-md-6 Logoform"></div>
       <div class="col-md-6 Loginform">
@@ -35,28 +35,21 @@
           </button>
           <br />
           <br />
-          <!-- <div class="form-group Signup">
-            <p>
-              Don't have an account?
-              <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
-            </p>
-          </div> -->
         </form>
       </div>
     </div>
-  </div>
-
+  </div> -->
+  <SearchMaterial />
   <br />
-
-  <!-- <form @submit.prevent="onLogin"> -->
 </template>
 
 <script>
-// import Service from "../services/OneMeasureService.js";
+import SearchMaterial from "../components/SearchMaterial.vue";
 export default {
   name: "material_list",
-  //   inject: ["GStore"],
-  //   components: {},
+  components: {
+    SearchMaterial,
+  },
   data() {
     return {
       username: "",
@@ -64,32 +57,6 @@ export default {
       checked: null,
     };
   },
-
-  //   methods: {
-  //     onLogin() {
-  //       let data = {
-  //         username: this.username,
-  //         password: this.password,
-  //       };
-  //       Service.Login(data)
-  //         .then((response) => {
-  //           this.GStore.currentUserid = response.data[0].userid;
-  //           this.GStore.currentUser = response.data[0].user;
-  //           this.checked = response.data[0].check;
-  //           console.log(this.checked);
-  //           if (this.checked == true) {
-  //             this.$router.push({
-  //               name: "Searchlist",
-  //             });
-  //           } else {
-  //             location.reload();
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //         });
-  //     },
-  //   }
 };
 </script>
 
