@@ -2,13 +2,51 @@
   <br />
   <br />
   <div class="container loginform">
-    <div class="row">
-      <div class="col-md-6 Logoform"></div>
-      <div class="col-md-6 Loginform">
-        <br />
+    <form>
+      <br />
+      <div class="form-group inputform">
         <h2>Create new Project ei ei</h2>
-        <form>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-6 Loginform">
+          <div class="form-group inputform">
+            <label for="exampleInputPassword1"><h5>Email</h5></label>
+            <input
+              class="form-control"
+              type="email"
+              placeholder="input @Email"
+              v-model="email"
+            />
+          </div>
           <br />
+          <!-- <div class="form-group inputform">
+            <label for="exampleFormControlTextarea1"
+              ><h5>Example textarea</h5></label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="input password"
+              v-model="password"
+            ></textarea>
+          </div> -->
+          <div class="form-group inputform">
+            <label for="message">Message</label>
+            <textarea
+              class="form-control"
+              id="message"
+              type="text"
+              placeholder="Enter your message here..."
+              style="height: 10rem"
+              data-sb-validations="required"
+            ></textarea>
+          </div>
+          <br />
+          <br />
+        </div>
+        <div class="col-md-6 Loginform">
           <div class="form-group inputform">
             <label for="exampleInputPassword1"><h5>Email</h5></label>
             <input
@@ -30,20 +68,16 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-light btnSubmit">
-            Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
-          </button>
+          <router-link :to="{ name: 'project' }">
+            <button type="submit" class="btn btn-light btnSubmit">
+              Confrim
+            </button>
+          </router-link>
           <br />
           <br />
-          <div class="form-group Signup">
-            <p>
-              Don't have an account?
-              <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
-            </p>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 
   <br />
@@ -62,6 +96,7 @@ export default {
       username: "",
       password: "",
       checked: null,
+      hide: false,
     };
   },
 
@@ -94,11 +129,11 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  text-align: left;
+}
 #icon {
   padding-left: 20px;
-}
-.Signup {
-  text-align: center;
 }
 .inputform {
   padding-left: 20px;
@@ -116,18 +151,6 @@ export default {
 .Loginform {
   width: 50%;
 }
-.Logoform {
-  background: url("../assets/LogoOnemeasure.png");
-  background-size: cover;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  width: 50%;
-  height: 600px;
-  background-position: center;
-  /* margin: 0 auto;
-  padding-bottom: 20cm auto; */
-}
-
 .btnSubmit {
   font-weight: 550;
   width: 90%;
@@ -143,28 +166,4 @@ export default {
     0 9px 26px 0 rgba(245, 103, 1, 0.19);
   font-style: italic;
 }
-/* @media (min-width: 576px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    height: 650px;
-    width: 650px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-   
-  }
-}
-@media (max-width: 416px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-} */
-
-/* ::selection {
-  color: blue;
-  background-color: slateblue;
-}*/
 </style>

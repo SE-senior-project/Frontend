@@ -74,7 +74,7 @@ export default {
         });
       } else {
         this.$router.push({
-          name: "register",
+          name: "admin",
         });
       }
       // Service.Login(data)
