@@ -3,6 +3,8 @@
   <div class="item fruit" v-for="x in filteredList()" :key="x">
     <p v-if="input">{{ x }}</p>
   </div>
+  <br v-if="input" />
+  <br v-if="input" />
 </template>
 
 <script>
