@@ -6,8 +6,8 @@
       <div class="col-md-6 Logoform"></div>
       <div class="col-md-6 Loginform">
         <br />
-        <h2>Create new Project ei ei</h2>
-        <form>
+        <h2>SIGN IN</h2>
+        <form @submit.prevent="onLogin">
           <br />
           <div class="form-group inputform">
             <label for="exampleInputPassword1"><h5>Email</h5></label>
@@ -47,49 +47,55 @@
   </div>
 
   <br />
-
-  <!-- <form @submit.prevent="onLogin"> -->
 </template>
 
 <script>
 // import Service from "../services/OneMeasureService.js";
 export default {
-  name: "createProject",
+  name: "OMlogin",
   //   inject: ["GStore"],
   //   components: {},
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       checked: null,
     };
   },
-
-  //   methods: {
-  //     onLogin() {
-  //       let data = {
-  //         username: this.username,
-  //         password: this.password,
-  //       };
-  //       Service.Login(data)
-  //         .then((response) => {
-  //           this.GStore.currentUserid = response.data[0].userid;
-  //           this.GStore.currentUser = response.data[0].user;
-  //           this.checked = response.data[0].check;
-  //           console.log(this.checked);
-  //           if (this.checked == true) {
-  //             this.$router.push({
-  //               name: "Searchlist",
-  //             });
-  //           } else {
-  //             location.reload();
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //         });
-  //     },
-  //   }
+  methods: {
+    onLogin() {
+      let data = {
+        username: this.email,
+        password: this.password,
+      };
+      if (data.username == "kong@gmail.com") {
+        this.$router.push({
+          name: "project",
+        });
+      } else {
+        this.$router.push({
+          name: "admin",
+        });
+      }
+      // Service.Login(data)
+      //   .then((response) => {
+      //     this.GStore.currentUserid = response.data[0].userid;
+      //     this.GStore.currentUser = response.data[0].user;
+      //     this.checked = response.data[0].check;
+      //     console.log(this.checked);
+      //     if (this.checked == true) {
+      //       this.$router.push({
+      //         name: "Searchlist",
+      //       });
+      //     } else {
+      //       location.reload();
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    },
+  },
 };
 </script>
 
@@ -117,7 +123,7 @@ export default {
   width: 50%;
 }
 .Logoform {
-  background: url("../assets/LogoOnemeasure.png");
+  background: url("../../assets/LogoOnemeasure.png");
   background-size: cover;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;

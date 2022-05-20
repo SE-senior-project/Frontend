@@ -2,28 +2,16 @@
   <div class="col-3">
     <router-link
       class="link"
-      :to="{ name: 'OMmateriallist', params: { id: user.id } }"
+      :to="{ name: '', params: { id: materialtype.id } }"
     >
-      <!-- <div class="card">
-        <div class="card-body">
-          <span>
-            <strong>Peter in the wood</strong>
-          </span>
-          <hr />
-          <span>
-            <p>hello my name is {{ user.name }}</p>
-          </span>
-        </div>
-      </div> -->
-
       <div class="cards_wrap">
         <div class="card_item">
           <div class="card_inner">
             <div class="role_name">
-              <b>Project {{ user.id }}</b>
+              <b>Material {{ materialtype.id }}</b>
             </div>
             <div class="real_name">
-              <b>{{ user.name }} </b>
+              <b>{{ materialtype.name }} </b>
             </div>
             <div class="film">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -37,9 +25,9 @@
 </template>
 <script>
 export default {
-  name: "OMPM",
+  name: "material_selection_card",
   props: {
-    user: {
+    materialtype: {
       type: Object,
       required: true,
     },

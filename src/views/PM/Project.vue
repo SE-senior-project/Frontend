@@ -8,7 +8,7 @@
       <li>
         <div class="buttonPM">
           <button type="submit" class="btn btn-light btnSubmit">
-            <router-link id="createnewbutt" :to="{ name: 'createProject' }">
+            <router-link id="createnewbutt" :to="{ name: 'create_project' }">
               <b>Create New Project</b></router-link
             >
           </button>
@@ -17,7 +17,7 @@
     </ul>
     <br />
     <ul class="my-row">
-      <li>
+             <li>
         <OnemeasurePM v-for="x in users" :key="x.id" :user="x" />
       </li>
     </ul>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import OnemeasurePM from "../components/OMPM.vue";
+import OnemeasurePM from "../../components/ProjectCard.vue";
 export default {
   name: "OMprojectmanagement",
   components: {

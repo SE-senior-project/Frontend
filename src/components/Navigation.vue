@@ -7,19 +7,16 @@
       <br />
       <div class="Nameorg"><b>Onemeasure</b></div>
       <ul v-show="!mobile" class="navigation">
+        <li></li>
+        <li></li>
         <li>
-          <router-link class="link" :to="{ name: 'home' }"> Home</router-link>
+          <router-link class="link" :to="{ name: 'login' }"> Login</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ name: '' }"> Hi</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ name: '' }"> peter</router-link>
-        </li>
-        <li>
-          <button type="submit" class="btn btn-light btnSubmit">
-            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
-          </button>
+          <router-link :to="{ name: 'login' }">
+            <button type="submit" class="btn btn-light btnSubmit">
+              <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" /></button
+          ></router-link>
         </li>
       </ul>
     </nav>
@@ -28,7 +25,7 @@
 
 <script>
 export default {
-  name: "OnemeasureNavigation",
+  name: "OMnavigation",
   data() {
     return {};
   },
