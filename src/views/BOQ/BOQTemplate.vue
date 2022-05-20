@@ -34,16 +34,18 @@
   <div>
     <h5>Custermer views</h5>
     <div class="contractor">
-      <BOQCard v-for="x in users" :key="x.id" :user="x" />
+      <BOQViewCard v-for="x in users" :key="x.id" :user="x" />
     </div>
   </div>
 </template>
 <script>
 import BOQCard from "../../components/BOQCard.vue";
+import BOQViewCard from "../../components/BOQViewCard.vue";
 export default {
   name: "boq_generation",
   components: {
     BOQCard,
+    BOQViewCard,
   },
   data() {
     return {
