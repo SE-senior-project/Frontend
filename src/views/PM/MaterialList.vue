@@ -39,16 +39,20 @@
       </div>
     </div>
   </div> -->
+  <NavFeature />
+  <br />
   <SearchMaterial />
   <br />
 </template>
 
 <script>
+import NavFeature from "../../components/NavFeature.vue";
 import SearchMaterial from "../../components/SearchMaterial.vue";
 export default {
   name: "material_list",
   components: {
     SearchMaterial,
+    NavFeature,
   },
   data() {
     return {
