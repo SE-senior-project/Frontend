@@ -1,14 +1,19 @@
 <template>
   <div class="col-3">
-    <div class="cards_wrap">
-      <div class="card_item">
-        <div class="card_inner">
-          <div class="role_name">
-            <b>Project {{ user.name }}</b>
+    <router-link
+      class="link"
+      :to="{ name: 'boq_template_selection', params: { id: user.id } }"
+    >
+      <div class="cards_wrap">
+        <div class="card_item">
+          <div class="card_inner">
+            <div class="role_name">
+              <b>Project {{ user.name }}</b>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 <script>
