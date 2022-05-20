@@ -18,9 +18,7 @@
         <div class="col-6">
           <br />
           <div class="card">
-            <div class="card-body">
-             TotalPrice: {{ calculate_price }}
-            </div>
+            <div class="card-body">TotalPrice: {{ num }}</div>
           </div>
         </div>
       </div>
@@ -66,16 +64,26 @@ export default {
       ],
     };
   },
+  mounted() {
+    let sum = 0;
+    for (let index = 0; index < this.material_lists.length; index++) {
+      console.log(this.material_lists[index].price);
+      sum = sum + this.material_lists[index].price;
+    }
+    this.num = sum;
+  },
+  methods: {
+ 
+  },
   computed: {
-    // a computed getter
     calculate_price() {
       let sum = 0;
-      // `this` points to the component instance
       for (let index = 0; index < this.material_lists.length; index++) {
         console.log(this.material_lists[index].price);
         sum = sum + this.material_lists[index].price;
       }
-      return sum;
+      this.num = sum;
+      return num;
     },
   },
 };
