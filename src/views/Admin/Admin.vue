@@ -72,11 +72,6 @@ export default {
       ],
     };
   },
-  methods: {
-    nextPage() {
-      this.$router.push("/manage_account");
-    },
-  },
 };
 </script>
 
