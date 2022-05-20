@@ -1,58 +1,19 @@
 <template>
   <br />
-  <br />
-  <!-- <div class="container loginform">
-    <div class="row">
-      <div class="col-md-6 Logoform"></div>
-      <div class="col-md-6 Loginform">
-        <br />
-        <h2>Material List</h2>
-        <form>
-          <br />
-          <div class="form-group inputform">
-            <label for="exampleInputPassword1"><h5>Email</h5></label>
-            <input
-              class="form-control"
-              type="email"
-              placeholder="input @Email"
-              v-model="email"
-            />
-          </div>
-          <br />
-          <div class="form-group inputform">
-            <label for="exampleInputPassword1"><h5>Password</h5></label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="input password"
-              v-model="password"
-            />
-          </div>
-          <br />
-          <button type="submit" class="btn btn-light btnSubmit">
-            Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
-          </button>
-          <br />
-          <br />
-        </form>
-      </div>
-    </div>
-  </div> -->
-  <NavFeature />
+  <Nav />
   <br />
   <SearchMaterial />
   <br />
 </template>
 
 <script>
-import NavFeature from "../../components/NavFeature.vue";
 import SearchMaterial from "../../components/SearchMaterial.vue";
+import Nav from "../../components/NavBarFeature.vue";
 export default {
   name: "material_list",
   components: {
     SearchMaterial,
-    NavFeature,
+    Nav,
   },
   data() {
     return {
