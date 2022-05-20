@@ -20,7 +20,7 @@
   <!-- BOQ Table -->
   <div class="container">
     <button class="btn btn-primary">
-      <router-link :to="{ name: '' }"> <b>Create New Project</b></router-link>
+      <router-link :to="{ name: 'boq_confirmation' }"> Submit </router-link>
     </button>
   </div>
   <!-- Price Tread pf material -->
@@ -29,37 +29,6 @@
 <script>
 export default {
   name: "boq_generation",
-  data() {
-    return {
-      users: [
-        {
-          name: "Thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
-    };
-  },
-  methods: {
-    nextPage() {
-      this.$router.push("/manage_account");
-    },
-  },
 };
 </script>
 
