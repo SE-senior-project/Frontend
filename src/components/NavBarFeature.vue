@@ -1,9 +1,9 @@
 <template>
   <div id="nav">
-    <router-link id="firstlink" :to="{ name: '' }">Home</router-link> |
-    <router-link :to="{ name: '' }">Home</router-link> |
-    <router-link :to="{ name: '' }">Home</router-link> |
-    <router-link :to="{ name: '' }">About</router-link>
+    <router-link id="firstlink" :to="{ name: '' }">Material</router-link> |
+    <router-link :to="{ name: '' }">BOQ Generation </router-link> |
+    <router-link :to="{ name: '' }">Project Schedule</router-link> |
+    <router-link :to="{ name: '' }">Check list</router-link>
   </div>
 </template>
 

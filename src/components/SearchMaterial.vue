@@ -1,5 +1,10 @@
 <template>
-  <input type="text" v-model="input" placeholder="Search fruits..." />
+  <input
+    type="text"
+    v-model="input"
+    placeholder="Search Materials..."
+    id="inputsearch"
+  />
   <div class="item fruit" v-for="x in filteredList()" :key="x">
     <p v-if="input">{{ x }}</p>
   </div>
@@ -27,3 +32,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+#inputsearch {
+  border: solid black 1px;
+}
+</style>
