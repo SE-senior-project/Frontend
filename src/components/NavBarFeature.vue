@@ -1,7 +1,12 @@
 <template>
   <div id="nav">
-    <router-link id="firstlink" :to="{ name: '' }">Material</router-link> |
-    <router-link :to="{ name: '' }">BOQ Generation </router-link> |
+    <!-- don't forget to change params to userid -->
+    <router-link
+      id="firstlink"
+      :to="{ name: 'material_list', params: { id: 1 } }"
+      >Material</router-link
+    >
+    | <router-link :to="{ name: '' }">BOQ Generation </router-link> |
     <router-link :to="{ name: '' }">Project Schedule</router-link> |
     <router-link :to="{ name: '' }">Check list</router-link>
   </div>
@@ -23,11 +28,11 @@ export default {};
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #487eb4;
 }
 
 #nav a.router-link-exact-active {
-  color: #141414;
+  color: #d96262;
 }
 </style>
 >
