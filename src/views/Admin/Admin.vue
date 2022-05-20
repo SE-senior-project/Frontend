@@ -10,7 +10,7 @@
       <form>
         <br />
         <div class="form-group inputform">
-          <label for="exampleInputPassword1">
+          <label for="monthYear">
             <h5>Select Month/Year</h5>
           </label>
           <input class="form-control" type="month" />
