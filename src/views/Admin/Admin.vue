@@ -38,8 +38,8 @@
   </div>
 </template>
 <script>
-import ContactorCard from "../../components/ContactorCard.vue";
-import NewAccountCard from "../../components/NewAccountCard.vue";
+import ContactorCard from "../../components/Admin_components/ContactorCard.vue";
+import NewAccountCard from "../../components/Admin_components/NewAccountCard.vue";
 export default {
   name: "OMadmin",
   components: {

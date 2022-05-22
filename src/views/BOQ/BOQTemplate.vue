@@ -39,8 +39,8 @@
   </div>
 </template>
 <script>
-import BOQCard from "../../components/BOQCard.vue";
-import BOQViewCard from "../../components/BOQViewCard.vue";
+import BOQCard from "../../components/BOQ_components/BOQCard.vue";
+import BOQViewCard from "../../components/BOQ_components/BOQViewCard.vue";
 export default {
   name: "boq_generation",
   components: {

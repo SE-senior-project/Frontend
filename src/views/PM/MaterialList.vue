@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import SearchMaterial from "../../components/SearchMaterial.vue";
+import SearchMaterial from "../../components/PM_components/SearchMaterial.vue";
 import Nav from "../../components/NavBarFeature.vue";
 export default {
   name: "material_list",
