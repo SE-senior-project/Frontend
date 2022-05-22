@@ -61,14 +61,6 @@ nav {
   transition: 0.5s ease all;
   width: 90%;
   margin: 0 auto;
-  @media (min-width: 1140px) {
-    max-width: 1140px;
-  }
-}
-.app {
-  min-height: 100vh;
-  position: relative;
-  background-color: #f1f1f1;
 }
 ul,
 .link {
@@ -93,10 +85,11 @@ li {
   border-color: rgb(201, 112, 44);
 }
 .Nameorg {
+  max-width: 50px;
+  position: relative;
   display: flex;
   align-items: center;
   font-size: 1.2em;
-  padding-left: 20px;
   text-transform: uppercase;
 }
 .branding {
