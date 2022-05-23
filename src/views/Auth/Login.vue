@@ -1,60 +1,178 @@
 <template>
   <br />
   <br />
-  <div class="container loginform">
-    <div class="row">
-      <div class="col-md-6 Logoform"></div>
-      <div class="col-md-6 Loginform">
-        <br />
-        <h2>SIGN IN</h2>
-        <form @submit.prevent="onLogin">
-          <br />
-          <div class="form-group inputform">
-            <label for="exampleInputPassword1"><h5>Email</h5></label>
-            <input
-              class="form-control"
-              type="email"
-              placeholder="input @Email"
-              v-model="email"
-            />
+  <div
+    class="
+      login-form
+      max-w-xl
+      mx-auto
+      bg-white
+      rounded-xl
+      shadow-md
+      overflow-hidden
+      md:max-w-5xl
+    "
+  >
+    <div class="md:flex">
+      <div class="md:shrink-0">
+        <img
+          class="h-48 w-full object-cover md:h-full md:w-full"
+          src="../../assets/LogoOnemeasure.png"
+          alt="Man looking at item at a store"
+        />
+      </div>
+      <div class="p-8">
+        <!-- <div class="text-center">
+          <h2 class="">SIGN IN</h2>
+          <form @submit.prevent="onLogin">
+            <br />
+            <div class="form-group inputform">
+              <label for="exampleInputPassword1"><h5>Email</h5></label>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="input @Email"
+                v-model="email"
+              />
+            </div>
+            <br />
+            <div class="form-group inputform">
+              <label for="exampleInputPassword1"><h5>Password</h5></label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="input password"
+                v-model="password"
+              />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-light btnSubmit">
+              Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
+            </button>
+            <br />
+            <br />
+            <div class="form-group Signup">
+              <p>
+                Don't have an account?
+                <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
+              </p>
+            </div>
+          </form>
+        </div> -->
+        <form class="w-full max-w-lg">
+          <div class="md:flex md:items-center mb-6"></div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label
+                class="
+                  block
+                  text-gray-500
+                  font-bold
+                  md:text-right
+                  mb-1
+                  md:mb-0
+                  pr-4
+                "
+                for="inline-email"
+              >
+                Email
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                class="
+                  bg-gray-200
+                  appearance-none
+                  border-2 border-gray-200
+                  rounded
+                  w-full
+                  py-2
+                  px-4
+                  text-gray-700
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-orange-400
+                "
+                id="inline-full-name"
+                type="email"
+                placeholder="input email"
+              />
+            </div>
           </div>
-          <br />
-          <div class="form-group inputform">
-            <label for="exampleInputPassword1"><h5>Password</h5></label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="input password"
-              v-model="password"
-            />
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label
+                class="
+                  block
+                  text-gray-500
+                  font-bold
+                  md:text-right
+                  mb-1
+                  md:mb-0
+                  pr-4
+                "
+                for="inline-password"
+              >
+                Password
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                class="
+                  bg-gray-200
+                  appearance-none
+                  border-2 border-gray-200
+                  rounded
+                  w-full
+                  py-2
+                  px-4
+                  text-gray-700
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-orange-400
+                "
+                id="inline-password"
+                type="password"
+                placeholder="input password"
+              />
+            </div>
           </div>
-          <br />
-          <button type="submit" class="btn btn-light btnSubmit">
-            Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
-          </button>
-          <br />
-          <br />
-          <div class="form-group Signup">
-            <p>
-              Don't have an account?
-              <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
-            </p>
+          <div class="md:flex md:items-center">
+            <div class="md:w-2/3"></div>
+            <div class="md:w-2/3">
+              <button
+                class="
+                  btnSubmit
+                  shadow
+                  bg-stone-500
+                  hover:bg-orange-400
+                  focus:shadow-outline focus:outline-none
+                  text-white
+                  font-bold
+                  py-2
+                  px-4
+                  rounded
+                "
+                type="button"
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-
-  <br />
 </template>
 
 <script>
 // import Service from "../services/OneMeasureService.js";
+// import { Field, Form } from 'vee-validate';
 export default {
   name: "OMlogin",
-  //   inject: ["GStore"],
-  //   components: {},
+  // components: {
+  //   Field,
+  //   Form,
+  // },
   data() {
     return {
       email: "",
@@ -100,77 +218,10 @@ export default {
 </script>
 
 <style scoped>
-#icon {
-  padding-left: 20px;
-}
-.Signup {
-  text-align: center;
-}
-.inputform {
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: left;
-}
-
-.loginform {
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
-  max-width: 1200px;
-  max-height: 1000px;
-  margin: 0 auto;
-}
-.Loginform {
-  width: 50%;
-}
-.Logoform {
-  background: url("../../assets/LogoOnemeasure.png");
-  background-size: cover;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  width: 50%;
-  height: 600px;
-  background-position: center;
-  /* margin: 0 auto;
-  padding-bottom: 20cm auto; */
-}
-
 .btnSubmit {
-  font-weight: 550;
-  width: 90%;
-  color: #282726;
-  background-color: #fff;
-  border: none;
-  border-radius: 1.5rem;
   border: 1px solid rgba(100, 97, 97, 0.436);
-  padding: 2%;
 }
-.btnSubmit:hover {
-  box-shadow: 0 5px 8px 0 rgba(245, 103, 1, 0.2),
-    0 9px 26px 0 rgba(245, 103, 1, 0.19);
-  font-style: italic;
+.login-form{
+  
 }
-/* @media (min-width: 576px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    height: 650px;
-    width: 650px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-   
-  }
-}
-@media (max-width: 416px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-} */
-
-/* ::selection {
-  color: blue;
-  background-color: slateblue;
-}*/
 </style>
