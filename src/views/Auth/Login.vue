@@ -11,6 +11,7 @@
       shadow-md
       overflow-hidden
       md:max-w-5xl
+      
     "
   >
     <div class="md:flex">
