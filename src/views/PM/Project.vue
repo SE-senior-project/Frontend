@@ -17,19 +17,19 @@
     </ul>
     <br />
     <ul class="my-row">
-             <li>
-        <OnemeasurePM v-for="x in users" :key="x.id" :user="x" />
+      <li>
+        <ProjectCard v-for="x in users" :key="x.id" :user="x" />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import OnemeasurePM from "../../components/ProjectCard.vue";
+import ProjectCard from "../../components/pm/ProjectCard.vue";
 export default {
   name: "OMprojectmanagement",
   components: {
-    OnemeasurePM,
+    ProjectCard,
   },
   data() {
     return {

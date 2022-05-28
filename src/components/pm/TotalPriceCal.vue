@@ -5,9 +5,7 @@
         <div class="role_name">
           <b>Number {{ calculate_price }}</b>
         </div>
-        <div class="film">
-      
-        </div>
+        <div class="film"></div>
       </div>
     </div>
   </div>
@@ -113,4 +111,3 @@ export default {
   text-decoration: none;
 }
 </style>
-

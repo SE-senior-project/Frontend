@@ -1,19 +1,19 @@
 <template>
-    <div class="cards_wrap">
-      <div class="card_item">
-        <div class="card_inner">
-          <div class="role_name">
-            <b>Number {{ material_list.id }}</b>
-          </div>
-          <div class="real_name">
-            <b>{{ material_list.name }} </b>
-          </div>
-          <div class="film">
-            <b>{{ material_list.price }} </b>
-          </div>
+  <div class="cards_wrap">
+    <div class="card_item">
+      <div class="card_inner">
+        <div class="role_name">
+          <b>Number {{ material_list.id }}</b>
+        </div>
+        <div class="real_name">
+          <b>{{ material_list.name }} </b>
+        </div>
+        <div class="film">
+          <b>{{ material_list.price }} </b>
         </div>
       </div>
     </div>
+  </div>
 </template>
 <script>
 export default {

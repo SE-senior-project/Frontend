@@ -16,11 +16,35 @@
           />
         </div>
         <div class="col-6">
+          <figure
+            class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800"
+          >
+            <img
+              class="w-24 h-24 md:w-48 md:rounded-none rounded-full mx-auto pl-5 pt-2"
+              src="../../assets/logo.png"
+              alt=""
+              width="384"
+              height="512"
+            />
+            <div class="pt-6 md:p-8 text-center space-y-4 text-white">
+              <blockquote>
+                <p class="text-lg font-medium">
+                  “Tailwind CSS is the only framework that I've seen scale on
+                  large teams. It’s easy to customize, adapts to any design, and
+                  the build size is tiny.”
+                </p>
+              </blockquote>
+              <figcaption class="font-medium">
+                <div class="text-sky-500 dark:text-sky-400">Sarah Dayan</div>
+                <div class="text-slate-700 dark:text-slate-500">
+                  Staff Engineer, Algolia
+                </div>
+              </figcaption>
+            </div>
+          </figure>
           <br />
           <div class="card">
-            <div class="card-body">
-             TotalPrice: {{ calculate_price }}
-            </div>
+            <div class="card-body">TotalPrice: {{ num }}</div>
           </div>
         </div>
       </div>
@@ -28,7 +52,7 @@
   </div>
 </template>
 <script>
-import TotalPriceCard from "../../components/TotalPriceCard.vue";
+import TotalPriceCard from "../../components/pm/TotalPriceCard.vue";
 export default {
   name: "total_material_selection",
   components: {
@@ -66,16 +90,24 @@ export default {
       ],
     };
   },
+  mounted() {
+    let sum = 0;
+    for (let index = 0; index < this.material_lists.length; index++) {
+      console.log(this.material_lists[index].price);
+      sum = sum + this.material_lists[index].price;
+    }
+    this.num = sum;
+  },
+  methods: {},
   computed: {
-    // a computed getter
     calculate_price() {
       let sum = 0;
-      // `this` points to the component instance
       for (let index = 0; index < this.material_lists.length; index++) {
         console.log(this.material_lists[index].price);
         sum = sum + this.material_lists[index].price;
       }
-      return sum;
+      this.num = sum;
+      return num;
     },
   },
 };

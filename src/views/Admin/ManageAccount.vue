@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import ContactorCard from "../../components/ContactorCard.vue";
+import ContactorCard from "../../components/admin/ContactorCard.vue";
 export default {
   name: "manage_account",
   components: {
