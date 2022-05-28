@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import SearchMaterial from "../../components/PM_components/SearchMaterial.vue";
+import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import Nav from "../../components/NavBarFeature.vue";
-import MaterialType from "../../components/PM_components/MaterialTypeCard.vue";
+import MaterialType from "../../components/pm/MaterialTypeCard.vue";
 export default {
   name: "material_type",
   components: {

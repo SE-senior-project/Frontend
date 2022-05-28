@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import ProjectCard from "../../components/PM_components/ProjectCard.vue";
+import ProjectCard from "../../components/pm/ProjectCard.vue";
 export default {
   name: "OMprojectmanagement",
   components: {

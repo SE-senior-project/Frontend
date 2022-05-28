@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import TotalPriceCard from "../../components/PM_components/TotalPriceCard.vue";
+import TotalPriceCard from "../../components/pm/TotalPriceCard.vue";
 export default {
   name: "total_material_selection",
   components: {

@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import SearchMaterial from "../../components/PM_components/SearchMaterial.vue";
+import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import Nav from "../../components/NavBarFeature.vue";
-import MaterialSelection from "../../components/PM_components/MaterialSelectionCard.vue";
+import MaterialSelection from "../../components/pm/MaterialSelectionCard.vue";
 export default {
   name: "material_selection",
   components: {
