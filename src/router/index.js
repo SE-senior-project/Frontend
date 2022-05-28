@@ -19,6 +19,8 @@ import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
 import boqConfirmation from "../views/boq/BOQConfirmation.vue";
 import showTemplate from "../views/boq/ShowTemplate.vue";
 import bogGenration from "../views/boq/BOQGeneration.vue";
+
+import showcase from "../views/Showcase.vue"
 const routes = [
   {
     path: "/material_list/:id",
@@ -94,6 +96,11 @@ const routes = [
     path: "/show_template",
     name: "show_template",
     component: showTemplate,
+  },
+  {
+    path: "/showcase",
+    name: "showcase",
+    component: showcase,
   },
   {
     path: "/home",
