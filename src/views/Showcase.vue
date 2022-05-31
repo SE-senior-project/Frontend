@@ -8,6 +8,11 @@
 
     <h1>Secondary Button</h1>
     <SecondaryButton>test</SecondaryButton>
+
+    <h1>Field</h1>
+    <TextField >
+
+    </TextField>
   </div>
 </template>
 
@@ -15,12 +20,14 @@
 import BaseButton from "../components/button/BaseButton.vue";
 import PrimaryButton from "../components/button/PrimaryButton.vue";
 import SecondaryButton from "../components/button/SecondaryButton.vue";
+import TextField from "../components/field/TextField.vue"
 export default {
   name: "showcase",
   components: {
     PrimaryButton,
     SecondaryButton,
-    BaseButton
+    BaseButton,
+    TextField,
   },
 };
 </script>
