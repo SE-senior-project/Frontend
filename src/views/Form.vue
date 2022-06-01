@@ -6,6 +6,7 @@
         @submit="onSubmit"
         :validation-schema="schema"
       >
+      <FormWrapper label="ข้อมูลส่วนตัว">
         <div class="flex flex-col gap-x-2 md:flex-row">
           <TextField
             type="text"
@@ -23,6 +24,7 @@
           />
         </div>
         <PrimaryButton type="submit">Submit</PrimaryButton>
+      </FormWrapper>
       </Form>
     </div>
   </div>
@@ -31,6 +33,7 @@
 import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
+import FormWrapper from '@/components/form/FormWrapper'
 import * as yup from "yup";
 
 export default {
@@ -39,6 +42,7 @@ export default {
     Form,
     TextField,
     PrimaryButton,
+    FormWrapper,
   },
 
   data() {

@@ -1,6 +1,6 @@
 <template>
   <ErrorMessage
-    class="flex justify-self-start text-sm font-normal leading-[17px] text-red-500"
+    class="text-red-500 text-xs italic"
     :name="name"
   />
 </template>
