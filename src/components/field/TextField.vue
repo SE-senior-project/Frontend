@@ -9,7 +9,7 @@
         :required="required"
       />
     </div>
-    <div class="h-[17px]" v-if="showError">
+    <div v-if="showError">
       <TextMessage :name="name" />
     </div>
   </div>
