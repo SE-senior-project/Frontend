@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import GStore from "./store";
 // import "bootstrap/dist/css/bootstrap.css";
+import '@/services/AxiosInterceptorSetup.js'
 import { FontAwesomeIcon } from "./plugin/font.js";
 import "./index.css";
 
