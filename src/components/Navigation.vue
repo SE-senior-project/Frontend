@@ -9,8 +9,8 @@
       <ul v-show="!mobile" class="navigation">
         <li></li>
         <li></li>
-        <li>
-          <router-link class="link" :to="{ name: 'login' }"> Login</router-link>
+        <li v-if="currentUser">
+           {{ currentUser.username }}
         </li>
         <li>
           <router-link :to="{ name: 'login' }">
@@ -24,11 +24,17 @@
 </template>
 
 <script>
+import AuthService from '@/services/AuthService.js'
 export default {
   name: "OMnavigation",
   data() {
     return {};
   },
+   computed: {
+     currentUser() {
+      return AuthService.getUser();
+    },
+  }
 };
 </script>
 

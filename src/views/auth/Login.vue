@@ -43,6 +43,7 @@ import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import FormWrapper from "@/components/form/FormWrapper";
+import AuthService from "@/services/AuthService.js";
 import * as yup from "yup";
 export default {
   name: "OMlogin",
@@ -68,11 +69,15 @@ export default {
   },
   methods: {
     onSubmit(user) {
-      if (user.email == "kong") {
-        this.$router.push({
-          name: "login",
+       AuthService.login(user)
+        .then(() => {
+          this.$router.go({
+            name: "Home",
+          });
+        })
+        .catch(() => {
+          this.message = "Cannot login to the system.";
         });
-      }
     },
   },
 };
