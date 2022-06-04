@@ -6,25 +6,25 @@
         @submit="onSubmit"
         :validation-schema="schema"
       >
-      <FormWrapper label="ข้อมูลส่วนตัว">
-        <div class="flex flex-col gap-x-2 md:flex-row">
-          <TextField
-            type="text"
-            name="firstname"
-            placeholder="ชื่อ"
-            label="ชื่อ"
-            required
-          />
-          <TextField
-            type="text"
-            name="lastname"
-            placeholder="นามสกุล"
-            label="นามสกุล"
-            required
-          />
-        </div>
-        <PrimaryButton type="submit">Submit</PrimaryButton>
-      </FormWrapper>
+        <FormWrapper label="ข้อมูลส่วนตัว">
+          <div class="flex flex-col gap-x-2 md:flex-row">
+            <TextField
+              type="text"
+              name="firstname"
+              placeholder="ชื่อ"
+              label="ชื่อ"
+              required
+            />
+            <TextField
+              type="text"
+              name="lastname"
+              placeholder="นามสกุล"
+              label="นามสกุล"
+              required
+            />
+          </div>
+          <PrimaryButton type="submit">Submit</PrimaryButton>
+        </FormWrapper>
       </Form>
     </div>
   </div>
@@ -33,7 +33,7 @@
 import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
-import FormWrapper from '@/components/form/FormWrapper'
+import FormWrapper from "@/components/form/FormWrapper";
 import * as yup from "yup";
 
 export default {
@@ -44,7 +44,6 @@ export default {
     PrimaryButton,
     FormWrapper,
   },
-
   data() {
     const schema = yup.object().shape({
       firstname: yup

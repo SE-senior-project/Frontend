@@ -1,218 +1,78 @@
 <template>
-  <br />
-  <br />
-  <div
-    class="
-      login-form
-      max-w-xl
-      mx-auto
-      bg-white
-      rounded-xl
-      shadow-md
-      overflow-hidden
-      md:max-w-5xl
-      
-    "
-  >
-    <div class="md:flex">
-      <div class="md:shrink-0">
-        <img
-          class="h-48 w-full object-cover md:h-full md:w-full"
-          src="../../assets/LogoOnemeasure.png"
-          alt="Man looking at item at a store"
-        />
+  <div class="relative flex justify-center items-center my-10 md:my-[150px] w-full h-full px-5 py-25">
+    <div class="max-w-5xl flex flex-col md:flex-row justify-center items-center bg-white shadow-xl rounded-lg mb-4">
+      <div class="w-full md:w-[390px]">
+        <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
       </div>
-      <div class="p-8">
-        <!-- <div class="text-center">
-          <h2 class="">SIGN IN</h2>
-          <form @submit.prevent="onLogin">
-            <br />
-            <div class="form-group inputform">
-              <label for="exampleInputPassword1"><h5>Email</h5></label>
-              <input
-                class="form-control"
-                type="email"
-                placeholder="input @Email"
-                v-model="email"
+      <div class="w-max">
+        <Form
+          @submit="onSubmit"
+          :validation-schema="schema"
+        >
+          <FormWrapper label="ล็อคอิน">
+            <div class="flex flex-col w-[280px]">
+              <TextField
+                type="text"
+                name="email"
+                placeholder="อีเมล"
+                label="อีเมล"
+                required
               />
-            </div>
-            <br />
-            <div class="form-group inputform">
-              <label for="exampleInputPassword1"><h5>Password</h5></label>
-              <input
+              <TextField
                 type="password"
-                class="form-control"
-                id="exampleInputPassword1"
-                placeholder="input password"
-                v-model="password"
-              />
+                name="password"
+                placeholder="รหัสผ่าน"
+                label="รหัสผ่าน"
+                required
+              />  
             </div>
-            <br />
-            <button type="submit" class="btn btn-light btnSubmit">
-              Sign In <font-awesome-icon icon="sign-in-alt" id="icon" />
-            </button>
-            <br />
-            <br />
-            <div class="form-group Signup">
-              <p>
-                Don't have an account?
-                <router-link :to="{ name: 'register' }"> SIGN UP</router-link>
-              </p>
+            <div class="flex flex-row pb-4 text-sm">
+              <p>ลงทะเบียนเข้าใช้เว็บไซต์</p>
+              <a class="text-blue-500 px-1 cursor-pointer underline underline-offset-1" href="register">ลงทะเบียน</a>
             </div>
-          </form>
-        </div> -->
-        <form class="w-full max-w-lg">
-          <div class="md:flex md:items-center mb-6"></div>
-          <div class="md:flex md:items-center mb-6">
-            <div class="md:w-1/3">
-              <label
-                class="
-                  block
-                  text-gray-500
-                  font-bold
-                  md:text-right
-                  mb-1
-                  md:mb-0
-                  pr-4
-                "
-                for="inline-email"
-              >
-                Email
-              </label>
-            </div>
-            <div class="md:w-2/3">
-              <input
-                class="
-                  bg-gray-200
-                  appearance-none
-                  border-2 border-gray-200
-                  rounded
-                  w-full
-                  py-2
-                  px-4
-                  text-gray-700
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-orange-400
-                "
-                id="inline-full-name"
-                type="email"
-                placeholder="input email"
-              />
-            </div>
-          </div>
-          <div class="md:flex md:items-center mb-6">
-            <div class="md:w-1/3">
-              <label
-                class="
-                  block
-                  text-gray-500
-                  font-bold
-                  md:text-right
-                  mb-1
-                  md:mb-0
-                  pr-4
-                "
-                for="inline-password"
-              >
-                Password
-              </label>
-            </div>
-            <div class="md:w-2/3">
-              <input
-                class="
-                  bg-gray-200
-                  appearance-none
-                  border-2 border-gray-200
-                  rounded
-                  w-full
-                  py-2
-                  px-4
-                  text-gray-700
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-orange-400
-                "
-                id="inline-password"
-                type="password"
-                placeholder="input password"
-              />
-            </div>
-          </div>
-          <div class="md:flex md:items-center">
-            <div class="md:w-2/3"></div>
-            <div class="md:w-2/3">
-              <button
-                class="
-                  btnSubmit
-                  shadow
-                  bg-stone-500
-                  hover:bg-orange-400
-                  focus:shadow-outline focus:outline-none
-                  text-white
-                  font-bold
-                  py-2
-                  px-4
-                  rounded
-                "
-                type="button"
-              >
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </form>
+            <PrimaryButton>ลงชื่อเข้าใข้</PrimaryButton>
+          </FormWrapper>
+        </Form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import Service from "../services/OneMeasureService.js";
-// import { Field, Form } from 'vee-validate';
+import { Form } from "vee-validate";
+import TextField from "@/components/field/TextField";
+import PrimaryButton from "@/components/button/PrimaryButton";
+import FormWrapper from "@/components/form/FormWrapper";
+import * as yup from "yup";
 export default {
   name: "OMlogin",
-  // components: {
-  //   Field,
-  //   Form,
-  // },
+  components: {
+    Form,
+    TextField,
+    PrimaryButton,
+    FormWrapper,
+  },
   data() {
+    const schema = yup.object().shape({
+      email: yup
+        .string()
+        .required('กรุณาระบุอีเมล')
+        .email("กรอกรูปแบบอีเมลไม่ถูกต้อง"),
+      password: yup.string()
+        .required('กรุณาระบุรหัสผ่าน')
+        .min(8, "รหัสผ่านต้องมีความยาวไม่น้อยกว่า 8 ตัวอักษร"),
+    });
     return {
-      email: "",
-      password: "",
-      checked: null,
+      schema,
     };
   },
   methods: {
-    onLogin() {
-      let data = {
-        username: this.email,
-        password: this.password,
-      };
-      if (data.username == "kong@gmail.com") {
+    onSubmit(user) {
+      if (user.email == "kong") {
         this.$router.push({
-          name: "project",
-        });
-      } else {
-        this.$router.push({
-          name: "admin",
+          name: "login",
         });
       }
-      // Service.Login(data)
-      //   .then((response) => {
-      //     this.GStore.currentUserid = response.data[0].userid;
-      //     this.GStore.currentUser = response.data[0].user;
-      //     this.checked = response.data[0].check;
-      //     console.log(this.checked);
-      //     if (this.checked == true) {
-      //       this.$router.push({
-      //         name: "Searchlist",
-      //       });
-      //     } else {
-      //       location.reload();
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
     },
   },
 };
@@ -222,7 +82,16 @@ export default {
 .btnSubmit {
   border: 1px solid rgba(100, 97, 97, 0.436);
 }
-.login-form{
-  
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
+body{
+  width: 100%;
+  height: 100vh;
+}
+
 </style>
