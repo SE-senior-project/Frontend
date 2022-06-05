@@ -9,8 +9,8 @@
       <ul v-show="!mobile" class="navigation">
         <li></li>
         <li></li>
-        <li v-if="currentUser">
-           {{ currentUser.username }}
+        <li v-if="GStore.currentUser">
+          {{ GStore.currentUser.username }}
         </li>
         <li>
           <router-link :to="{ name: 'login' }">
@@ -24,17 +24,21 @@
 </template>
 
 <script>
-import AuthService from '@/services/AuthService.js'
+import AuthService from "@/services/AuthService.js";
 export default {
   name: "OMnavigation",
+  inject: ['GStore'],
   data() {
-    return {};
+    return {
+      user: null,
+      count: 0,
+    };
   },
-   computed: {
-     currentUser() {
+  computed: {
+    currentUser() {
       return AuthService.getUser();
     },
-  }
+  },
 };
 </script>
 
