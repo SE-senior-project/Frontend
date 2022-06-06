@@ -14,7 +14,7 @@
 <script>
 import BaseButton from "../button/BaseButton.vue";
 export default {
-  name: "primary_button",
+  name: "secondary_button",
   components: {
     BaseButton,
   },
