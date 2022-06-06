@@ -59,12 +59,14 @@
       <div class="clear-both">
         <div>
           <TextLabel class="text-2xl mb-10" label="ผู้รับเหมา" />
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          >
             <ContactorCard
               label="ปิดการใช้งาน"
-              v-for="x in users"
-              :key="x.id"
-              :user="x"
+              v-for="user in active_contractor"
+              :key="user.id"
+              :user="user"
             />
           </div>
         </div>
@@ -72,7 +74,11 @@
         <div>
           <TextLabel class="text-2xl mb-10" label="บัญชีใหม่" />
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <NewAccountCard v-for="x in users" :key="x.id" :user="x" />
+            <NewAccountCard
+              v-for="user in new_user"
+              :key="user.id"
+              :user="user"
+            />
           </div>
         </div>
       </div>
@@ -80,12 +86,12 @@
   </div>
 </template>
 <script>
-import ContactorCard from "../../components/admin/ContactorCard.vue";
+import ContactorCard from "../../components/admin/ActiveContactorCard.vue";
 import NewAccountCard from "../../components/admin/NewAccountCard.vue";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
-import ApiClient from "../../services/OneMeasureService.js";
+import Service from "../../services/OneMeasureService.js";
 export default {
   name: "OMadmin",
   components: {
@@ -94,6 +100,12 @@ export default {
     FormWrapper,
     PrimaryButton,
     TextLabel,
+  },
+  data() {
+    return {
+      new_user: null,
+      active_contractor: null,
+    };
   },
   methods: {
     onUpdate(e) {
@@ -104,15 +116,15 @@ export default {
       console.log(month);
       if (month === check) {
         this.$swal("This month cannot update data");
-        return 'cannot';
+        return "cannot";
       }
       if (check > month) {
         this.$swal("This month cannot update data");
-        return 'cannot';
+        return "cannot";
       }
       if (check == month - 1) {
         this.$swal("This month cannot update data");
-        return 'cannot';
+        return "cannot";
       }
 
       if (check == 1) {
@@ -152,7 +164,7 @@ export default {
         mm = "12";
         console.log(mm);
       }
-      ApiClient.update_external_data(mm)
+      Service.update_external_data(mm)
         .then(() => {
           this.$swal("This month already updated");
         })
@@ -161,32 +173,22 @@ export default {
         });
     },
   },
+  created() {
+    Service.get_all_waiting_user()
+      .then((response) => {
+        this.new_user = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-  data() {
-    return {
-      users: [
-        {
-          name: "Thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
-    };
+    Service.get_all_active_contractor()
+      .then((response) => {
+        this.active_contractor = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
