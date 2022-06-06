@@ -1,14 +1,36 @@
 <template>
-  <div class="relative flex justify-center items-center my-10 xl:my-[150px] w-full h-full px-5 py-25">
-    <div class="max-w-5xl flex flex-col xl:flex-row justify-center items-center bg-white shadow-xl rounded-lg mb-4">
+  <div
+    class="
+      relative
+      flex
+      justify-center
+      items-center
+      my-10
+      xl:my-[150px]
+      w-full
+      h-full
+      px-5
+      py-25
+    "
+  >
+    <div
+      class="
+        max-w-5xl
+        flex flex-col
+        xl:flex-row
+        justify-center
+        items-center
+        bg-white
+        shadow-xl
+        rounded-lg
+        mb-4
+      "
+    >
       <div class="w-full xl:w-[800px]">
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
       </div>
       <div class="w-max">
-        <Form
-          @submit="onSubmit"
-          :validation-schema="schema"
-        >
+        <Form @submit="onSubmit" :validation-schema="schema">
           <FormWrapper label="สมัครสมาชิก">
             <div class="flex flex-col w-[300px]">
               <TextField
@@ -46,7 +68,7 @@
                 label="ยืนยันรหัสผ่าน"
                 required
               />
-            </div>          
+            </div>
             <PrimaryButton>สมัครสมาชิก</PrimaryButton>
           </FormWrapper>
         </Form>
@@ -56,6 +78,7 @@
 </template>
 
 <script>
+import Service from "../../services/OneMeasureService.js";
 import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
@@ -73,23 +96,25 @@ export default {
     const schema = yup.object().shape({
       firstname: yup
         .string()
-        .required('กรุณาระบุชื่อ')
-        .matches(/^[ก-๙]{1,}$/, 'กรุณาระบุเป็นภาษาไทย'),
+        .required("กรุณาระบุชื่อ")
+        .matches(/^[ก-๙]{1,}$/, "กรุณาระบุเป็นภาษาไทย"),
       lastname: yup
         .string()
-        .required('กรุณาระบุนามสกุล')
-        .matches(/^[ก-๙]{1,}$/, 'กรุณาระบุเป็นภาษาไทย'),
+        .required("กรุณาระบุนามสกุล")
+        .matches(/^[ก-๙]{1,}$/, "กรุณาระบุเป็นภาษาไทย"),
       email: yup
         .string()
-        .required('กรุณาระบุอีเมล')
+        .required("กรุณาระบุอีเมล")
         .email("กรอกรูปแบบอีเมลไม่ถูกต้อง"),
-      password: yup.string()
-        .required('กรุณาระบุรหัสผ่าน')
+      password: yup
+        .string()
+        .required("กรุณาระบุรหัสผ่าน")
         .min(8, "รหัสผ่านต้องมีความยาวไม่น้อยกว่า 8 ตัวอักษร"),
-      confirm_password: yup.string()
-        .required('กรุณาระบุรหัสผ่าน')
+      confirm_password: yup
+        .string()
+        .required("กรุณาระบุรหัสผ่าน")
         .min(8, "รหัสผ่านต้องมีความยาวไม่น้อยกว่า 8 ตัวอักษร")
-        .oneOf([yup.ref('password'), null], 'รหัสผ่านไม่ตรงกัน'),
+        .oneOf([yup.ref("password"), null], "รหัสผ่านไม่ตรงกัน"),
     });
     return {
       schema,
@@ -97,11 +122,16 @@ export default {
   },
   methods: {
     onSubmit(user) {
-    
-        this.$router.push({
-          name: "login",
-        });
-
+      Service.register(user)
+        .then(() => {
+          setTimeout(() => {
+             this.$swal("ลงทะเบียนสำเร็จ");
+          }, 3000);
+          this.$router.push({
+            name: "login",
+          });
+        })
+        .catch(() => {});
     },
   },
 };
@@ -112,15 +142,14 @@ export default {
   border: 1px solid rgba(100, 97, 97, 0.436);
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   width: 100%;
   height: 100vh;
 }
-
 </style>

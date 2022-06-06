@@ -14,7 +14,14 @@ export default {
   },
   get_all_active_contractor(){
     return apiClient.get("/Active_Contractor");
+  },
+  register(user){
+    return apiClient.post("/Register",{
+      first_name: user.firstname,
+      last_name: user.lastname,
+      email: user.email,
+      password: user.password
+    })
   }
-  
 
 };
