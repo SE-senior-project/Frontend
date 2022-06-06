@@ -1,6 +1,11 @@
 import apiClient from "./AxiosClient.js";
 
 export default {
+  update_external_data(mm) {
+    return apiClient.post("/External", {
+      mm: mm,
+    });
+  },
   UnMarktoData(data) {
     return apiClient.post("/unmark_data", {
       id: data.id,
