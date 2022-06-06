@@ -38,15 +38,15 @@
                 "
               >
                 <option selected>กรุณาเลือกเดือน</option>
-                <option value="01">มกราคม</option>
-                <option value="02">กุมภาพันธ์</option>
-                <option value="03">มีนาคม</option>
-                <option value="04">เมษายน</option>
-                <option value="05">พฤษภาคม</option>
-                <option value="06">มิถุนายน</option>
-                <option value="07">กรกฎาคม</option>
-                <option value="08">สิงหาคม</option>
-                <option value="09">กันยายน</option>
+                <option value="1">มกราคม</option>
+                <option value="2">กุมภาพันธ์</option>
+                <option value="3">มีนาคม</option>
+                <option value="4">เมษายน</option>
+                <option value="5">พฤษภาคม</option>
+                <option value="6">มิถุนายน</option>
+                <option value="7">กรกฎาคม</option>
+                <option value="8">สิงหาคม</option>
+                <option value="9">กันยายน</option>
                 <option value="10">ตุลาคม</option>
                 <option value="11">พฤศจิกายน</option>
                 <option value="12">ธันวาคม</option>
@@ -59,12 +59,14 @@
       <div class="clear-both">
         <div>
           <TextLabel class="text-2xl mb-10" label="ผู้รับเหมา" />
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          >
             <ContactorCard
               label="ปิดการใช้งาน"
-              v-for="x in users"
-              :key="x.id"
-              :user="x"
+              v-for="user in active_contractor"
+              :key="user.id"
+              :user="user"
             />
           </div>
         </div>
@@ -72,7 +74,11 @@
         <div>
           <TextLabel class="text-2xl mb-10" label="บัญชีใหม่" />
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <NewAccountCard v-for="x in users" :key="x.id" :user="x" />
+            <NewAccountCard
+              v-for="user in new_user"
+              :key="user.id"
+              :user="user"
+            />
           </div>
         </div>
       </div>
@@ -80,11 +86,12 @@
   </div>
 </template>
 <script>
-import ContactorCard from "../../components/admin/ContactorCard.vue";
+import ContactorCard from "../../components/admin/ActiveContactorCard.vue";
 import NewAccountCard from "../../components/admin/NewAccountCard.vue";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
+import Service from "../../services/OneMeasureService.js";
 export default {
   name: "OMadmin",
   components: {
@@ -94,36 +101,94 @@ export default {
     PrimaryButton,
     TextLabel,
   },
-  methods: {
-    onUpdate(e) {
-      console.log(e.target.month.value);
-    },
-  },
   data() {
     return {
-      users: [
-        {
-          name: "Thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      new_user: null,
+      active_contractor: null,
     };
+  },
+  methods: {
+    onUpdate(e) {
+      var current = new Date();
+      var month = current.getMonth() + 1;
+      var check = parseInt(e.target.month.value);
+      var mm = "";
+      console.log(month);
+      if (month === check) {
+        this.$swal("This month cannot update data");
+        return "cannot";
+      }
+      if (check > month) {
+        this.$swal("This month cannot update data");
+        return "cannot";
+      }
+      if (check == month - 1) {
+        this.$swal("This month cannot update data");
+        return "cannot";
+      }
+
+      if (check == 1) {
+        mm = "01";
+        console.log(mm);
+      } else if (check == 2) {
+        mm = "02";
+        console.log(mm);
+      } else if (check == 3) {
+        mm = "03";
+        console.log(mm);
+      } else if (check == 4) {
+        mm = "04";
+        console.log(mm);
+      } else if (check == 5) {
+        mm = "05";
+        console.log(mm);
+      } else if (check == 6) {
+        mm = "06";
+        console.log(mm);
+      } else if (check == 7) {
+        mm = "07";
+        console.log(mm);
+      } else if (check == 8) {
+        mm = "08";
+        console.log(mm);
+      } else if (check == 9) {
+        mm = "09";
+        console.log(mm);
+      } else if (check == 10) {
+        mm = "10";
+        console.log(mm);
+      } else if (check == 11) {
+        mm = "11";
+        console.log(mm);
+      } else if (check == 12) {
+        mm = "12";
+        console.log(mm);
+      }
+      Service.update_external_data(mm)
+        .then(() => {
+          this.$swal("This month already updated");
+        })
+        .catch(() => {
+          this.message = "Cannot login to the system.";
+        });
+    },
+  },
+  created() {
+    Service.get_all_waiting_user()
+      .then((response) => {
+        this.new_user = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    Service.get_all_active_contractor()
+      .then((response) => {
+        this.active_contractor = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

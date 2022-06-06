@@ -140,9 +140,6 @@ export default {
             }
           }
         })
-        .catch(() => {
-          this.message = "Cannot login to the system.";
-        });
     },
   },
 };
