@@ -21,9 +21,9 @@
               <div class="w-[400px] mx-4">
                 <TextField
                   type="text"
-                  name="email"
-                  placeholder="อีเมลลูกค้า"
-                  label="อีเมลลูกค้า"
+                  name="project_name"
+                  placeholder="ชื่อโปรเจค"
+                  label="ชื่อโปรเจค"
                   required
                 />
                 <TextArea
@@ -32,6 +32,7 @@
                   placeholder="รายละเอียดโปรเจค"
                   label="รายละเอียดโปรเจค"
                   rows="10"
+                  required
                 />
               </div>
               <div class="w-[400px] mx-4">
@@ -77,13 +78,18 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      email: yup
+      project_name: yup
         .string()
-        .required("กรุณาระบุอีเมล")
-        .email("กรอกรูปแบบอีเมลไม่ถูกต้อง"),
+        .required("กรุณาระบุชื่อโปรเจค"),
       customer_name: yup
         .string()
-        .required("กรุณาระบุชื่อลูกค้า")
+        .required("กรุณาระบุชื่อลูกค้า"),
+      project_description: yup
+        .string()
+        .required("กรุณาระบุรายระเอียดโปรเจค"),
+      deadline: yup 
+        .string()
+        .required("กรุณาเลือกวันกำหนดส่งงาน"),
     });
     return {
       schema,

@@ -25,7 +25,7 @@
         <img @click='toggle = !toggle' v-if='toggle' class="h-[27px] pl-[15px] p-[5px]" src="../../assets/down-arrow.png" />
       </FormWrapper>
       <div v-if='toggle' class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <ProjectCard v-for="x in users" :key="x.id" :user="x" />
+        <UnhideProjectCard v-for="x in users" :key="x.id" :user="x" />
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@
 
 <script>
 import ProjectCard from "../../components/pm/ProjectCard.vue";
+import UnhideProjectCard from "../../components/pm/UnhideProjectCard.vue";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
@@ -40,7 +41,8 @@ export default {
   components: {
     ProjectCard,
     FormWrapper,
-    PrimaryButton
+    PrimaryButton,
+    UnhideProjectCard
   },
   data() {
     return {
