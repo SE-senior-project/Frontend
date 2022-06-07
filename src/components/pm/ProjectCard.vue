@@ -1,5 +1,5 @@
 <template>
-  <div class="card mx-[60px] lg:mx-[40px] mb-10 shadow-xl rounded-lg">
+  <div class="mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg">
     <div
       class="
         contractor
@@ -31,7 +31,6 @@
             mt-9
             mr-2
             rounded-lg
-            
           "
         >
           <li><span class="text-sm cursor-pointer">ซ่อนโปรเจค</span></li>
@@ -64,6 +63,11 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
+      <hr />
+      <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
+        <p class="text-sm font-bold">กำหนดการส่ง:</p>
+        <p class="px-[10px]">DD/MM/YY</p>
+      </div>
     </router-link>
   </div>
 </template>
@@ -83,7 +87,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("yoyo")
+      console.log("yoyo");
     },
   },
 };
