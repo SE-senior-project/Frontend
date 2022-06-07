@@ -59,12 +59,10 @@
       <div class="clear-both">
         <div>
           <TextLabel class="text-2xl mb-10" label="ผู้รับเหมา" />
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          >
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <ContactorCard
               label="ปิดการใช้งาน"
-              v-for="user in active_contractor"
+              v-for="user in GStore.active_user"
               :key="user.id"
               :user="user"
             />
@@ -75,7 +73,7 @@
           <TextLabel class="text-2xl mb-10" label="บัญชีใหม่" />
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <NewAccountCard
-              v-for="user in new_user"
+              v-for="user in GStore.waiting_user "
               :key="user.id"
               :user="user"
             />
@@ -92,8 +90,10 @@ import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
 import Service from "../../services/OneMeasureService.js";
+import Swal from "sweetalert2";
 export default {
   name: "OMadmin",
+  inject: ["GStore"],
   components: {
     ContactorCard,
     NewAccountCard,
@@ -103,7 +103,6 @@ export default {
   },
   data() {
     return {
-      new_user: null,
       active_contractor: null,
     };
   },
@@ -115,15 +114,48 @@ export default {
       var mm = "";
       console.log(month);
       if (month === check) {
-        this.$swal("This month cannot update data");
+        Swal.fire({
+          icon: "warning",
+          title: "ไม่สามารถอัพเดทเดือนนี้",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+          showConfirmButton: false,
+          timer: 1500,
+        });
         return "cannot";
       }
       if (check > month) {
-        this.$swal("This month cannot update data");
+        Swal.fire({
+          icon: "warning",
+          title: "ไม่สามารถอัพเดทเดือนนี้",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+          showConfirmButton: false,
+          timer: 1500,
+        });
         return "cannot";
       }
       if (check == month - 1) {
-        this.$swal("This month cannot update data");
+        Swal.fire({
+          icon: "warning",
+          title: "ไม่สามารถอัพเดทเดือนนี้",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+          showConfirmButton: false,
+          timer: 1500,
+        });
         return "cannot";
       }
 
@@ -166,7 +198,18 @@ export default {
       }
       Service.update_external_data(mm)
         .then(() => {
-          this.$swal("This month already updated");
+          Swal.fire({
+            icon: "success",
+            title: "อัพเดทสำเร็จ",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+            showConfirmButton: false,
+            timer: 1500,
+          });
         })
         .catch(() => {
           this.message = "Cannot login to the system.";
@@ -174,21 +217,13 @@ export default {
     },
   },
   created() {
-    Service.get_all_waiting_user()
-      .then((response) => {
-        this.new_user = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    Service.get_all_active_contractor()
-      .then((response) => {
-        this.active_contractor = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Service.get_all_active_contractor()
+    //   .then((response) => {
+    //     this.active_contractor = response.data;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   },
 };
 </script>

@@ -30,7 +30,7 @@
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
       </div>
       <div class="w-max">
-        <Form @submit="onSubmit" :validation-schema="schema">
+        <Form @submit="login" :validation-schema="schema">
           <FormWrapper label="ล็อคอิน">
             <div class="flex flex-col w-[280px]">
               <TextField
@@ -101,7 +101,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(user) {
+    login(user) {
       AuthService.login(user)
         .then(() => {
           if (this.GStore.currentUser_fail == false) {

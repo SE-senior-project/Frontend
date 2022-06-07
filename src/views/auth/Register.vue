@@ -30,7 +30,7 @@
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
       </div>
       <div class="w-max">
-        <Form @submit="onSubmit" :validation-schema="schema">
+        <Form @submit="register" :validation-schema="schema">
           <FormWrapper label="สมัครสมาชิก">
             <div class="flex flex-col w-[300px]">
               <TextField
@@ -83,6 +83,7 @@ import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import FormWrapper from "@/components/form/FormWrapper";
+import Swal from "sweetalert2";
 import * as yup from "yup";
 export default {
   name: "OMregister",
@@ -121,12 +122,21 @@ export default {
     };
   },
   methods: {
-    onSubmit(user) {
+    register(user) {
       Service.register(user)
         .then(() => {
-          setTimeout(() => {
-             this.$swal("ลงทะเบียนสำเร็จ");
-          }, 3000);
+          Swal.fire({
+            icon: "success",
+            title: "ลงทะเบียนสำเร็จ",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.$router.push({
             name: "login",
           });

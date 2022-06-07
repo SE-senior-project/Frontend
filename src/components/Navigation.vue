@@ -13,10 +13,9 @@
           {{ GStore.currentUser.username }}
         </li>
         <li>
-          <router-link :to="{ name: 'login' }">
-            <button type="submit" class="btn btn-light btnSubmit">
-              <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" /></button
-          ></router-link>
+          <button type="submit" @click="logout" class="btn btn-light btnSubmit">
+            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
+          </button>
         </li>
       </ul>
     </nav>
@@ -27,7 +26,7 @@
 import AuthService from "@/services/AuthService.js";
 export default {
   name: "OMnavigation",
-  inject: ['GStore'],
+  inject: ["GStore"],
   data() {
     return {
       user: null,
@@ -37,6 +36,14 @@ export default {
   computed: {
     currentUser() {
       return AuthService.getUser();
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      this.GStore.currentUser = JSON.parse(localStorage.getItem("user"));
+      this.$router.push({ name: "login" });
     },
   },
 };
