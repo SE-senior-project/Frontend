@@ -83,6 +83,7 @@ import { Form } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import FormWrapper from "@/components/form/FormWrapper";
+import Swal from "sweetalert2";
 import * as yup from "yup";
 export default {
   name: "OMregister",
@@ -124,9 +125,18 @@ export default {
     onSubmit(user) {
       Service.register(user)
         .then(() => {
-          setTimeout(() => {
-             this.$swal("ลงทะเบียนสำเร็จ");
-          }, 3000);
+          Swal.fire({
+            icon: "success",
+            title: "ลงทะเบียนสำเร็จ",
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.$router.push({
             name: "login",
           });

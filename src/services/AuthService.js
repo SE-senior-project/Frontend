@@ -23,11 +23,5 @@ export default {
   },
   getUser() {
     return JSON.parse(localStorage.getItem("user"));
-  },
-  register(user) {
-    return apiClient.post("/register", {
-      username: user.username,
-      password: user.password,
-    });
-  },
+  }
 };
