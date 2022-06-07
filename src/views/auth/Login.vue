@@ -41,7 +41,7 @@
                 required
               />
               <TextField
-                type="password"
+                type="textarea"
                 name="password"
                 placeholder="รหัสผ่าน"
                 label="รหัสผ่าน"
