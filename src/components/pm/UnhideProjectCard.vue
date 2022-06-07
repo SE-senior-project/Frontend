@@ -33,7 +33,7 @@
             rounded-lg
           "
         >
-          <li><span class="text-sm cursor-pointer">ซ่อนโปรเจค</span></li>
+          <li><span class="text-sm cursor-pointer">แสดงโปรเจค</span></li>
         </div>
         <div class="absolute top-0 right-0 px-2 pt-1">
           <img
@@ -73,7 +73,7 @@
 </template>
 <script>
 export default {
-  name: "OMPM",
+  name: "unhide_OMPM",
   props: {
     user: {
       type: Object,

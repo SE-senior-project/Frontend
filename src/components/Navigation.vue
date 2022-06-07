@@ -9,14 +9,13 @@
       <ul v-show="!mobile" class="navigation">
         <li></li>
         <li></li>
-        <li>
-          <router-link class="link" :to="{ name: 'login' }"> Login</router-link>
+        <li v-if="GStore.currentUser">
+          {{ GStore.currentUser.username }}
         </li>
         <li>
-          <router-link :to="{ name: 'login' }">
-            <button type="submit" class="btn btn-light btnSubmit">
-              <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" /></button
-          ></router-link>
+          <button type="submit" @click="logout" class="btn btn-light btnSubmit">
+            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
+          </button>
         </li>
       </ul>
     </nav>
@@ -24,10 +23,28 @@
 </template>
 
 <script>
+import AuthService from "@/services/AuthService.js";
 export default {
   name: "OMnavigation",
+  inject: ["GStore"],
   data() {
-    return {};
+    return {
+      user: null,
+      count: 0,
+    };
+  },
+  computed: {
+    currentUser() {
+      return AuthService.getUser();
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      this.GStore.currentUser = JSON.parse(localStorage.getItem("user"));
+      this.$router.push({ name: "login" });
+    },
   },
 };
 </script>

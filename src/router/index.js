@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import service from '../services/OneMeasureService';
+import GStore from '@/store'
 //AUTH//
 import HomeView from "../views/HomeView.vue";
 import login from "../views/auth/Login.vue";
@@ -19,6 +21,9 @@ import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
 import boqConfirmation from "../views/boq/BOQConfirmation.vue";
 import showTemplate from "../views/boq/ShowTemplate.vue";
 import bogGenration from "../views/boq/BOQGeneration.vue";
+
+import showcase from "../views/Showcase.vue";
+import form from "../views/Form.vue";
 const routes = [
   {
     path: "/material_list/:id",
@@ -49,6 +54,19 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: admin,
+    beforeEnter:async () => {
+      try {
+        const response1 = await service.get_all_waiting_user();
+        GStore.waiting_user = response1.data;
+        const response2 = await service.get_all_active_contractor();
+        GStore.active_user = response2.data;
+      } catch {
+        GStore.waiting_user = null;
+        GStore.active_user= null;
+        console.log('cannot load organizer');
+      }
+    }
+
   },
   {
     path: "/manage_account",
@@ -94,6 +112,16 @@ const routes = [
     path: "/show_template",
     name: "show_template",
     component: showTemplate,
+  },
+  {
+    path: "/showcase",
+    name: "showcase",
+    component: showcase,
+  },
+  {
+    path: "/form",
+    name: "form",
+    component: form,
   },
   {
     path: "/home",
