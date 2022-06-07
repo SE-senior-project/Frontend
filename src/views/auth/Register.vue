@@ -30,7 +30,7 @@
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
       </div>
       <div class="w-max">
-        <Form @submit="onSubmit" :validation-schema="schema">
+        <Form @submit="register" :validation-schema="schema">
           <FormWrapper label="สมัครสมาชิก">
             <div class="flex flex-col w-[300px]">
               <TextField
@@ -122,7 +122,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(user) {
+    register(user) {
       Service.register(user)
         .then(() => {
           Swal.fire({

@@ -1,6 +1,14 @@
 import apiClient from "./AxiosClient.js";
 
 export default {
+  register(user) {
+    return apiClient.post("/Register", {
+      first_name: user.firstname,
+      last_name: user.lastname,
+      email: user.email,
+      password: user.password
+    })
+  },
   update_external_data(mm) {
     return apiClient.post("/External", {
       mm: mm,
@@ -15,13 +23,16 @@ export default {
   get_all_disable_contractor() {
     return apiClient.get("/Disable_Contractor");
   },
-  register(user) {
-    return apiClient.post("/Register", {
-      first_name: user.firstname,
-      last_name: user.lastname,
-      email: user.email,
-      password: user.password
+  disable_contractor(id) {
+    return apiClient.post("/Disable", {
+      contractor_id: id,
+    })
+  },
+  active_contractor(id) {
+    return apiClient.post("/Active", {
+      contractor_id: id,
     })
   }
+
 
 };
