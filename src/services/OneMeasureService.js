@@ -32,7 +32,17 @@ export default {
     return apiClient.post("/Active", {
       contractor_id: id,
     })
+  },approve_user(id){
+    return apiClient.post("/Approve", {
+      user_id: id,
+    })
   }
+  ,unapprove_user(id){
+    return apiClient.post("/Unapprove", {
+      user_id: id,
+    })
+  }
+
 
 
 };
