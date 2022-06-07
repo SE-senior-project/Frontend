@@ -52,7 +52,7 @@ export default {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         cancelButtonText: "ยกเลิก",
-        confirmButtonText: "อนุญาติ",
+        confirmButtonText: "อนุมัติ",
       }).then((result) => {
         if (result.isConfirmed) {
           Service.approve_user(id);
@@ -75,7 +75,7 @@ export default {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         cancelButtonText: "ยกเลิก",
-        confirmButtonText: "ไม่อนุญาติ",
+        confirmButtonText: "ไม่อนุมัติ",
       }).then((result) => {
         if (result.isConfirmed) {
           Service.unapprove_user(id);
