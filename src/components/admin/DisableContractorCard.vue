@@ -11,14 +11,14 @@
         bg-orange-500
       "
     >
-      <span>ผู้รับเหมาคนที่ {{ user.user_id }}</span>
+      <span>ผู้รับเหมาคนที่ {{ user.contractor_id }}</span>
     </div>
     <div class="text-base w-5/6 m-auto mb-[20px] py-[8px]">
       <span>ชื่อ: {{ user.first_name }} {{ user.last_name }}</span>
     </div>
     <PrimaryButton
       class="relative m-auto my-8"
-      v-on:click="active_contractor(user.user_id)"
+      v-on:click="active_contractor(user.contractor_id)"
       >{{ label }}</PrimaryButton
     >
   </div>
