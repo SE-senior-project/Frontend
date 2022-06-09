@@ -1,27 +1,32 @@
 <template>
-  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg">
-    <router-link
-      class="link"
-      :to="{ name: 'material_list', params: { id: user.id } }"
-    >
+  <div
+    class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+  >
     <div
       class="
         contractor
         text-white
         relative
+        mb-[20px]
         text-lg text-center
-        py-[60px]
+        py-[50px]
         bg-orange-500
       "
-    >
-      <span>รูปที่ {{ user.id }}</span>
+    ></div>
+    <div class="text-sm px-[20px] pb-[60px]">
+      <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
+      <p class="font-bold">ราคา: {{ user.id }}</p>
+      <SecondaryButton class="float-right my-5">เพิ่มวัสดุ</SecondaryButton>
     </div>
-    </router-link>
   </div>
 </template>
 <script>
+import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
-  name: "recommend_material",
+  name: "material_type_card",
+  components: {
+    SecondaryButton,
+  },
   props: {
     user: {
       type: Object,

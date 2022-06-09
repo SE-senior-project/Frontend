@@ -11,12 +11,14 @@
           contractor
           text-white
           relative
+          mb-[20px]
           text-lg text-center
-          py-[60px]
+          py-[50px]
           bg-orange-500
         "
-      >
-        <span>ประเภทสินค้าที่ {{ user.id }}</span>
+      ></div>
+      <div class="text-sm px-[20px] pb-[20px] flex flex-row">
+        <p class="font-bold">ชื่อสินค้า: {{ user.name }}</p>
       </div>
     </router-link>
   </div>

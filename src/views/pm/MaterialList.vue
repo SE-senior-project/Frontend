@@ -13,23 +13,7 @@
         py-5
       "
     >
-      <div class="header float-left">
-        <a :href="'../project'">โปรเจค</a>
-        | <a :href="'../boq_generation'">การสร้าง BOQ</a> |
-        <a :href="''">ตารางงานโปรเจค</a> | <a :href="''">การประเมินงาน</a>
-      </div>
-      <div class="clear-both w-max flex flex-row mt-[40px]">
-        <Form @submit="onSubmit" :validation-schema="schema">
-          <div class="grid grid-cols-2">
-            <div class="w-[400px] mx-4">
-              <TextField type="text" name="search" placeholder="ค้นหาวัสดุ" />
-            </div>
-            <div class="my-[9px]">
-              <SecondaryButton>ค้นหา</SecondaryButton>
-            </div>
-          </div>
-        </Form>
-      </div>
+      <SearchMaterial />
       <div class="w-[500px]">
         <ul class="px-10 py-5 ml-10 rounded-md">
           <CategoryMaterial v-for="x in users" :key="x.id" :user="x" />
@@ -39,21 +23,13 @@
   </div>
 </template>
 <script>
-import { Form } from "vee-validate";
-import TextField from "@/components/field/TextField";
-import FormWrapper from "@/components/form/FormWrapper";
-import SecondaryButton from "@/components/button/SecondaryButton";
-import RecommendMaterial from "../../components/pm/RecommendMaterial.vue";
 import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
+import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 export default {
   name: "material_list",
   components: {
-    Form,
-    TextField,
-    FormWrapper,
-    SecondaryButton,
-    RecommendMaterial,
     CategoryMaterial,
+    SearchMaterial
   },
   data() {
     return {

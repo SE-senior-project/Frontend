@@ -13,12 +13,8 @@
         py-5
       "
     >
-      <div class="header float-left">
-        <a :href="'../project'">โปรเจค</a>
-        | <a :href="'../boq_generation'">การสร้าง BOQ</a> |
-        <a :href="''">ตารางงานโปรเจค</a> | <a :href="''">การประเมินงาน</a>
-      </div>
-      <div class="recommend mt-10">
+      <SearchMaterial />
+      <div class="recommend mb-10">
         <FormWrapper label="ประเภทของวัสดุ" />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <MaterialSelectionCard v-for="x in users" :key="x.id" :user="x" />
@@ -193,21 +189,15 @@
   </div>
 </template>
 <script>
-import { Form } from "vee-validate";
-import TextField from "@/components/field/TextField";
 import FormWrapper from "@/components/form/FormWrapper";
-import SecondaryButton from "@/components/button/SecondaryButton";
-import RecommendMaterial from "../../components/pm/RecommendMaterial.vue";
 import MaterialSelectionCard from "../../components/pm/MaterialSelectionCard.vue";
+import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 export default {
   name: "material_list",
   components: {
-    Form,
-    TextField,
     FormWrapper,
-    SecondaryButton,
-    RecommendMaterial,
     MaterialSelectionCard,
+    SearchMaterial
   },
   data() {
     return {
