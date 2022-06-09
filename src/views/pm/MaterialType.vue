@@ -8,13 +8,11 @@
 <script>
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import Nav from "../../components/NavBarFeature.vue";
-import MaterialType from "../../components/pm/MaterialTypeCard.vue";
 export default {
   name: "material_type",
   components: {
     Nav,
     SearchMaterial,
-    MaterialType,
   },
   data() {
     return {
