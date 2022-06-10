@@ -11,84 +11,80 @@
         mx-8
         px-10
         py-5
+        grid grid-cols-1
+        md:grid-cols-2
+        lg:grid-cols-2
       "
     >
-      <div class="header float-left">
-        <a :href="'../project'">โปรเจค</a>
-        | <a :href="'../boq_generation'">การสร้าง BOQ</a> |
-        <a :href="''">ตารางงานโปรเจค</a> | <a :href="''">การประเมินงาน</a>
+      <div class="bg-orange-500">
+        <FormWrapper class="px-8 pt-6 pb-2 mb-0 text-white" label="วัสดุ" />
+        <div
+          class="
+            bg-gray-100
+            shadow-lg
+            px-10
+            py-5
+            overflow-y-scroll
+            max-h-screen
+          "
+        >
+          <div class="grid grid-cols-1">
+            <TotalMaterialCard v-for="x in users" :key="x.id" :user="x" />
+          </div>
+        </div>
+      </div>
+      <div class="px-6 pt-6 mt-14">
+        <div class="grid grid-cols-1">
+          <TotalMaterialPriceCard />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import TotalPriceCard from "../../components/pm/TotalPriceCard.vue";
+import FormWrapper from "@/components/form/FormWrapper";
+import TotalMaterialCard from "@/components/pm/TotalMaterialCard";
+import TotalMaterialPriceCard from "@/components/pm/TotalMaterialPriceCard";
+import PrimaryButton from "@/components/button/PrimaryButton";
+import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
   name: "total_material_selection",
   components: {
-    TotalPriceCard,
+    FormWrapper,
+    TotalMaterialCard,
+    TotalMaterialPriceCard,
+    PrimaryButton,
+    SecondaryButton,
   },
   data() {
     return {
       num: 0,
-      material_lists: [
+      users: [
         {
           name: "thitisan",
           id: 1,
-          price: 1200,
         },
         {
           name: "Phonmongkhon",
           id: 2,
-          price: 1200,
         },
         {
           name: "Pasakon",
           id: 3,
-          price: 1200,
         },
         {
           name: "Sahachan",
           id: 4,
-          price: 1200,
         },
         {
           name: "Khemata",
           id: 5,
-          price: 900000,
         },
       ],
     };
-  },
-  mounted() {
-    let sum = 0;
-    for (let index = 0; index < this.material_lists.length; index++) {
-      console.log(this.material_lists[index].price);
-      sum = sum + this.material_lists[index].price;
-    }
-    this.num = sum;
-  },
-  methods: {},
-  computed: {
-    calculate_price() {
-      let sum = 0;
-      for (let index = 0; index < this.material_lists.length; index++) {
-        console.log(this.material_lists[index].price);
-        sum = sum + this.material_lists[index].price;
-      }
-      this.num = sum;
-      return num;
-    },
   },
 };
 </script>
 
 <style scoped>
-.card-body {
-  padding: 50px;
-}
-.card {
-  padding-top: 20px;
-  padding: 50px;
-}
 </style>
