@@ -10,16 +10,16 @@
         mb-4
         mx-8
         px-10
-        py-5
+        pt-5
+        pb-14
       "
     >
       <NavProject />
       <SearchMaterial />
-      <div class="w-[500px]">
-        <ul class="px-10 py-5 ml-10 rounded-md">
+        <div class="px-10 pt-5 rounded-md grid grid-cols-3">
           <CategoryMaterial v-for="x in users" :key="x.id" :user="x" />
-        </ul>
-      </div>
+        </div>
+        <Pagination />
     </div>
   </div>
 </template>
@@ -27,12 +27,14 @@
 import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
+import Pagination from "../../components/Pagination";
 export default {
   name: "material_list",
   components: {
     CategoryMaterial,
     SearchMaterial,
     NavProject,
+    Pagination
   },
   data() {
     return {

@@ -24,6 +24,13 @@ export default {
     TextField,
     SecondaryButton,
   },
+  methods: {
+    onSubmit() {
+      this.$router.push({
+        name: "material_type",
+      });
+    },
+  },
 };
 </script>
 <style scoped>

@@ -11,31 +11,32 @@
         mx-8
         px-10
         py-5
-        grid grid-cols-1
-        md:grid-cols-2
-        lg:grid-cols-2
+        flex flex-col
       "
     >
-      <div class="bg-orange-500">
-        <FormWrapper class="px-8 pt-6 pb-2 mb-0 text-white" label="วัสดุ" />
-        <div
-          class="
-            bg-gray-100
-            shadow-lg
-            px-10
-            py-5
-            overflow-y-scroll
-            max-h-screen
-          "
-        >
-          <div class="grid grid-cols-1">
-            <TotalMaterialCard v-for="x in users" :key="x.id" :user="x" />
+      <NavProject />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-[40px]">
+        <div class="bg-orange-500">
+          <FormWrapper class="px-8 pt-6 pb-2 mb-0 text-white" label="วัสดุ" />
+          <div
+            class="
+              bg-gray-100
+              shadow-lg
+              px-10
+              py-5
+              overflow-y-scroll
+              max-h-screen
+            "
+          >
+            <div class="grid grid-cols-1">
+              <TotalMaterialCard v-for="x in users" :key="x.id" :user="x" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="px-6 pt-6 mt-14">
-        <div class="grid grid-cols-1">
-          <TotalMaterialPriceCard />
+        <div class="px-6 pt-6 mt-14">
+          <div class="grid grid-cols-1">
+            <TotalMaterialPriceCard />
+          </div>
         </div>
       </div>
     </div>
@@ -47,6 +48,7 @@ import TotalMaterialCard from "@/components/pm/TotalMaterialCard";
 import TotalMaterialPriceCard from "@/components/pm/TotalMaterialPriceCard";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import SecondaryButton from "@/components/button/SecondaryButton";
+import NavProject from "../../components/NavProject";
 export default {
   name: "total_material_selection",
   components: {
@@ -55,6 +57,7 @@ export default {
     TotalMaterialPriceCard,
     PrimaryButton,
     SecondaryButton,
+    NavProject,
   },
   data() {
     return {
