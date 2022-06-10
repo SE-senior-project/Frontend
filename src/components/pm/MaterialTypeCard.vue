@@ -16,7 +16,7 @@
     <div class="text-sm px-[20px] pb-[60px]">
       <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
       <p class="font-bold">ราคา: {{ user.id }}</p>
-      <SecondaryButton class="float-right my-5">เพิ่มวัสดุ</SecondaryButton>
+      <SecondaryButton @click="onSubmit" class="float-right my-5">เพิ่มวัสดุ</SecondaryButton>
     </div>
   </div>
 </template>
@@ -40,7 +40,9 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("yoyo");
+      this.$router.push({
+        name: "total_material_selection",
+      });
     },
   },
 };

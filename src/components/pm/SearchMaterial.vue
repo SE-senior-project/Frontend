@@ -1,9 +1,4 @@
 <template>
-  <div class="header float-left">
-    <a :href="'../project'">โปรเจค</a>
-    | <a :href="'../boq_generation'">การสร้าง BOQ</a> |
-    <a :href="''">ตารางงานโปรเจค</a> | <a :href="''">การประเมินงาน</a>
-  </div>
   <div class="clear-both w-max flex flex-row mt-[40px]">
     <Form @submit="onSubmit" :validation-schema="schema">
       <div class="grid grid-cols-2">

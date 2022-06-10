@@ -13,6 +13,7 @@
         py-5
       "
     >
+      <NavProject />
       <SearchMaterial />
       <div class="w-[500px]">
         <ul class="px-10 py-5 ml-10 rounded-md">
@@ -25,11 +26,13 @@
 <script>
 import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
+import NavProject from "../../components/NavProject";
 export default {
   name: "material_list",
   components: {
     CategoryMaterial,
-    SearchMaterial
+    SearchMaterial,
+    NavProject,
   },
   data() {
     return {

@@ -13,6 +13,7 @@
         py-5
       "
     >
+      <NavProject />
       <SearchMaterial />
       <div class="recommend mb-10">
         <FormWrapper label="วัสดุ" />
@@ -192,12 +193,14 @@
 import FormWrapper from "@/components/form/FormWrapper";
 import MaterialTypeCard from "../../components/pm/MaterialTypeCard.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
+import NavProject from "../../components/NavProject";
 export default {
   name: "material_list",
   components: {
     FormWrapper,
     MaterialTypeCard,
-    SearchMaterial
+    SearchMaterial,
+    NavProject
   },
   data() {
     return {
