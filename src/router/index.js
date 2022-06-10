@@ -31,6 +31,11 @@ const routes = [
     component: materialList,
   },
   {
+    path: "/material_selection/:id",
+    name: "material_selection",
+    component: materialSelection,
+  },
+  {
     path: "/create_project",
     name: "create_project",
     component: createProject,
@@ -77,11 +82,6 @@ const routes = [
     path: "/boq_generation",
     name: "boq_generation",
     component: bogGenration,
-  },
-  {
-    path: "/material_selection",
-    name: "material_selection",
-    component: materialSelection,
   },
   {
     path: "/material_type",
