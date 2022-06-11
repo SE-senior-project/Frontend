@@ -61,7 +61,7 @@ export default {
             title: "อัพเดทสำเร็จ",
             showConfirmButton: false,
             timer: 1000,
-          }).then((result) => {
+          }).then(() => {
             this.$router.go();
           });
         }

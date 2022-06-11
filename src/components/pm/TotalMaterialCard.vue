@@ -84,6 +84,7 @@
 </template>
 <script>
 import SecondaryButton from "@/components/button/SecondaryButton";
+import Swal from "sweetalert2";
 export default {
   name: "total_material_card",
   components: {
@@ -108,7 +109,20 @@ export default {
     decrease() {
       if (this.number != 1) {
         this.number = this.number - 1;
-      } else {
+      } else if (this.number == 1) {
+        Swal.fire({
+          title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "ยกเลิก",
+          confirmButtonText: "ตกลง",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log("deleted");
+          }
+        });
       }
     },
     increase() {

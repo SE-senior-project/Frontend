@@ -26,7 +26,7 @@ import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
 const routes = [
   {
-    path: "/material_list/:id",
+    path: "/material_list/",
     name: "material_list",
     component: materialList,
   },
@@ -34,6 +34,11 @@ const routes = [
     path: "/material_selection/:id",
     name: "material_selection",
     component: materialSelection,
+  },
+  {
+    path: "/material_type/:id",
+    name: "material_type",
+    component: materialType,
   },
   {
     path: "/create_project",
@@ -82,11 +87,6 @@ const routes = [
     path: "/boq_generation",
     name: "boq_generation",
     component: bogGenration,
-  },
-  {
-    path: "/material_type",
-    name: "material_type",
-    component: materialType,
   },
   {
     path: "/total_material_selection",

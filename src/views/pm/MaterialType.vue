@@ -38,7 +38,7 @@ export default {
     MaterialTypeCard,
     SearchMaterial,
     NavProject,
-    Pagination
+    Pagination,
   },
   data() {
     return {

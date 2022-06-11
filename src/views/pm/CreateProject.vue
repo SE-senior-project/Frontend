@@ -66,6 +66,7 @@ import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import TextArea from "@/components/field/TextArea";
 import * as yup from "yup";
+import Swal from "sweetalert2";
 export default {
   name: "create_project",
   //   inject: ["GStore"],
@@ -78,18 +79,10 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      project_name: yup
-        .string()
-        .required("กรุณาระบุชื่อโปรเจค"),
-      customer_name: yup
-        .string()
-        .required("กรุณาระบุชื่อลูกค้า"),
-      project_description: yup
-        .string()
-        .required("กรุณาระบุรายระเอียดโปรเจค"),
-      deadline: yup 
-        .string()
-        .required("กรุณาเลือกวันกำหนดส่งงาน"),
+      project_name: yup.string().required("กรุณาระบุชื่อโปรเจค"),
+      customer_name: yup.string().required("กรุณาระบุชื่อลูกค้า"),
+      project_description: yup.string().required("กรุณาระบุรายระเอียดโปรเจค"),
+      deadline: yup.string().required("กรุณาเลือกวันกำหนดส่งงาน"),
     });
     return {
       schema,
@@ -97,8 +90,15 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$router.push({
-        name: "project",
+      Swal.fire({
+        icon: "success",
+        title: "สร้างโปรเจคสำเร็จ",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
+        this.$router.push({
+          name: "project",
+        });
       });
     },
   },

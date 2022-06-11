@@ -43,7 +43,7 @@ export default {
     },
     onBack() {
       this.$router.push({
-        name: "material_type",
+        name: "material_list",
       });
     },
     decrease() {

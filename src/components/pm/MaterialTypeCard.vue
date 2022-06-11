@@ -16,12 +16,15 @@
     <div class="text-sm px-[20px] pb-[60px]">
       <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
       <p class="font-bold">ราคา: {{ user.id }}</p>
-      <SecondaryButton @click="onSubmit" class="float-right my-5">เพิ่มวัสดุ</SecondaryButton>
+      <SecondaryButton @click="onSubmit(user.name)" class="float-right my-5"
+        >เพิ่มวัสดุ</SecondaryButton
+      >
     </div>
   </div>
 </template>
 <script>
 import SecondaryButton from "@/components/button/SecondaryButton";
+import Swal from "sweetalert2";
 export default {
   name: "material_type_card",
   components: {
@@ -39,9 +42,19 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      this.$router.push({
-        name: "total_material_selection",
+    onSubmit(name) {
+      Swal.fire({
+        title: "คุณต้องการเพิ่มวัสดุนี้ใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("added")
+        }
       });
     },
   },
