@@ -12,8 +12,8 @@
         <li v-if="GStore.currentUser">
           {{ GStore.currentUser.username }}
         </li>
-        <li>
-          <button type="submit" @click="logout" class="btn btn-light btnSubmit">
+        <li v-if="GStore.currentUser">
+          <button type="submit" @click="logout">
             <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
           </button>
         </li>

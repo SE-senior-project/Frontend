@@ -1,5 +1,7 @@
 <template>
-  <div class="mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg">
+  <div
+    class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+  >
     <div
       class="
         contractor
@@ -14,7 +16,7 @@
       <span>โปรเจคที่ {{ user.id }}</span>
       <div>
         <div
-          @click="onSubmit"
+          @click="onUnhide"
           v-if="toggle"
           class="
             absolute
@@ -51,10 +53,7 @@
         </div>
       </div>
     </div>
-    <router-link
-      class="link"
-      :to="{ name: 'material_list', params: { id: user.id } }"
-    >
+    <div @click="onSubmit(user.id)">
       <div class="text-sm font-bold w-5/6 m-auto mb-[20px]">
         <span>ชื่อ: {{ user.name }}</span>
       </div>
@@ -68,12 +67,13 @@
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
         <p class="px-[10px]">DD/MM/YY</p>
       </div>
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
-  name: "unhide_OMPM",
+  name: "OMPM",
   props: {
     user: {
       type: Object,
@@ -86,8 +86,37 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log("yoyo");
+    onSubmit(id) {
+      Swal.fire({
+        title: "คุณต้องการเลือกโปรเจคนี้ใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$router.push({
+            name: "material_list",
+          });
+        }
+      });
+    },
+    onUnhide() {
+      Swal.fire({
+        title: "คุณต้องการที่จะแสดงโปรเจคนี้นี้ใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("showed");
+        }
+      });
     },
   },
 };

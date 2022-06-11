@@ -13,10 +13,7 @@
         py-5
       "
     >
-      <div class="header float-left">
-        <a :href="'admin'">การอนุมัติบัญชี</a>
-        | <a :href="'manage_account'">การจัดการบัญชี</a>
-      </div>
+      <NavAdmin />
       <div class="clear-both">
         <div>
           <TextLabel class="text-2xl mt-[50px] mb-10" label="ผู้รับเหมา" />
@@ -40,12 +37,14 @@ import ContactorCard from "../../components/admin/DisableContractorCard.vue";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
 import Service from "../../services/OneMeasureService.js";
+import NavAdmin from "@/components/NavAdmin";
 export default {
   name: "manage_account",
   components: {
     ContactorCard,
     PrimaryButton,
     TextLabel,
+    NavAdmin
   },
   data() {
     return {

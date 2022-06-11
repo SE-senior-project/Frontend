@@ -13,11 +13,7 @@
         py-5
       "
     >
-      <div class="header float-left">
-        <a :href="'admin'">การอนุมัติบัญชี</a>
-        | <a :href="'manage_account'">การจัดการบัญชี</a>
-      </div>
-
+      <NavAdmin />
       <div class="updateForm float-right">
         <form @submit.prevent="onUpdate">
           <FormWrapper label="อัพเดทข้อมูล">
@@ -91,6 +87,7 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
 import Service from "../../services/OneMeasureService.js";
 import Swal from "sweetalert2";
+import NavAdmin from "@/components/NavAdmin";
 export default {
   name: "OMadmin",
   inject: ["GStore"],
@@ -100,6 +97,7 @@ export default {
     FormWrapper,
     PrimaryButton,
     TextLabel,
+    NavAdmin
   },
   data() {
     return {

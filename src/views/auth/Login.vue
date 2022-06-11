@@ -41,7 +41,7 @@
                 required
               />
               <TextField
-                type="textarea"
+                type="password"
                 name="password"
                 placeholder="รหัสผ่าน"
                 label="รหัสผ่าน"
@@ -61,7 +61,7 @@
                 >ลงทะเบียน</a
               >
             </div>
-            <PrimaryButton>ลงชื่อเข้าใข้</PrimaryButton>
+            <PrimaryButton>ลงชื่อเข้าใช้</PrimaryButton>
           </FormWrapper>
         </Form>
       </div>
@@ -76,6 +76,7 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import FormWrapper from "@/components/form/FormWrapper";
 import AuthService from "@/services/AuthService.js";
 import * as yup from "yup";
+import Swal from "sweetalert2";
 export default {
   inject: ["GStore"],
   name: "OMlogin",
@@ -102,44 +103,50 @@ export default {
   },
   methods: {
     login(user) {
-      AuthService.login(user)
-        .then(() => {
-          if (this.GStore.currentUser_fail == false) {
-            this.$router.go();
-          } else {
-            if (
-              this.GStore.currentUser.role == "contractor" &&
-              this.GStore.currentUser.status == 1 &&
-              this.GStore.currentUser.active == 1
-            ) {
-              this.$router.push({
-                name: "project",
+      AuthService.login(user).then(() => {
+        if (this.GStore.currentUser_fail == false) {
+          Swal.fire({
+                icon: "error",
+                title: "ข้อมูลที่ป้อนเข้ามาไม่ถูกต้อง",
+                showConfirmButton: false,
+                timer: 2000,
+              }).then(() => {
+                this.$router.go();
               });
-            }
-            if (
-              this.GStore.currentUser.role == "contractor" &&
-              this.GStore.currentUser.status == 1 &&
-              this.GStore.currentUser.active == 0
-            ) {
-              this.$router.push({
-                name: "home",
-              });
-            }
-            if (
-              this.GStore.currentUser.role == "contractor" &&
-              this.GStore.currentUser.status == 0
-            ) {
-               this.$router.push({
-                name: "home",
-              });
-            }
-            if (this.GStore.currentUser.role == "admin") {
-              this.$router.push({
-                name: "admin",
-              });
-            }
+        } else {
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 1 &&
+            this.GStore.currentUser.active == 1
+          ) {
+            this.$router.push({
+              name: "project",
+            });
           }
-        })
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 1 &&
+            this.GStore.currentUser.active == 0
+          ) {
+            this.$router.push({
+              name: "home",
+            });
+          }
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 0
+          ) {
+            this.$router.push({
+              name: "home",
+            });
+          }
+          if (this.GStore.currentUser.role == "admin") {
+            this.$router.push({
+              name: "admin",
+            });
+          }
+        }
+      });
     },
   },
 };
