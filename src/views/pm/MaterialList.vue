@@ -1,102 +1,81 @@
 <template>
-  <br />
-  <Nav />
-  <br />
-  <SearchMaterial />
-  <br />
+  <div class="relative flex justify-center items-center">
+    <div
+      class="
+        max-w-5xl
+        bg-white
+        shadow-xl
+        rounded-lg
+        w-[1028px]
+        mb-4
+        mx-8
+        px-10
+        pt-5
+        pb-14
+      "
+    >
+      <NavProject />
+      <SearchMaterial />
+        <div class="px-10 pt-5 rounded-md grid grid-cols-3">
+          <CategoryMaterial v-for="x in users" :key="x.id" :user="x" />
+        </div>
+        <Pagination />
+    </div>
+  </div>
 </template>
-
 <script>
+import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
-import Nav from "../../components/NavBarFeature.vue";
+import NavProject from "../../components/NavProject";
+import Pagination from "../../components/Pagination";
 export default {
   name: "material_list",
   components: {
+    CategoryMaterial,
     SearchMaterial,
-    Nav,
+    NavProject,
+    Pagination
   },
   data() {
     return {
-      username: "",
-      password: "",
-      checked: null,
+      users: [
+        {
+          name: "thitisan",
+          id: 1,
+        },
+        {
+          name: "Phonmongkhon",
+          id: 2,
+        },
+        {
+          name: "Pasakon",
+          id: 3,
+        },
+        {
+          name: "Sahachan",
+          id: 4,
+        },
+        {
+          name: "Khemata",
+          id: 5,
+        },
+      ],
+      toggle: false,
     };
   },
 };
 </script>
 
 <style scoped>
-#icon {
-  padding-left: 20px;
-}
-.Signup {
-  text-align: center;
-}
-.inputform {
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: left;
+span {
+  border: 1px solid black;
+  padding: 10px 10px;
+  margin: 20px 0;
+  border-radius: 10px;
 }
 
-.loginform {
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
-  max-width: 1200px;
-  max-height: 1000px;
-  margin: 0 auto;
+span:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
-.Loginform {
-  width: 50%;
-}
-.Logoform {
-  background: url("../../assets/LogoOnemeasure.png");
-  background-size: cover;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  width: 50%;
-  height: 600px;
-  background-position: center;
-  /* margin: 0 auto;
-  padding-bottom: 20cm auto; */
-}
-
-.btnSubmit {
-  font-weight: 550;
-  width: 90%;
-  color: #282726;
-  background-color: #fff;
-  border: none;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(100, 97, 97, 0.436);
-  padding: 2%;
-}
-.btnSubmit:hover {
-  box-shadow: 0 5px 8px 0 rgba(245, 103, 1, 0.2),
-    0 9px 26px 0 rgba(245, 103, 1, 0.19);
-  font-style: italic;
-}
-/* @media (min-width: 576px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    height: 650px;
-    width: 650px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-   
-  }
-}
-@media (max-width: 416px) {
-  .Logoform {
-    background: url("../assets/LogoOnemeasure.png");
-    background-size: cover;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-} */
-
-/* ::selection {
-  color: blue;
-  background-color: slateblue;
-}*/
 </style>

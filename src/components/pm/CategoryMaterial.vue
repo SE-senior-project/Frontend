@@ -1,24 +1,26 @@
 <template>
   <div
-    class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    class="
+      card
+      mx-[60px]
+      md:mx-[40px]
+      lg:mx-[20px]
+      mb-10
+      shadow-xl
+      rounded-lg
+      w-max
+    "
   >
     <router-link
       class="link"
-      :to="{ name: 'material_type', params: { id: user.id } }"
+      :to="{ name: 'material_selection', params: { id: user.id } }"
     >
-      <div
-        class="
-          contractor
-          text-white
-          relative
-          mb-[20px]
-          text-lg text-center
-          py-[50px]
-          bg-orange-500
-        "
-      ></div>
-      <div class="text-sm px-[20px] pb-[20px] flex flex-row">
-        <p class="font-bold">ชื่อสินค้า: {{ user.name }}</p>
+      <div class="contractor flex flex-row items-center">
+        <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
+        <div class="text-sm px-[20px]">
+          <p class="font-bold">ประเภทวัสดุ:</p>
+          <p class="w-[100px]">{{ user.name }}</p>
+        </div>
       </div>
     </router-link>
   </div>

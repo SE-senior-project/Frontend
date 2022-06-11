@@ -1,39 +1,37 @@
 <template>
-  <input
-    type="text"
-    v-model="input"
-    placeholder="Search Materials..."
-    id="inputsearch"
-  />
-  <div class="item fruit" v-for="x in filteredList()" :key="x">
-    <p v-if="input">{{ x }}</p>
+  <div class="clear-both w-max flex flex-row mt-[40px]">
+    <Form @submit="onSubmit" :validation-schema="schema">
+      <div class="grid grid-cols-2">
+        <div class="w-[400px] mx-4">
+          <TextField type="text" name="search" placeholder="ค้นหาวัสดุ" />
+        </div>
+        <div class="my-[9px]">
+          <SecondaryButton>ค้นหา</SecondaryButton>
+        </div>
+      </div>
+    </Form>
   </div>
-  <br v-if="input" />
-  <br v-if="input" />
 </template>
 
 <script>
+import { Form } from "vee-validate";
+import TextField from "@/components/field/TextField";
+import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
   name: "search_material",
-  data() {
-    return {
-      fruits: ["thit", "san", "tan"],
-      password: "",
-      checked: null,
-      input: "",
-    };
+  components: {
+    Form,
+    TextField,
+    SecondaryButton,
   },
   methods: {
-    filteredList() {
-      return this.fruits.filter((fruit) =>
-        fruit.toLowerCase().includes(this.input.toLowerCase())
-      );
+    onSubmit() {
+      this.$router.push({
+        name: "material_type",
+      });
     },
   },
 };
 </script>
 <style scoped>
-#inputsearch {
-  border: solid black 1px;
-}
 </style>
