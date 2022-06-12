@@ -1,5 +1,5 @@
 import apiClient from "./AxiosClient.js";
-
+import GStore from '@/store'
 export default {
   register(user) {
     return apiClient.post("/Register", {
@@ -9,6 +9,7 @@ export default {
       password: user.password
     })
   },
+  ///////////// Admin /////////////////
   update_external_data(mm) {
     return apiClient.post("/External", {
       mm: mm,
@@ -41,8 +42,10 @@ export default {
     return apiClient.post("/Unapprove", {
       user_id: id,
     })
-  }
-
-
+  },
+  ///////////// PM /////////////////
+  get_all_materials() {
+    return apiClient.get("/All_Materials");
+  },
 
 };

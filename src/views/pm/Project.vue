@@ -1,5 +1,6 @@
 <template>
   <div class="relative flex justify-center items-center">
+      <!-- {{GStore.currentMaterial}} -->
     <div
       class="
         max-w-5xl
@@ -38,6 +39,7 @@ import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
   name: "OMprojectmanagement",
+  inject: ["GStore"],
   components: {
     ProjectCard,
     FormWrapper,

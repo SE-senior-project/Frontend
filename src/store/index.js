@@ -14,4 +14,6 @@ export default reactive({
   waiting_user:null,
   active_user:null,
   currentUser:  JSON.parse(localStorage.getItem("user")),
+  // currentUser_fail: false,
+  currentMaterial: null
 });

@@ -59,6 +59,15 @@ const routes = [
     path: "/",
     name: "login",
     component: login,
+    beforeEnter:async () => {
+      try {
+        const response4 = await service.get_all_materials();
+        GStore.currentMaterial = response4.data;
+      } catch {
+        GStore.currentMaterial = null;
+        console.log('cannot load organizer');
+      }
+    }
   },
   {
     path: "/admin",
