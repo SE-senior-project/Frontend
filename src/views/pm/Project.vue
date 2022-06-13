@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex justify-center items-center">
-      <!-- {{GStore.currentMaterial}} -->
+    <!-- {{GStore.currentMaterial}} -->
     <div
       class="
         max-w-5xl

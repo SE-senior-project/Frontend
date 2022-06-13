@@ -62,10 +62,11 @@ const routes = [
     beforeEnter:async () => {
       try {
         const response4 = await service.get_all_materials();
-        GStore.currentMaterial = response4.data;
+        localStorage.setItem("external", JSON.stringify(response4.data));
+      
       } catch {
         GStore.currentMaterial = null;
-        console.log('cannot load organizer');
+        console.log('cannot load data');
       }
     }
   },
@@ -82,7 +83,7 @@ const routes = [
       } catch {
         GStore.waiting_user = null;
         GStore.active_user= null;
-        console.log('cannot load organizer');
+        console.log('cannot load user');
       }
     }
 
