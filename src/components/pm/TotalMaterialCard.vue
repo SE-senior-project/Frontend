@@ -85,6 +85,7 @@
 <script>
 import SecondaryButton from "@/components/button/SecondaryButton";
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
   name: "total_material_card",
   components: {
@@ -100,6 +101,7 @@ export default {
     return {
       number: 1,
       toggle: false,
+      id: this.user.id
     };
   },
   methods: {
@@ -109,6 +111,8 @@ export default {
     decrease() {
       if (this.number != 1) {
         this.number = this.number - 1;
+        Service.number_material(this.number, 1)
+        Service.number_material(this.id, this.number)
       } else if (this.number == 1) {
         Swal.fire({
           title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
@@ -127,6 +131,7 @@ export default {
     },
     increase() {
       this.number = this.number + 1;
+      Service.number_material(this.number, 1)
     },
   },
 };

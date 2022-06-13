@@ -60,16 +60,31 @@ export default {
     return apiClient.post("/Add_Material", {
       material_name: name,
       material_price: price,
+      project_material_total: 1,
       project_id: id,
     })
   },
   get_all_category(){
     return apiClient.get("/All_Category")
   },
+
+  get_all_project(id){
+    return apiClient.post("/All_Projects", {
+      contractor_id: id
+    })
+  },
   
   get_all_selection_type(material_category){
     return apiClient.post("/All_Selection_Type", {
       material_category: material_category,
     })
+  },
+
+  number_material(total, id){
+    return apiClient.post("/Number_Material", {
+      project_material_total: total,
+      project_material_id: id
+    })
   }
+  
 };
