@@ -2,10 +2,10 @@
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
   >
-    <router-link
+    <!-- <router-link
       class="link"
       :to="{ name: 'material_type', params: { id: user.id } }"
-    >
+    > -->
       <div
         class="
           contractor
@@ -18,16 +18,16 @@
         "
       ></div>
       <div class="text-sm px-[20px] pb-[20px] flex flex-row">
-        <p class="font-bold">ชื่อสินค้า: {{ user.name }}</p>
+        <p class="font-bold">ชื่อสินค้า: {{ alltype.material_type }}</p>
       </div>
-    </router-link>
+    <!-- </router-link> -->
   </div>
 </template>
 <script>
 export default {
   name: "material_selection_card",
   props: {
-    user: {
+    alltype: {
       type: Object,
       required: true,
     },

@@ -39,7 +39,7 @@ const routes = [
       console.log(GStore.currentSelectionCategory)
        service.get_all_selection_type(GStore.currentSelectionCategory).then((response)=>{
           GStore.currentMaterialType = response.data;
-          console.log(GStore.currentMaterialType)
+          // console.log(GStore.currentMaterialType)
        });
       // GStore.currentMaterialType = response5.data;
       // console.log(GStore.currentMaterialType)
