@@ -17,8 +17,8 @@
           bg-orange-500
         "
       ></div>
-      <div class="text-sm px-[20px] pb-[20px] flex flex-row">
-        <p class="font-bold">ชื่อสินค้า: {{ alltype.material_type }}</p>
+      <div class="text-sm px-[20px] pb-[20px] flex flex-row" @click="onSubmit(alltype.material_type)">
+        <p class="font-bold" >ชื่อสินค้า: {{ alltype.material_type }}</p>
       </div>
     <!-- </router-link> -->
   </div>
@@ -26,6 +26,7 @@
 <script>
 export default {
   name: "material_selection_card",
+  inject: ["GStore"],
   props: {
     alltype: {
       type: Object,
@@ -38,8 +39,12 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log("yoyo");
+    onSubmit(material_type) {
+      this.GStore.currentSelectiontype = material_type;
+      console.log(material_type)
+         this.$router.push({ 
+          name: 'material_type'
+        });
     },
   },
 };

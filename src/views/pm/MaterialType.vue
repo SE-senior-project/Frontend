@@ -18,7 +18,7 @@
       <div class="recommend mb-10">
         <FormWrapper label="วัสดุ" />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <MaterialTypeCard v-for="x in users" :key="x.id" :user="x" />
+          <MaterialTypeCard v-for="x in GStore.currentMaterialType" :key="x.id" :materialtype="x" />
         </div>
         <Pagination />
       </div>
@@ -32,7 +32,8 @@ import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
 export default {
-  name: "material_list",
+  inject: ["GStore"],
+  name: "material_type",
   components: {
     FormWrapper,
     MaterialTypeCard,
@@ -42,28 +43,28 @@ export default {
   },
   data() {
     return {
-      users: [
-        {
-          name: "thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      // users: [
+      //   {
+      //     name: "thitisan",
+      //     id: 1,
+      //   },
+      //   {
+      //     name: "Phonmongkhon",
+      //     id: 2,
+      //   },
+      //   {
+      //     name: "Pasakon",
+      //     id: 3,
+      //   },
+      //   {
+      //     name: "Sahachan",
+      //     id: 4,
+      //   },
+      //   {
+      //     name: "Khemata",
+      //     id: 5,
+      //   },
+      // ],
       toggle: false,
     };
   },

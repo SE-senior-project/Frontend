@@ -16,7 +16,8 @@ export default reactive({
   currentUser:  JSON.parse(localStorage.getItem("user")),
   // currentUser_fail: false,
   currentMaterial: JSON.parse(localStorage.getItem("external")),
-  currentMaterialType: null,
-  currentSelectionCategory: null
-  
+  currentSelectionCategory: null,
+  currentSelectiontype: null,
+  currentMaterialCategory: null,
+  currentMaterialType:null
 });

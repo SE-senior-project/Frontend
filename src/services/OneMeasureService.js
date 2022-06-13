@@ -77,5 +77,10 @@ export default {
     return apiClient.post("/All_Selection_Type", {
       material_category: material_category,
     })
+  },
+  get_all_selection_in_type(material_type){
+    return apiClient.post("/All_Material_Selection_Type", {
+      material_type: material_type,
+    })
   }
 };
