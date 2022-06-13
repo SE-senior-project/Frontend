@@ -1,5 +1,4 @@
 import apiClient from "./AxiosClient.js";
-import GStore from '@/store'
 export default {
   register(user) {
     return apiClient.post("/Register", {
@@ -47,5 +46,24 @@ export default {
   get_all_materials() {
     return apiClient.get("/All_Materials");
   },
-
+  all_project_materials(id){
+    return apiClient.get("/All_Project_Materials", {
+      project_id: id,  
+    })
+  },
+  all_project_materials(id){
+    return apiClient.get("/All_Project_Materials", {
+      project_id: id,  
+    })
+  },
+  add_material(name, price, id){
+    return apiClient.post("/Add_Material", {
+      material_name: name,
+      material_price: price,
+      project_id: id,
+    })
+  },
+  get_all_category(){
+    return apiClient.get("/All_Category")
+  },
 };

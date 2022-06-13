@@ -26,7 +26,7 @@ import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
 const routes = [
   {
-    path: "/material_list/",
+    path: "/material_list/:id",
     name: "material_list",
     component: materialList,
   },
@@ -62,10 +62,12 @@ const routes = [
     beforeEnter:async () => {
       try {
         const response4 = await service.get_all_materials();
-        GStore.currentMaterial = response4.data;
+        localStorage.setItem("external", JSON.stringify(response4.data));
+        var provinceAbc = GStore.currentMaterial.filter(d => d.material_name === 'อิฐมอญ ขนาด 7x 16 x 3.5 ซม.');
+        console.log(provinceAbc)
       } catch {
         GStore.currentMaterial = null;
-        console.log('cannot load organizer');
+        console.log('cannot load data');
       }
     }
   },
@@ -82,7 +84,7 @@ const routes = [
       } catch {
         GStore.waiting_user = null;
         GStore.active_user= null;
-        console.log('cannot load organizer');
+        console.log('cannot load user');
       }
     }
 

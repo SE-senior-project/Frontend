@@ -17,13 +17,14 @@
       <NavProject />
       <SearchMaterial />
         <div class="px-10 pt-5 rounded-md grid grid-cols-3">
-          <CategoryMaterial v-for="x in users" :key="x.id" :user="x" />
+          <CategoryMaterial v-for="x in category" :key="x.id" :category="x" />
         </div>
         <Pagination />
     </div>
   </div>
 </template>
 <script>
+import Service from "@/services/OneMeasureService";
 import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
@@ -38,30 +39,38 @@ export default {
   },
   data() {
     return {
-      users: [
-        {
-          name: "thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      // users: [
+      //   {
+      //     name: "thitisan",
+      //     id: 1,
+      //   },
+      //   {
+      //     name: "Phonmongkhon",
+      //     id: 2,
+      //   },
+      //   {
+      //     name: "Pasakon",
+      //     id: 3,
+      //   },
+      //   {
+      //     name: "Sahachan",
+      //     id: 4,
+      //   },
+      //   {
+      //     name: "Khemata",
+      //     id: 5,
+      //   },
+      // ],
       toggle: false,
+      category: null
     };
+  },
+   created() {
+    Service.get_all_category()
+      .then((response) => {
+        this.category = response.data;
+      })
+      
   },
 };
 </script>
