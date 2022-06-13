@@ -34,6 +34,17 @@ const routes = [
     path: "/material_selection/:id",
     name: "material_selection",
     component: materialSelection,
+    props: true,
+    beforeEnter: async () => {
+      console.log(GStore.currentSelectionCategory)
+       service.get_all_selection_type(GStore.currentSelectionCategory).then((response)=>{
+          GStore.currentMaterialType = response.data;
+          console.log(GStore.currentMaterialType)
+       });
+      // GStore.currentMaterialType = response5.data;
+      // console.log(GStore.currentMaterialType)
+
+    }
   },
   {
     path: "/material_type/:id",
@@ -59,7 +70,7 @@ const routes = [
     path: "/",
     name: "login",
     component: login,
-    beforeEnter:async () => {
+    beforeEnter: async () => {
       try {
         const response4 = await service.get_all_materials();
         localStorage.setItem("external", JSON.stringify(response4.data));
@@ -75,7 +86,7 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: admin,
-    beforeEnter:async () => {
+    beforeEnter: async () => {
       try {
         const response1 = await service.get_all_waiting_user();
         GStore.waiting_user = response1.data;
@@ -83,7 +94,7 @@ const routes = [
         GStore.active_user = response2.data;
       } catch {
         GStore.waiting_user = null;
-        GStore.active_user= null;
+        GStore.active_user = null;
         console.log('cannot load user');
       }
     }
