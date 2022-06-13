@@ -60,6 +60,7 @@ export default {
     return apiClient.post("/Add_Material", {
       material_name: name,
       material_price: price,
+      project_material_total: 1,
       project_id: id,
     })
   },
