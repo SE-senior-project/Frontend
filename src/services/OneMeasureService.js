@@ -83,7 +83,9 @@ export default {
   get_all_selection_in_type(material_type){
     return apiClient.post("/All_Material_Selection_Type", {
       material_type: material_type,
-
+    })
+  },
+  
   number_material(total, id){
     return apiClient.post("/Number_Material", {
       project_material_total: total,
