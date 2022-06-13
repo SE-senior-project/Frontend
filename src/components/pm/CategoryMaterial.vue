@@ -11,10 +11,7 @@
       w-max
     "
   >
-    <!-- <router-link
-      class="link"
-      :to="{ name: 'material_selection', params: { id: category.id } }"
-    > -->
+    <div @click="onSubmit(category.category_name)">
       <div class="contractor flex flex-row items-center">
         <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
         <div class="text-sm px-[20px]">
@@ -22,12 +19,13 @@
           <p class="w-[100px]">{{ category.category_name }}</p>
         </div>
       </div>
-    <!-- </router-link> -->
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "material_selection_card",
+  inject: ["GStore"],
   props: {
     category: {
       type: Object,
@@ -41,7 +39,14 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("yoyo");
+      this.GStore.currentSelectionCategory = this.category.category_name;
+      // console.log(this.GStore.currentSelectionCategory )
+        this.$router.push({ 
+          name: 'material_selection', 
+          params: {  
+            id: this.category.category_id 
+            } 
+        });
     },
   },
 };
