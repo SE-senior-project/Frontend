@@ -25,6 +25,7 @@
 <script>
 import SecondaryButton from "@/components/button/SecondaryButton";
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
   name: "material_type_card",
   components: {
@@ -39,10 +40,11 @@ export default {
   data() {
     return {
       toggle: false,
+      name_material: this.user.name,
     };
   },
   methods: {
-    onSubmit(name) {
+    onSubmit(name_material, id) {
       Swal.fire({
         title: "คุณต้องการเพิ่มวัสดุนี้ใช่ไหม?",
         icon: "warning",
@@ -53,7 +55,8 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log("added")
+          Service.add_material(name_material, 1, 1);
+          console.log("added");
         }
       });
     },
