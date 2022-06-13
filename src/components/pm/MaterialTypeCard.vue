@@ -16,7 +16,7 @@
     <div class="text-sm px-[20px] pb-[60px]">
       <p class="font-bold">ชื่อวัสดุ: {{ materialtype.material_name }}</p>
       <p class="font-bold">ราคา: {{ materialtype.material_price }}</p>
-      <SecondaryButton @click="onSubmit()" class="float-right my-5"
+      <SecondaryButton @click="onSubmit(GStore.current_project)" class="float-right my-5"
         >เพิ่มวัสดุ</SecondaryButton
       >
     </div>
@@ -28,6 +28,7 @@ import Swal from "sweetalert2";
 import Service from "@/services/OneMeasureService.js";
 export default {
   name: "material_type_card",
+  inject: ["GStore"],
   components: {
     SecondaryButton,
   },
@@ -43,7 +44,7 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(project_id) {
       Swal.fire({
         title: "คุณต้องการเพิ่มวัสดุนี้ใช่ไหม?",
         icon: "warning",
@@ -54,7 +55,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.add_material(this.name_material, 1, 1);
+          Service.add_material(this.materialtype.material_name,parseFloat(this.materialtype.material_price), project_id);
           console.log("added");
         }
       });

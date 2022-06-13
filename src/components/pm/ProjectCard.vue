@@ -59,7 +59,7 @@
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[50px]">
-        {{all_project.project_description}}
+        {{ all_project.project_description }}
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
@@ -74,6 +74,7 @@
 <script>
 import Swal from "sweetalert2";
 export default {
+  inject: ["GStore"],
   name: "OMPM",
   props: {
     all_project: {
@@ -83,7 +84,7 @@ export default {
   },
   data() {
     return {
-      toggle: false
+      toggle: false,
     };
   },
   methods: {
@@ -98,16 +99,18 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-         this.$router.push({ 
-          name: 'material_list', 
-          params: {  
-            id: this.all_project.project_id 
-            } 
-        });
+          localStorage.setItem("project_id",  JSON.stringify(this.all_project.project_id));
+          console.log(this.GStore.current_project);
+          this.$router.push({
+            name: "material_list",
+            params: {
+              id: this.all_project.project_id,
+            },
+          });
         }
       });
     },
-    onHide(){
+    onHide() {
       Swal.fire({
         title: "คุณต้องการที่จะซ่อนโปรเจคนี้นี้ใช่ไหม?",
         icon: "warning",
@@ -121,7 +124,7 @@ export default {
           console.log("hided");
         }
       });
-    }
+    },
   },
 };
 </script>
