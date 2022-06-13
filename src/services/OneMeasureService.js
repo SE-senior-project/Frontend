@@ -78,5 +78,13 @@ export default {
     return apiClient.post("/All_Selection_Type", {
       material_category: material_category,
     })
+  },
+
+  number_material(total, id){
+    return apiClient.post("/Number_Material", {
+      project_material_total: total,
+      project_material_id: id
+    })
   }
+  
 };

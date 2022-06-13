@@ -44,7 +44,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(name_material, id) {
+    onSubmit() {
       Swal.fire({
         title: "คุณต้องการเพิ่มวัสดุนี้ใช่ไหม?",
         icon: "warning",
@@ -55,7 +55,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.add_material(name_material, 1, 1);
+          Service.add_material(this.name_material, 1, 1);
           console.log("added");
         }
       });
