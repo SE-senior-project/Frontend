@@ -26,19 +26,19 @@ import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
 const routes = [
   {
-    path: "/material_list/:id",
+    path: "/material_list",
     name: "material_list",
     component: materialList,
   },
   {
-    path: "/material_selection/:id",
+    path: "/material_selection",
     name: "material_selection",
     component: materialSelection,
     props: true,
     beforeEnter: async () => {
       console.log(GStore.currentSelectionCategory)
        service.get_all_selection_type(GStore.currentSelectionCategory).then((response)=>{
-          GStore.currentMaterialType = response.data;
+          GStore.currentMaterialCategory = response.data;
           // console.log(GStore.currentMaterialType)
        });
       // GStore.currentMaterialType = response5.data;
@@ -47,9 +47,20 @@ const routes = [
     }
   },
   {
-    path: "/material_type/:id",
+    path: "/material_type",
     name: "material_type",
     component: materialType,
+    props: true,
+    beforeEnter: async () => {
+       service.get_all_selection_in_type(GStore.currentSelectiontype).then((response)=>{
+          GStore.currentMaterialType = response.data;
+          
+          console.log(GStore.currentMaterialType)
+       });
+      // GStore.currentMaterialType = response5.data;
+      // console.log(GStore.currentMaterialType)
+
+    }
   },
   {
     path: "/create_project",

@@ -11,7 +11,7 @@
       w-max
     "
   >
-    <div @click="onSubmit(category.category_name)">
+    <div @click="onSubmit()">
       <div class="contractor flex flex-row items-center">
         <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
         <div class="text-sm px-[20px]">
@@ -43,9 +43,6 @@ export default {
       // console.log(this.GStore.currentSelectionCategory )
         this.$router.push({ 
           name: 'material_selection', 
-          params: {  
-            id: this.category.category_id 
-            } 
         });
     },
   },

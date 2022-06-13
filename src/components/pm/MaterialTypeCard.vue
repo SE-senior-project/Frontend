@@ -14,9 +14,9 @@
       "
     ></div>
     <div class="text-sm px-[20px] pb-[60px]">
-      <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
-      <p class="font-bold">ราคา: {{ user.id }}</p>
-      <SecondaryButton @click="onSubmit(user.name)" class="float-right my-5"
+      <p class="font-bold">ชื่อวัสดุ: {{ materialtype.material_name }}</p>
+      <p class="font-bold">ราคา: {{ materialtype.material_price }}</p>
+      <SecondaryButton @click="onSubmit()" class="float-right my-5"
         >เพิ่มวัสดุ</SecondaryButton
       >
     </div>
@@ -32,7 +32,7 @@ export default {
     SecondaryButton,
   },
   props: {
-    user: {
+    materialtype: {
       type: Object,
       required: true,
     },
@@ -40,7 +40,6 @@ export default {
   data() {
     return {
       toggle: false,
-      name_material: this.user.name,
     };
   },
   methods: {
