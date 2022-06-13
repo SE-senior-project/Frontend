@@ -60,6 +60,7 @@ export default {
     return apiClient.post("/Add_Material", {
       material_name: name,
       material_price: price,
+      project_material_total: 1,
       project_id: id,
     })
   },
@@ -78,9 +79,15 @@ export default {
       material_category: material_category,
     })
   },
+
   get_all_selection_in_type(material_type){
     return apiClient.post("/All_Material_Selection_Type", {
       material_type: material_type,
+
+  number_material(total, id){
+    return apiClient.post("/Number_Material", {
+      project_material_total: total,
+      project_material_id: id
     })
   }
 };
