@@ -13,7 +13,7 @@
         bg-orange-500
       "
     >
-      <span>โปรเจคที่ {{ user.id }}</span>
+      <span>โปรเจคที่ {{ all_project.project_id }}</span>
       <div>
         <div
           @click="onHide"
@@ -53,12 +53,13 @@
         </div>
       </div>
     </div>
-    <div @click="onSubmit(user.id)">
+    <div @click="onSubmit(all_project.project_id)">
       <div class="text-sm font-bold w-5/6 m-auto mb-[20px]">
-        <span>ชื่อ: {{ user.name }}</span>
+        <span>ชื่อ: {{ all_project.project_name }}</span>
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[50px]">
+        {{all_project.project_description}}
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
@@ -75,14 +76,14 @@ import Swal from "sweetalert2";
 export default {
   name: "OMPM",
   props: {
-    user: {
+    all_project: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      toggle: false,
+      toggle: false
     };
   },
   methods: {
@@ -97,9 +98,12 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.$router.push({
-            name: "material_list",
-          });
+         this.$router.push({ 
+          name: 'material_list', 
+          params: {  
+            id: this.all_project.project_id 
+            } 
+        });
         }
       });
     },

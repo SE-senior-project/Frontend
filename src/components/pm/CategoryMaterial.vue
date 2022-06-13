@@ -11,25 +11,25 @@
       w-max
     "
   >
-    <router-link
+    <!-- <router-link
       class="link"
-      :to="{ name: 'material_selection', params: { id: user.id } }"
-    >
+      :to="{ name: 'material_selection', params: { id: category.id } }"
+    > -->
       <div class="contractor flex flex-row items-center">
         <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
         <div class="text-sm px-[20px]">
           <p class="font-bold">ประเภทวัสดุ:</p>
-          <p class="w-[100px]">{{ user.name }}</p>
+          <p class="w-[100px]">{{ category.category_name }}</p>
         </div>
       </div>
-    </router-link>
+    <!-- </router-link> -->
   </div>
 </template>
 <script>
 export default {
   name: "material_selection_card",
   props: {
-    user: {
+    category: {
       type: Object,
       required: true,
     },

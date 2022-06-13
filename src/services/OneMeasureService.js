@@ -46,4 +46,12 @@ export default {
   get_all_materials() {
     return apiClient.get("/All_Materials");
   },
+  get_all_project(id){
+    return apiClient.post("/All_Projects", {
+      contractor_id: id,
+    })
+  },
+  get_all_category(){
+    return apiClient.get("/All_Category")
+  }
 };
