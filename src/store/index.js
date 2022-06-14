@@ -12,6 +12,7 @@ import { reactive } from "vue";
 export default reactive({
   flashMessage: "",
   waiting_user:null,
+  total_material:null,
   active_user:null,
   current_project: JSON.parse(localStorage.getItem("project_id")),
   currentUser:  JSON.parse(localStorage.getItem("user")),

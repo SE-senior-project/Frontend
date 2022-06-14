@@ -13,7 +13,7 @@
       <div>
         <div class="absolute top-0 right-0 px-2 pt-1">
           <img
-            @click="onSubmit"
+            @click="onDelete"
             class="delete h-[25px] pl-[15px] p-[5px]"
             src="../../assets/x.png"
           />
@@ -21,8 +21,16 @@
       </div>
     </div>
     <div class="text-sm px-[20px] pb-[30px] pt-[20px] bg-white">
-      <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
-      <p class="font-bold">ราคา: {{ user.id }}</p>
+      <div class="grid grid-cols-7">
+        <p class="font-bold pr-1">ชื่อวัสดุ:</p>
+        <p class="col-span-6">{{ material_selection.project_material_name }}</p>
+      </div>
+      <div class="flex flex-row">
+        <p class="font-bold w-[40px]">ราคา:</p>
+        <p class="">
+          {{ parseFloat(decimal).toFixed(2) }}
+        </p>
+      </div>
       <div class="flex justify-center items-center pt-[20px]">
         <p
           class="
@@ -92,27 +100,27 @@ export default {
     SecondaryButton,
   },
   props: {
-    user: {
+    material_selection: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      number: 1,
+      number: this.material_selection.project_material_total,
+      id: this.material_selection.project_material_id,
       toggle: false,
-      id: this.user.id
+      decimal:
+        this.material_selection.project_material_price *
+        this.material_selection.project_material_total,
     };
   },
   methods: {
-    onSubmit() {
-      console.log("yoo");
-    },
     decrease() {
-      if (this.number != 1) {
+      if (this.number > 1) {
         this.number = this.number - 1;
-        Service.number_material(this.number, 1)
-        Service.number_material(this.id, this.number)
+        this.$router.go();
+        Service.number_material(this.number, this.id);
       } else if (this.number == 1) {
         Swal.fire({
           title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
@@ -124,14 +132,32 @@ export default {
           confirmButtonText: "ตกลง",
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("deleted");
+            Service.delete_material_seletion(this.id);
+            this.$router.go();
           }
         });
       }
     },
+    onDelete() {
+      Swal.fire({
+        title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Service.delete_material_seletion(this.id);
+          this.$router.go();
+        }
+      });
+    },
     increase() {
       this.number = this.number + 1;
-      Service.number_material(this.number, 1)
+      Service.number_material(this.number, this.id);
+      this.$router.go();
     },
   },
 };

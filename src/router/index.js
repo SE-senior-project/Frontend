@@ -125,6 +125,15 @@ const routes = [
     path: "/total_material_selection",
     name: "total_material_selection",
     component: totalMaterialSelection,
+    beforeEnter: async () => {
+      try {
+        const response1 = await service.total_material_selection();
+        GStore.total_material = response1.data[0].total;
+      } catch {
+        GStore.total_material = null;
+        console.log('cannot load user');
+      }
+    }
   },
   {
     path: "/boq_template",
