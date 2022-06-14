@@ -109,5 +109,12 @@ export default {
     return apiClient.post("/Delete_Material_Seletion", {
       project_material_id: id,
     })
-  }
+  },
+
+  active_status_project(status, id){
+    return apiClient.post("/Active_Status_Project", {
+      status: status,
+      project_id: id
+    })
+  },
 };

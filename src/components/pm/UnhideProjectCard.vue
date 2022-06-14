@@ -71,9 +71,10 @@
 </template>
 <script>
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
   inject: ["GStore"],
-  name: "OMPM",
+  name: "unhide_project_card",
   props: {
     inactive_project: {
       type: Object,
@@ -119,7 +120,8 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log("hided");
+          Service.active_status_project(1, this.inactive_project.project_id)
+          this.$router.go();
         }
       });
     },
