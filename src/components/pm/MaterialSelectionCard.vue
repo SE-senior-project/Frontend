@@ -6,20 +6,21 @@
       class="link"
       :to="{ name: 'material_type', params: { id: user.id } }"
     > -->
-      <div
-        class="
-          contractor
-          text-white
-          relative
-          mb-[20px]
-          text-lg text-center
-          py-[50px]
-          bg-orange-500
-        "
-      ></div>
-      <div class="text-sm px-[20px] pb-[20px] flex flex-row" @click="onSubmit(alltype.material_type)">
-        <p class="font-bold" >ชื่อสินค้า: {{ alltype.material_type }}</p>
-      </div>
+    <div
+      @click="onSubmit(alltype.material_type)"
+      class="
+        contractor
+        text-white
+        relative
+        mb-[20px]
+        text-lg text-center
+        py-[50px]
+        bg-orange-500
+      "
+    ></div>
+    <div class="text-sm px-[20px] pb-[20px] flex flex-row">
+      <p class="font-bold">ชื่อสินค้า: {{ alltype.material_type }}</p>
+    </div>
     <!-- </router-link> -->
   </div>
 </template>
@@ -41,10 +42,10 @@ export default {
   methods: {
     onSubmit(material_type) {
       this.GStore.currentSelectiontype = material_type;
-      console.log(material_type)
-         this.$router.push({ 
-          name: 'material_type'
-        });
+      console.log(material_type);
+      this.$router.push({
+        name: "material_type",
+      });
     },
   },
 };

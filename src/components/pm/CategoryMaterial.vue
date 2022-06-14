@@ -16,7 +16,7 @@
         <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
         <div class="text-sm px-[20px]">
           <p class="font-bold">ประเภทวัสดุ:</p>
-          <p class="w-[100px]">{{ category.category_name }}</p>
+          <p class="w-[100px] break-words">{{ category.category_name }}</p>
         </div>
       </div>
     </div>

@@ -66,7 +66,7 @@
       <hr />
       <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
-        <p class="px-[10px]">DD/MM/YY</p>
+        <p class="px-[10px]">{{all_project.deadline}}</p>
       </div>
     </div>
   </div>
