@@ -15,7 +15,10 @@
     <p>ราคารวมของวัสดุ</p>
     </div>
     <div class="text-sm px-[20px] pb-[30px] pt-[20px]">
-      <p class="font-bold">ราคา: </p>
+      <div class="text-right">
+        <p class="font-bold text-xl">ราคา:</p>
+        <p class="text-lg">{{ total }}</p>
+      </div>
       <div class="flex flex-row mt-5 space-x-2 justify-center items-center">
             <PrimaryButton @click="onSubmit">สร้าง BOQ</PrimaryButton>
             <SecondaryButton @click="onBack">ย้อนกลับ</SecondaryButton>
@@ -28,13 +31,14 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
   name: "total_material_price_card",
+  inject: ["GStore"],
   components: {
     SecondaryButton,
     PrimaryButton
   },
   data() {
     return {
-      number: 1,
+      total: this.GStore.total_material,
     };
   },
   methods: {
@@ -45,17 +49,6 @@ export default {
       this.$router.push({
         name: "material_list",
       });
-    },
-    decrease() {
-      if( this.number != 1){
-        this.number = this.number - 1
-      }
-      else {
-        
-      }
-    },
-    increase() {
-       this.number = this.number + 1
     },
   },
 };

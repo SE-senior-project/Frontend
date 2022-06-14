@@ -91,5 +91,22 @@ export default {
       project_material_total: total,
       project_material_id: id
     })
+  },
+
+  get_all_total_material_selection(id){
+    return apiClient.post("/Get_All_Total_Material_Selection", {
+      project_id: id,
+    })
+  },
+
+  total_material_selection(){
+    return apiClient.get("/Total_Material_Selection", {
+    })
+  },
+
+  delete_material_seletion(id){
+    return apiClient.post("/Delete_Material_Seletion", {
+      project_material_id: id,
+    })
   }
 };
