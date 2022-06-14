@@ -55,6 +55,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
+          console.log(project_id)
           Service.add_material(this.materialtype.material_name,parseFloat(this.materialtype.material_price), project_id);
           console.log("added");
         }
