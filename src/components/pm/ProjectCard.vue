@@ -13,7 +13,7 @@
         bg-orange-500
       "
     >
-      <span>โปรเจคที่ {{ all_project.project_id }}</span>
+      <span>{{ active_project.project_name }}</span>
       <div>
         <div
           @click="onHide"
@@ -53,20 +53,18 @@
         </div>
       </div>
     </div>
-    <div @click="onSubmit(all_project.project_id)">
+    <div @click="onSubmit(active_project.project_id)">
       <div class="text-sm font-bold w-5/6 m-auto mb-[20px]">
-        <span>ชื่อ: {{ all_project.project_name }}</span>
+        <span>ชื่อ: {{ active_project.customer_name }}</span>
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[50px]">
-        {{ all_project.project_description }}
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {{ active_project.project_description }}
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
-        <p class="px-[10px]">{{all_project.deadline}}</p>
+        <p class="px-[10px]">{{active_project.deadline}}</p>
       </div>
     </div>
   </div>
@@ -77,7 +75,7 @@ export default {
   inject: ["GStore"],
   name: "OMPM",
   props: {
-    all_project: {
+    active_project: {
       type: Object,
       required: true,
     },
@@ -99,12 +97,12 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.setItem("project_id",  JSON.stringify(this.all_project.project_id));
+          localStorage.setItem("project_id",  JSON.stringify(this.active_project.project_id));
           console.log(this.GStore.current_project);
           this.$router.push({
             name: "material_list",
             params: {
-              id: this.all_project.project_id,
+              id: this.active_project.project_id,
             },
           });
         }

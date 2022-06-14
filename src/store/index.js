@@ -14,6 +14,8 @@ export default reactive({
   waiting_user:null,
   total_material:null,
   active_user:null,
+  active_project:null,
+  inactive_project:null,
   current_project: JSON.parse(localStorage.getItem("project_id")),
   currentUser:  JSON.parse(localStorage.getItem("user")),
   // currentUser_fail: false,

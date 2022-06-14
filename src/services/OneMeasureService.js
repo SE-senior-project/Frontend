@@ -68,9 +68,10 @@ export default {
     return apiClient.get("/All_Category")
   },
 
-  get_all_project(id){
+  get_all_project(id, status){
     return apiClient.post("/All_Projects", {
-      contractor_id: id
+      contractor_id: id,
+      status: status
     })
   },
   
