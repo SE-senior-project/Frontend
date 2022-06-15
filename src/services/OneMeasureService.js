@@ -68,9 +68,10 @@ export default {
     return apiClient.get("/All_Category")
   },
 
-  get_all_project(id){
+  get_all_project(id, status){
     return apiClient.post("/All_Projects", {
-      contractor_id: id
+      contractor_id: id,
+      status: status
     })
   },
   
@@ -108,5 +109,23 @@ export default {
     return apiClient.post("/Delete_Material_Seletion", {
       project_material_id: id,
     })
-  }
+  },
+
+  active_status_project(status, id){
+    return apiClient.post("/Active_Status_Project", {
+      status: status,
+      project_id: id
+    })
+  },
+  
+  add_project(project_name, customer_name, project_description, deadline, status, id){
+    return apiClient.post("/Add_Project", {
+      project_name: project_name,
+      customer_name: customer_name,
+      project_description: project_description,
+      deadline: deadline,
+      status: status,
+      contractor_id: id,
+    })
+  },
 };

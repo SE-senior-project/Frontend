@@ -16,7 +16,7 @@
     >
       <FormWrapper label="โปรเจค" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <ProjectCard v-for="x in all_project" :key="x.id" :all_project="x" />
+        <ProjectCard v-for="x in active_project" :key="x.id" :active_project="x" />
       </div>
       <router-link :to="{ name: 'create_project' }">
         <PrimaryButton class="float-right mb-[20px]">สร้างโปรเจคใหม่</PrimaryButton>
@@ -26,7 +26,7 @@
         <img @click='toggle = !toggle' v-if='toggle' class="h-[27px] pl-[15px] p-[5px]" src="../../assets/down-arrow.png" />
       </FormWrapper>
       <div v-if='toggle' class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <UnhideProjectCard v-for="x in users" :key="x.id" :user="x" />
+        <UnhideProjectCard v-for="x in inactive_project" :key="x.id" :inactive_project="x" />
       </div>
     </div>
   </div>
@@ -37,7 +37,6 @@ import ProjectCard from "../../components/pm/ProjectCard.vue";
 import UnhideProjectCard from "../../components/pm/UnhideProjectCard.vue";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
-import Service from "@/services/OneMeasureService";
 export default {
   name: "OMprojectmanagement",
   inject: ["GStore"],
@@ -49,39 +48,11 @@ export default {
   },
   data() {
     return {
-      // users: [
-      //   {
-      //     name: "thitisan",
-      //     id: 1,
-      //   },
-      //   {
-      //     name: "Phonmongkhon",
-      //     id: 2,
-      //   },
-      //   {
-      //     name: "Pasakon",
-      //     id: 3,
-      //   },
-      //   {
-      //     name: "Sahachan",
-      //     id: 4,
-      //   },
-      //   {
-      //     name: "Khemata",
-      //     id: 5,
-      //   },
-      // ],
-      all_project: null,
       id: this.GStore.currentUser.user_id,
       toggle: false,
+      active_project: this.GStore.active_project,
+      inactive_project: this.GStore.inactive_project
     };
-  },
-  created() {
-    Service.get_all_project(this.GStore.currentUser.user_id)
-      .then((response) => {
-        this.all_project = response.data;
-      })
-      
   },
 };
 </script>

@@ -71,6 +71,20 @@ const routes = [
     path: "/project",
     name: "project",
     component: project,
+    beforeEnter: async () => {
+      try {
+        const response1 = await service.get_all_project(GStore.currentUser.user_id, 1);
+        GStore.active_project = response1.data;
+        console.log( GStore.active_project)
+        const response2 = await service.get_all_project(GStore.currentUser.user_id, 0);
+        GStore.inactive_project = response2.data;
+        console.log( GStore.inactive_project)
+      } catch {
+        GStore.active_project = null;
+        GStore.inactive_project = null;
+        console.log('cannot load user');
+      }
+    }
   },
   {
     path: "/register",
