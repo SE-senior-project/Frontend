@@ -27,7 +27,7 @@
       </div>
       <div class="flex flex-row">
         <p class="font-bold w-[40px]">ราคา:</p>
-        <p class="">
+        <p>
           {{ parseFloat(decimal).toFixed(2) }}
         </p>
       </div>

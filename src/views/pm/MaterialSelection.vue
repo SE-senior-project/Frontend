@@ -21,7 +21,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <MaterialSelectionCard v-for="x in GStore.currentMaterialCategory" :key="x.id" :alltype="x" />
         </div>
-        <Pagination />
+        <!-- <Pagination /> -->
       </div>
     </div>
   </div>

@@ -18,8 +18,11 @@
         bg-orange-500
       "
     ></div>
-    <div class="text-sm px-[20px] pb-[20px] flex flex-row">
-      <p class="font-bold">ชื่อสินค้า: {{ alltype.material_type }}</p>
+    <div class="text-sm px-[20px] pb-[20px]">
+      <div class="grid grid-cols-4">
+        <p class="font-bold pr-1">ชื่อสินค้า:</p>
+        <p class="col-span-3">{{ alltype.material_type }}</p>
+      </div>
     </div>
     <!-- </router-link> -->
   </div>

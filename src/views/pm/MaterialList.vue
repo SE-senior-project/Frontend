@@ -19,7 +19,7 @@
         <div class="px-10 pt-5 rounded-md grid grid-cols-3">
           <CategoryMaterial v-for="x in category" :key="x.id" :category="x" />
         </div>
-        <Pagination />
+        <!-- <Pagination /> -->
     </div>
   </div>
 </template>

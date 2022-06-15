@@ -14,11 +14,20 @@
       "
     ></div>
     <div class="text-sm px-[20px] pb-[60px]">
-      <p class="font-bold">ชื่อวัสดุ: {{ materialtype.material_name }}</p>
-      <p class="font-bold">ราคา: {{ materialtype.material_price }}</p>
-      <SecondaryButton @click="onSubmit(GStore.current_project)" class="float-right my-5"
-        >เพิ่มวัสดุ</SecondaryButton
+      <div class="grid grid-cols-4 mb-10">
+        <p class="font-bold">ชื่อวัสดุ:</p>
+        <p class="col-span-3">{{ materialtype.material_name }}</p>
+      </div>
+      <div class="flex flex-row">
+        <p class="font-bold w-[40px]">ราคา:</p>
+        <p>{{ materialtype.material_price }}</p>
+      </div>
+      <SecondaryButton
+        @click="onSubmit(GStore.current_project)"
+        class="float-right my-5"
       >
+        เพิ่มวัสดุ
+      </SecondaryButton>
     </div>
   </div>
 </template>
@@ -55,8 +64,12 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(project_id)
-          Service.add_material(this.materialtype.material_name,parseFloat(this.materialtype.material_price), project_id);
+          console.log(project_id);
+          Service.add_material(
+            this.materialtype.material_name,
+            parseFloat(this.materialtype.material_price),
+            project_id
+          );
           console.log("added");
         }
       });
