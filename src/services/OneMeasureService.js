@@ -100,8 +100,9 @@ export default {
     })
   },
 
-  total_material_selection(){
-    return apiClient.get("/Total_Material_Selection", {
+  total_material_selection(id){
+    return apiClient.post("/Total_Material_Selection", {
+      project_id: id,
     })
   },
 
