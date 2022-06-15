@@ -1,13 +1,13 @@
 <template>
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    @click="onSubmit(alltype.material_type)"
   >
     <!-- <router-link
       class="link"
       :to="{ name: 'material_type', params: { id: user.id } }"
     > -->
     <div
-      @click="onSubmit(alltype.material_type)"
       class="
         contractor
         text-white

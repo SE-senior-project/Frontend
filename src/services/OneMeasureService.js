@@ -117,4 +117,15 @@ export default {
       project_id: id
     })
   },
+  
+  add_project(project_name, customer_name, project_description, deadline, status, id){
+    return apiClient.post("/Add_Project", {
+      project_name: project_name,
+      customer_name: customer_name,
+      project_description: project_description,
+      deadline: deadline,
+      status: status,
+      contractor_id: id,
+    })
+  },
 };

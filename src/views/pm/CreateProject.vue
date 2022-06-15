@@ -67,9 +67,10 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import TextArea from "@/components/field/TextArea";
 import * as yup from "yup";
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
   name: "create_project",
-  //   inject: ["GStore"],
+  inject: ["GStore"],
   components: {
     Form,
     TextField,
@@ -86,20 +87,23 @@ export default {
     });
     return {
       schema,
+      id: this.GStore.currentUser.user_id
     };
   },
   methods: {
-    onSubmit() {
-      Swal.fire({
+    onSubmit(project) {
+      Service.add_project(project.project_name, project.customer_name, project.project_description, project.deadline, 1, this.id).then(() => {
+        Swal.fire({
         icon: "success",
         title: "สร้างโปรเจคสำเร็จ",
         showConfirmButton: false,
         timer: 2000,
-      }).then(() => {
-        this.$router.push({
-          name: "project",
+        }).then(() => {
+          this.$router.push({
+            name: "project",
+          });
         });
-      });
+      })
     },
   },
 };
