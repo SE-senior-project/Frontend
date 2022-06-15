@@ -9,9 +9,9 @@ export default {
     })
   },
   ///////////// Admin /////////////////
-  update_external_data(mm) {
+  update_external_data(month) {
     return apiClient.post("/External", {
-      mm: mm,
+      month: month,
     });
   },
   get_all_waiting_user() {
