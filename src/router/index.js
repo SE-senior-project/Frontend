@@ -141,7 +141,7 @@ const routes = [
     component: totalMaterialSelection,
     beforeEnter: async () => {
       try {
-        const response1 = await service.total_material_selection();
+        const response1 = await service.total_material_selection(GStore.current_project);
         GStore.total_material = response1.data[0].total;
       } catch {
         GStore.total_material = null;
