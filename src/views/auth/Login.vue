@@ -103,50 +103,61 @@ export default {
   },
   methods: {
     login(user) {
-      AuthService.login(user).then(() => {
-        if (this.GStore.currentUser_fail == false) {
-          Swal.fire({
-                icon: "error",
-                title: "ข้อมูลที่ป้อนเข้ามาไม่ถูกต้อง",
-                showConfirmButton: false,
-                timer: 2000,
-              }).then(() => {
-                this.$router.go();
+      AuthService.login(user)
+        .then(() => {
+          if (this.GStore.currentUser_fail == false) {
+            Swal.fire({
+              icon: "error",
+              title: "ข้อมูลที่ป้อนเข้ามาไม่ถูกต้อง",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              this.$router.go();
+            });
+          } else {
+            if (
+              this.GStore.currentUser.role == "contractor" &&
+              this.GStore.currentUser.status == 1 &&
+              this.GStore.currentUser.active == 1
+            ) {
+              this.$router.push({
+                name: "project",
               });
-        } else {
-          if (
-            this.GStore.currentUser.role == "contractor" &&
-            this.GStore.currentUser.status == 1 &&
-            this.GStore.currentUser.active == 1
-          ) {
-            this.$router.push({
-              name: "project",
-            });
+            }
+            if (
+              this.GStore.currentUser.role == "contractor" &&
+              this.GStore.currentUser.status == 1 &&
+              this.GStore.currentUser.active == 0
+            ) {
+              this.$router.push({
+                name: "home",
+              });
+            }
+            if (
+              this.GStore.currentUser.role == "contractor" &&
+              this.GStore.currentUser.status == 0
+            ) {
+              this.$router.push({
+                name: "home",
+              });
+            }
+            if (this.GStore.currentUser.role == "admin") {
+              this.$router.push({
+                name: "admin",
+              });
+            }
           }
-          if (
-            this.GStore.currentUser.role == "contractor" &&
-            this.GStore.currentUser.status == 1 &&
-            this.GStore.currentUser.active == 0
-          ) {
-            this.$router.push({
-              name: "home",
-            });
-          }
-          if (
-            this.GStore.currentUser.role == "contractor" &&
-            this.GStore.currentUser.status == 0
-          ) {
-            this.$router.push({
-              name: "home",
-            });
-          }
-          if (this.GStore.currentUser.role == "admin") {
-            this.$router.push({
-              name: "admin",
-            });
-          }
-        }
-      });
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
     },
   },
 };

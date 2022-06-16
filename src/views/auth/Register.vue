@@ -141,7 +141,16 @@ export default {
             name: "login",
           });
         })
-        .catch(() => {});
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
     },
   },
 };
