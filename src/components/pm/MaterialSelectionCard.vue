@@ -15,11 +15,13 @@
         mb-[20px]
         text-lg text-center
         py-[50px]
-        bg-orange-500
+       
       "
-    ></div>
-    <div class="text-sm px-[20px] pb-[20px]">
-      <div class="grid grid-cols-4">
+    >
+     <img class="w-[100px]" :src="'Image/'+alltype.material_type+'.png'" />
+    </div>
+    <div class="text-sm px-[20px] pb-[20px] bg-orange-500">
+      <div class="grid grid-cols-4 ">
         <p class="font-bold pr-1">ชื่อสินค้า:</p>
         <p class="col-span-3">{{ alltype.material_type }}</p>
       </div>
