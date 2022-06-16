@@ -70,7 +70,16 @@ export default {
             this.materialtype.material_name,
             parseFloat(this.materialtype.material_price),
             project_id
-          );
+          ).catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "โปรดลองอีกครั้งภายหลัง",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              this.$router.go();
+            });
+          });
           console.log("added");
         }
       });

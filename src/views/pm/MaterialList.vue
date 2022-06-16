@@ -29,6 +29,7 @@ import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
+import Swal from "sweetalert2";
 export default {
   inject: ["GStore"],
   name: "material_list",
@@ -48,10 +49,19 @@ export default {
       category: null,
     };
   },
-  created() {
-    Service.get_all_category().then((response) => {
-      this.category = response.data;
-    });
+   created() {
+    Service.get_all_category()
+      .then((response) => {
+        this.category = response.data;
+      })
+      .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        });
   },
 };
 </script>

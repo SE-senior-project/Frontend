@@ -25,6 +25,7 @@ import bogGenration from "../views/boq/BOQGeneration.vue";
 
 import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
+import Swal from "sweetalert2";
 const routes = [
   {
     path: "/material_list",
@@ -38,13 +39,18 @@ const routes = [
     props: true,
     beforeEnter: async () => {
       console.log(GStore.currentSelectionCategory)
-       service.get_all_selection_type(GStore.currentSelectionCategory).then((response)=>{
-          GStore.currentMaterialCategory = response.data;
-          // console.log(GStore.currentMaterialType)
-       });
-      // GStore.currentMaterialType = response5.data;
-      // console.log(GStore.currentMaterialType)
-
+      service.get_all_selection_type(GStore.currentSelectionCategory).then((response) => {
+        GStore.currentMaterialCategory = response.data;
+        // console.log(GStore.currentMaterialType)
+      })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        })
     }
   },
   {
@@ -53,14 +59,19 @@ const routes = [
     component: materialType,
     props: true,
     beforeEnter: async () => {
-       service.get_all_selection_in_type(GStore.currentSelectiontype).then((response)=>{
-          GStore.currentMaterialType = response.data;
-          
-          console.log(GStore.currentMaterialType)
-       });
-      // GStore.currentMaterialType = response5.data;
-      // console.log(GStore.currentMaterialType)
+      service.get_all_selection_in_type(GStore.currentSelectiontype).then((response) => {
+        GStore.currentMaterialType = response.data;
 
+        console.log(GStore.currentMaterialType)
+      })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        })
     }
   },
   {
@@ -81,14 +92,20 @@ const routes = [
       try {
         const response1 = await service.get_all_project(GStore.currentUser.user_id, 1);
         GStore.active_project = response1.data;
-        console.log( GStore.active_project)
+        console.log(GStore.active_project)
         const response2 = await service.get_all_project(GStore.currentUser.user_id, 0);
         GStore.inactive_project = response2.data;
-        console.log( GStore.inactive_project)
+        console.log(GStore.inactive_project)
       } catch {
         GStore.active_project = null;
         GStore.inactive_project = null;
         console.log('cannot load user');
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        })
       }
     }
   },
@@ -128,7 +145,16 @@ const routes = [
         GStore.waiting_user = null;
         GStore.active_user = null;
         console.log('cannot load user');
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.$router.go();
+        });
       }
+
     }
 
   },
@@ -153,6 +179,12 @@ const routes = [
       } catch {
         GStore.total_material = null;
         console.log('cannot load user');
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        })
       }
     }
   },

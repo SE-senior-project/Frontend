@@ -54,7 +54,7 @@
         <input
           class="
             total_mat
-            w-[40px]
+            w-[55px]
             mx-[10px]
             p-[10px]
             border-none
@@ -119,8 +119,15 @@ export default {
     decrease() {
       if (this.number > 1) {
         this.number = this.number - 1;
+        Service.number_material(this.number, this.id).catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
         this.$router.go();
-        Service.number_material(this.number, this.id);
       } else if (this.number == 1) {
         Swal.fire({
           title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
@@ -132,7 +139,14 @@ export default {
           confirmButtonText: "ตกลง",
         }).then((result) => {
           if (result.isConfirmed) {
-            Service.delete_material_selection(this.id);
+            Service.delete_material_selection(this.id).catch(() => {
+              Swal.fire({
+                icon: "error",
+                title: "โปรดลองอีกครั้งภายหลัง",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            });
             this.$router.go();
           }
         });
@@ -149,14 +163,28 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.delete_material_selection(this.id);
+          Service.delete_material_selection(this.id).catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "โปรดลองอีกครั้งภายหลัง",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          });
           this.$router.go();
         }
       });
     },
     increase() {
       this.number = this.number + 1;
-      Service.number_material(this.number, this.id);
+      Service.number_material(this.number, this.id).catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
       this.$router.go();
     },
   },
@@ -190,5 +218,10 @@ hr {
   right: 9px;
   top: -4px;
   transform: rotate(45deg);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 </style>

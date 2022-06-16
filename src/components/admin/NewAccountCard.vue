@@ -55,7 +55,7 @@ export default {
         confirmButtonText: "ยืนยัน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.approve_user(id);
+          Service.approve_user(id)
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",
@@ -65,7 +65,7 @@ export default {
             this.$router.go();
           });
         }
-      });
+      })
     },
     unapprove_user(id) {
       Swal.fire({
@@ -78,7 +78,7 @@ export default {
         confirmButtonText: "ยืนยัน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.unapprove_user(id);
+          Service.unapprove_user(id)
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",
