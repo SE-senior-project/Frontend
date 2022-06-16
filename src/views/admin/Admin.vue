@@ -215,9 +215,7 @@ export default {
             title: "โปรดลองอีกครั้งภายหลัง",
             showConfirmButton: false,
             timer: 2000,
-          }).then(() => {
-            this.$router.go();
-          });
+          })
         });
     },
   },
