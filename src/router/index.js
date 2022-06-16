@@ -99,6 +99,7 @@ const routes = [
       try {
         const response4 = await service.get_all_materials();
         localStorage.setItem("external", JSON.stringify(response4.data));
+        console.log(typeof (GStore.currentMaterial[0].material_name));
         var provinceAbc = GStore.currentMaterial.filter(d => d.material_name === 'อิฐมอญ ขนาด 7x 16 x 3.5 ซม.');
         console.log(provinceAbc)
       } catch {

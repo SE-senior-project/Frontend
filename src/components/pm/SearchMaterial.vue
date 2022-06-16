@@ -1,8 +1,4 @@
 <template>
-  <!-- <input type="text" v-model="input" placeholder="Search fruits..." />
-  <div class="item fruit" v-for="x in filteredList()" :key="x">
-    <p v-if="input">{{ x }}</p>
-  </div> -->
   <div class="clear-both w-max flex flex-row mt-[40px]">
     <Form @submit="onSubmit" :validation-schema="schema">
       <div class="grid grid-cols-2">
@@ -15,6 +11,12 @@
       </div>
     </Form>
   </div>
+  <!-- <div>
+    <input type="text" v-model="input" placeholder="Search fruits..." />
+    <div class="item fruit" v-for="x in filteredList()" :key="x">
+      <p v-if="input">{{ x }}</p>
+    </div>
+  </div> -->
 </template>
 
 <script>
@@ -43,10 +45,12 @@ export default {
       });
     },
   },
-  filteredList() {
-    return this.fruits.filter((fruit) =>
-      fruit.toLowerCase().includes(this.input.toLowerCase())
-    );
+  computed: {
+    filteredList() {
+      return this.fruits.filter((e) =>
+        e.includes(this.input)
+      );
+    },
   },
 };
 </script>
