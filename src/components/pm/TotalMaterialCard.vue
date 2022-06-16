@@ -54,7 +54,7 @@
         <input
           class="
             total_mat
-            w-[40px]
+            w-[55px]
             mx-[10px]
             p-[10px]
             border-none
@@ -190,5 +190,10 @@ hr {
   right: 9px;
   top: -4px;
   transform: rotate(45deg);
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
 }
 </style>
