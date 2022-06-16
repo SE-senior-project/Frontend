@@ -16,13 +16,6 @@
     >
       <NavProject />
       <SearchMaterial />
-
-      <input type="text" v-model="input" class="border-color: inherit;" />
-      <ul>
-        <li v-for="item in filteredList" :key="item.id">
-          <p v-if="input">{{ item.material_name }}</p>
-        </li>
-      </ul>
       <div class="px-10 pt-5 rounded-md grid grid-cols-3">
         <CategoryMaterial v-for="x in category" :key="x.id" :category="x" />
       </div>
@@ -59,16 +52,6 @@ export default {
     Service.get_all_category().then((response) => {
       this.category = response.data;
     });
-  },
-  computed: {
-    filteredList() {
-      console.log(this.GStore.currentMaterial);
-      let store = this.GStore.currentMaterial;
-      return store.filter((e) => e.material_name.toLowerCase().includes(this.input))
-    },
-    show() {
-      console.log(this.range);
-    },
   },
 };
 </script>

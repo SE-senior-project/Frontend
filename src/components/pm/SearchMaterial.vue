@@ -1,5 +1,11 @@
 <template>
   <div class="clear-both w-max flex flex-row mt-[40px]">
+    <input type="text" v-model="input" class="border-color: inherit;" />
+    <ul>
+      <li v-for="item in filteredList" :key="item.id">
+        <p v-if="input">{{ item.material_name }}</p>
+      </li>
+    </ul>
     <Form @submit="onSubmit" :validation-schema="schema">
       <div class="grid grid-cols-2">
         <div class="w-[400px] mx-4">
@@ -11,12 +17,6 @@
       </div>
     </Form>
   </div>
-  <!-- <div>
-    <input type="text" v-model="input" placeholder="Search fruits..." />
-    <div class="item fruit" v-for="x in filteredList()" :key="x">
-      <p v-if="input">{{ x }}</p>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -25,6 +25,7 @@ import TextField from "@/components/field/TextField";
 import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
   name: "search_material",
+   inject: ["GStore"],
   data() {
     return {
       fruits: ["thit", "san", "tan"],
@@ -47,9 +48,9 @@ export default {
   },
   computed: {
     filteredList() {
-      return this.fruits.filter((e) =>
-        e.includes(this.input)
-      );
+      console.log(this.GStore.currentMaterial);
+      let store = this.GStore.currentMaterial;
+      return store.filter((e) => e.material_name.includes(this.input));
     },
   },
 };
