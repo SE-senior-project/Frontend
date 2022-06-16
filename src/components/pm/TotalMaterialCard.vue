@@ -139,7 +139,7 @@ export default {
           confirmButtonText: "ตกลง",
         }).then((result) => {
           if (result.isConfirmed) {
-            Service.delete_material_seletion(this.id).catch(() => {
+            Service.delete_material_selection(this.id).catch(() => {
               Swal.fire({
                 icon: "error",
                 title: "โปรดลองอีกครั้งภายหลัง",
@@ -163,7 +163,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.delete_material_seletion(this.id).catch(() => {
+          Service.delete_material_selection(this.id).catch(() => {
             Swal.fire({
               icon: "error",
               title: "โปรดลองอีกครั้งภายหลัง",

@@ -96,8 +96,8 @@ export default {
     })
   },
 
-  delete_material_seletion(id){
-    return apiClient.post("/Delete_Material_Seletion", {
+  delete_material_selection(id){
+    return apiClient.post("/Delete_Material_Selection", {
       project_material_id: id,
     })
   },
