@@ -29,6 +29,7 @@ import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
+import Swal from "sweetalert2";
 export default {
   name: "material_list",
   components: {
@@ -70,6 +71,14 @@ export default {
       .then((response) => {
         this.category = response.data;
       })
+      .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        });
       
   },
 };

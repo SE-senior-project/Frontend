@@ -87,23 +87,36 @@ export default {
     });
     return {
       schema,
-      id: this.GStore.currentUser.user_id
+      id: this.GStore.currentUser.user_id,
     };
   },
   methods: {
     onSubmit(project) {
-      Service.add_project(project.project_name, project.customer_name, project.project_description, project.deadline, 1, this.id).then(() => {
+      Service.add_project(
+        project.project_name,
+        project.customer_name,
+        project.project_description,
+        project.deadline,
+        1,
+        this.id
+      ).catch(() => {
         Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      });
+      Swal.fire({
         icon: "success",
         title: "สร้างโปรเจคสำเร็จ",
         showConfirmButton: false,
         timer: 2000,
-        }).then(() => {
-          this.$router.push({
-            name: "project",
-          });
+      }).then(() => {
+        this.$router.push({
+          name: "project",
         });
-      })
+      });
     },
   },
 };
