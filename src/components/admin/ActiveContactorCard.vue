@@ -55,17 +55,7 @@ export default {
         confirmButtonText: "ปิดการใช้งาน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.disable_contractor(id)
-          .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          }).then(() => {
-            this.$router.go();
-          });
-        });
+          Service.disable_contractor(id);
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",
@@ -75,9 +65,9 @@ export default {
             this.$router.go();
           });
         }
-      })
+      });
     },
-  }
+  },
 };
 </script>
 
