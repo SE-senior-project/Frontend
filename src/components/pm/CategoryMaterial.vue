@@ -10,10 +10,14 @@
       rounded-lg
       w-max
     "
+    v-if="category.category_name != null"
   >
     <div @click="onSubmit()">
-      <div class="contractor flex flex-row items-center">
-        <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
+      <div class="contractor flex flex-row items-center h-[180px]">
+        <div class="p-[20px]">
+          <img class="w-[100px]" :src="'Image/'+category.category_name+'.png'" alt="" />
+        </div>
+        <!-- {{category}} -->
         <div class="text-sm px-[20px]">
           <p class="font-bold">ประเภทวัสดุ:</p>
           <p class="w-[100px] break-words">{{ category.category_name }}</p>
@@ -60,7 +64,7 @@ hr {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .nav-links::before {
