@@ -132,7 +132,7 @@ export default {
           confirmButtonText: "ตกลง",
         }).then((result) => {
           if (result.isConfirmed) {
-            Service.delete_material_seletion(this.id);
+            Service.delete_material_selection(this.id);
             this.$router.go();
           }
         });
@@ -149,7 +149,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.delete_material_seletion(this.id);
+          Service.delete_material_selection(this.id);
           this.$router.go();
         }
       });
