@@ -38,6 +38,7 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import TextLabel from "@/components/field/TextLabel";
 import Service from "../../services/OneMeasureService.js";
 import NavAdmin from "@/components/NavAdmin";
+import Swal from "sweetalert2";
 export default {
   name: "manage_account",
   components: {
@@ -56,9 +57,16 @@ export default {
       .then((response) => {
         this.disable_contractor = response.data;
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.push("admin");
+          });
+        });
   },
 };
 </script>

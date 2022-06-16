@@ -210,7 +210,14 @@ export default {
           });
         })
         .catch(() => {
-          this.message = "Cannot login to the system.";
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
         });
     },
   },
