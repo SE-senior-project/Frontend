@@ -12,7 +12,9 @@
         py-[50px]
         bg-orange-500
       "
-    ></div>
+    >
+     <img class="w-[100px]" :src="'Image/'+materialtype.material_id+'.png'" />
+    </div>
     <div class="text-sm px-[20px] pb-[60px]">
       <div class="grid grid-cols-4 mb-10">
         <p class="font-bold">ชื่อวัสดุ:</p>

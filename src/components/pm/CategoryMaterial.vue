@@ -13,7 +13,7 @@
   >
     <div @click="onSubmit()">
       <div class="contractor flex flex-row items-center">
-        <img class="w-[100px]" :src="'Image/'+category.category_id+'.png'" alt="" />
+        <img class="w-[100px]" :src="'Image/'+category.category_name+'.png'" alt="" />
         <!-- {{category}} -->
         <div class="text-sm px-[20px]">
           <p class="font-bold">ประเภทวัสดุ:</p>
