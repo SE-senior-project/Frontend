@@ -136,9 +136,10 @@ export default {
             },
             showConfirmButton: false,
             timer: 1500,
-          });
-          this.$router.push({
-            name: "login",
+          }).then(() => {
+            this.$router.push({
+              name: "login",
+            });
           });
         })
         .catch(() => {

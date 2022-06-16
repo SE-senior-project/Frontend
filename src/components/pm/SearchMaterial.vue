@@ -1,13 +1,54 @@
 <template>
-  <!-- <input type="text" v-model="input" placeholder="Search fruits..." />
-  <div class="item fruit" v-for="x in filteredList()" :key="x">
-    <p v-if="input">{{ x }}</p>
-  </div> -->
   <div class="clear-both w-max flex flex-row mt-[40px]">
     <Form @submit="onSubmit" :validation-schema="schema">
       <div class="grid grid-cols-2">
-        <div class="w-[400px] mx-4">
-          <TextField type="text" name="search" placeholder="ค้นหาวัสดุ" />
+        <div class="searchbox w-[400px] mx-4">
+          <TextLabel :label="label" :required="required" />
+          <div>
+            <input
+              v-bind="field"
+              type="text"
+              v-model="input"
+              @input="handleInput"
+              class="
+                outline-none
+                h-[41px]
+                w-full
+                rounded-lg
+                border-[1px]
+                px-4
+                text-sm
+                font-normal
+                leading-[17px]
+                focus:text-black focus:placeholder-transparent
+                disabled:!border-neutral-100
+                disabled:bg-neutral-100
+                disabled:!placeholder-neutral-500
+              "
+              placeholder="ค้นหาวัสดุ"
+            />
+            <div
+              class="
+                bg-white
+                px-5
+                rounded-b-lg
+                shadow-sm
+                w-[400px]
+                z-50
+                absolute
+                overflow-y-scroll
+                max-h-[400px]
+              "
+            >
+              <div class="search" @click="onSelect(item.material_name)" v-for="item in filteredList" :key="item.id">
+                <p class="mt-5" v-if="show">{{ item.material_name }}</p>
+                <hr v-if="show" />
+              </div>
+            </div>
+          </div>
+          <div class="h-[30px]" v-if="showError">
+            <TextMessage :name="name" />
+          </div>
         </div>
         <div class="my-[9px]">
           <SecondaryButton>ค้นหา</SecondaryButton>
@@ -19,38 +60,68 @@
 
 <script>
 import { Form } from "vee-validate";
-import TextField from "@/components/field/TextField";
 import SecondaryButton from "@/components/button/SecondaryButton";
+import TextLabel from "@/components/field/TextLabel.vue";
+import TextMessage from "@/components/field/TextMessage.vue";
 export default {
   name: "search_material",
+  inject: ["GStore"],
   data() {
     return {
       fruits: ["thit", "san", "tan"],
       password: "",
       checked: null,
       input: "",
+      show: false,
     };
   },
   components: {
     Form,
-    TextField,
     SecondaryButton,
+    TextLabel,
+    TextMessage,
   },
   methods: {
     onSubmit() {
+      this.GStore.searchResult = this.input
       this.$router.push({
-        name: "material_type",
+        name: "material_type_search"
       });
     },
+    onSelect(value){
+      console.log(value)
+      this.input = value
+      this.show = false
+    },
+    handleInput(e) {
+      this.show = true;
+      if(e.target.value === ''){
+        this.show = false
+      }
+    },
   },
-  filteredList() {
-    return this.fruits.filter((fruit) =>
-      fruit.toLowerCase().includes(this.input.toLowerCase())
-    );
+  computed: {
+    filteredList() {
+      console.log(this.GStore.currentMaterial);
+      let store = this.GStore.currentMaterial;
+      return store.filter((e) => e.material_name.includes(this.input));
+    },
   },
 };
 </script>
 <style scoped>
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #edeff2;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.search:hover {
+  transform: scale(1.02);
+}
 </style>
 
 
