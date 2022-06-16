@@ -94,6 +94,14 @@ export default {
       .then((response) => {
         this.material_selection = response.data;
       })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      })
       
   },
 };

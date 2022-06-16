@@ -37,21 +37,19 @@ const routes = [
     component: materialSelection,
     props: true,
     beforeEnter: async () => {
-      try {
-        console.log(GStore.currentSelectionCategory)
-        service.get_all_selection_type(GStore.currentSelectionCategory).then((response) => {
-          GStore.currentMaterialCategory = response.data;
-          // console.log(GStore.currentMaterialType)
-        });
-      }
-      catch {
-        Swal.fire({
-          icon: "error",
-          title: "โปรดลองอีกครั้งภายหลัง",
-          showConfirmButton: false,
-          timer: 2000,
+      console.log(GStore.currentSelectionCategory)
+      service.get_all_selection_type(GStore.currentSelectionCategory).then((response) => {
+        GStore.currentMaterialCategory = response.data;
+        // console.log(GStore.currentMaterialType)
+      })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
         })
-      }
     }
   },
   {
@@ -64,10 +62,15 @@ const routes = [
         GStore.currentMaterialType = response.data;
 
         console.log(GStore.currentMaterialType)
-      });
-      // GStore.currentMaterialType = response5.data;
-      // console.log(GStore.currentMaterialType)
-
+      })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        })
     }
   },
   {
@@ -96,9 +99,7 @@ const routes = [
           title: "โปรดลองอีกครั้งภายหลัง",
           showConfirmButton: false,
           timer: 2000,
-        }).then(() => {
-          this.$router.go();
-        });
+        })
       }
     }
   },
@@ -171,6 +172,12 @@ const routes = [
       } catch {
         GStore.total_material = null;
         console.log('cannot load user');
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        })
       }
     }
   },
