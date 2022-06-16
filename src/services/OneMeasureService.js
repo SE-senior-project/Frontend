@@ -11,7 +11,7 @@ export default {
   ///////////// Admin /////////////////
   update_external_data(month) {
     return apiClient.post("/External", {
-      month: month,
+      mm: month,
     });
   },
   get_all_waiting_user() {
@@ -117,6 +117,12 @@ export default {
       deadline: deadline,
       status: status,
       contractor_id: id,
+    })
+  },
+
+  search_result(name){
+    return apiClient.post("/Search_Result", {
+      material_name: name
     })
   },
 };

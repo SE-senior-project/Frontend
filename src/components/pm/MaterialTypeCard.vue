@@ -1,6 +1,7 @@
 <template>
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    v-if="materialtype.material_name != null"
   >
     <div
       class="

@@ -15,6 +15,7 @@ import createProject from "../views/pm/CreateProject.vue";
 import materialSelection from "../views/pm/MaterialSelection.vue";
 import materialType from "../views/pm/MaterialType.vue";
 import totalMaterialSelection from "../views/pm/TotalMaterialSelection.vue";
+import materialTypeSearch from "../views/pm/MaterialTypeSearch.vue"
 //BOQ//
 import boqTemplate from "../views/boq/BOQTemplate.vue";
 import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
@@ -61,6 +62,11 @@ const routes = [
       // console.log(GStore.currentMaterialType)
 
     }
+  },
+  {
+    path: "/material_type_search",
+    name: "material_type_search",
+    component: materialTypeSearch,
   },
   {
     path: "/create_project",

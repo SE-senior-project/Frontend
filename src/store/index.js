@@ -23,5 +23,6 @@ export default reactive({
   currentSelectionCategory: null,
   currentSelectiontype: null,
   currentMaterialCategory: null,
-  currentMaterialType:null
+  currentMaterialType:null,
+  searchResult:null
 });
