@@ -15,6 +15,7 @@ import createProject from "../views/pm/CreateProject.vue";
 import materialSelection from "../views/pm/MaterialSelection.vue";
 import materialType from "../views/pm/MaterialType.vue";
 import totalMaterialSelection from "../views/pm/TotalMaterialSelection.vue";
+import materialTypeSearch from "../views/pm/MaterialTypeSearch.vue"
 //BOQ//
 import boqTemplate from "../views/boq/BOQTemplate.vue";
 import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
@@ -74,6 +75,11 @@ const routes = [
     }
   },
   {
+    path: "/material_type_search",
+    name: "material_type_search",
+    component: materialTypeSearch,
+  },
+  {
     path: "/create_project",
     name: "create_project",
     component: createProject,
@@ -116,6 +122,7 @@ const routes = [
       try {
         const response4 = await service.get_all_materials();
         localStorage.setItem("external", JSON.stringify(response4.data));
+        console.log(typeof (GStore.currentMaterial[0].material_name));
         var provinceAbc = GStore.currentMaterial.filter(d => d.material_name === 'อิฐมอญ ขนาด 7x 16 x 3.5 ซม.');
         console.log(provinceAbc)
       } catch {
