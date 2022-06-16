@@ -1,6 +1,7 @@
 <template>
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    v-if="materialtype.material_id != null"
   >
     <div
       class="
@@ -10,10 +11,14 @@
         mb-[20px]
         text-lg text-center
         py-[50px]
-        bg-orange-500
+        border-solid border-4
+        border-t-orange-400
+        border-l-orange-500
+        border-r-orange-400
+        border-b-orange-300
       "
     >
-     <img class="w-[100px]" :src="'Image/'+materialtype.material_id+'.png'" />
+     <img class="w-[180px] block m-auto px-5 " :src="'Image/'+materialtype.material_id+'.png'" />
     </div>
     <div class="text-sm px-[20px] pb-[60px]">
       <div class="grid grid-cols-4 mb-10">
