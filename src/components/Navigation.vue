@@ -14,7 +14,7 @@
         </li>
         <li v-if="GStore.currentUser">
           <button type="submit" @click="logout">
-            <b>Sign Out</b> <font-awesome-icon icon="sign-out-alt" />
+            <b>ลงชื่อออก</b> <font-awesome-icon icon="sign-out-alt" />
           </button>
         </li>
       </ul>

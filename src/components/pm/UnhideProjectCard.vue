@@ -112,7 +112,7 @@ export default {
     },
     onHide() {
       Swal.fire({
-        title: "คุณต้องการที่จะซ่อนโปรเจคนี้นี้ใช่ไหม?",
+        title: "คุณต้องการที่จะแสดงโปรเจคนี้นี้ใช่ไหม?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
