@@ -10,26 +10,28 @@
       rounded-lg
       w-max
     "
+    v-if="category.category_name != null"
   >
-    <router-link
-      class="link"
-      :to="{ name: 'material_selection', params: { id: user.id } }"
-    >
-      <div class="contractor flex flex-row items-center">
-        <img class="w-[100px]" src="../../assets/LogoOnemeasure.png" alt="" />
+    <div @click="onSubmit()">
+      <div class="contractor flex flex-row items-center h-[180px]">
+        <div class="p-[20px]">
+          <img class="w-[100px]" :src="'Image/'+category.category_name+'.png'" alt="" />
+        </div>
+        <!-- {{category}} -->
         <div class="text-sm px-[20px]">
           <p class="font-bold">ประเภทวัสดุ:</p>
-          <p class="w-[100px]">{{ user.name }}</p>
+          <p class="w-[100px] break-words">{{ category.category_name }}</p>
         </div>
       </div>
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "material_selection_card",
+  inject: ["GStore"],
   props: {
-    user: {
+    category: {
       type: Object,
       required: true,
     },
@@ -41,7 +43,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("yoyo");
+      this.GStore.currentSelectionCategory = this.category.category_name;
+      // console.log(this.GStore.currentSelectionCategory )
+        this.$router.push({ 
+          name: 'material_selection', 
+        });
     },
   },
 };
@@ -58,7 +64,7 @@ hr {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .nav-links::before {

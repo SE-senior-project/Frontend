@@ -1,6 +1,7 @@
 <template>
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    v-if="active_project.project_id != null"
   >
     <div
       class="
@@ -13,7 +14,7 @@
         bg-orange-500
       "
     >
-      <span>โปรเจคที่ {{ user.id }}</span>
+      <span>{{ active_project.project_name }}</span>
       <div>
         <div
           @click="onHide"
@@ -53,29 +54,30 @@
         </div>
       </div>
     </div>
-    <div @click="onSubmit(user.id)">
+    <div @click="onSubmit(active_project.project_id)">
       <div class="text-sm font-bold w-5/6 m-auto mb-[20px]">
-        <span>ชื่อ: {{ user.name }}</span>
+        <span>ชื่อ: {{ active_project.customer_name }}</span>
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[50px]">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {{ active_project.project_description }}
       </div>
       <hr />
       <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
-        <p class="px-[10px]">DD/MM/YY</p>
+        <p class="px-[10px]">{{active_project.deadline}}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
+  inject: ["GStore"],
   name: "OMPM",
   props: {
-    user: {
+    active_project: {
       type: Object,
       required: true,
     },
@@ -97,13 +99,18 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
+          localStorage.setItem("project_id",  JSON.stringify(this.active_project.project_id));
+          console.log(this.GStore.current_project);
           this.$router.push({
             name: "material_list",
+            params: {
+              id: this.active_project.project_id,
+            },
           });
         }
       });
     },
-    onHide(){
+    onHide() {
       Swal.fire({
         title: "คุณต้องการที่จะซ่อนโปรเจคนี้นี้ใช่ไหม?",
         icon: "warning",
@@ -114,10 +121,11 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log("hided");
+          Service.active_status_project(0, this.active_project.project_id)
+          this.$router.go();
         }
       });
-    }
+    },
   },
 };
 </script>

@@ -13,7 +13,7 @@
       <div>
         <div class="absolute top-0 right-0 px-2 pt-1">
           <img
-            @click="onSubmit"
+            @click="onDelete"
             class="delete h-[25px] pl-[15px] p-[5px]"
             src="../../assets/x.png"
           />
@@ -21,8 +21,16 @@
       </div>
     </div>
     <div class="text-sm px-[20px] pb-[30px] pt-[20px] bg-white">
-      <p class="font-bold">ชื่อวัสดุ: {{ user.name }}</p>
-      <p class="font-bold">ราคา: {{ user.id }}</p>
+      <div class="grid grid-cols-7">
+        <p class="font-bold pr-1">ชื่อวัสดุ:</p>
+        <p class="col-span-6">{{ material_selection.project_material_name }}</p>
+      </div>
+      <div class="flex flex-row">
+        <p class="font-bold w-[40px]">ราคา:</p>
+        <p>
+          {{ parseFloat(decimal).toFixed(2) }}
+        </p>
+      </div>
       <div class="flex justify-center items-center pt-[20px]">
         <p
           class="
@@ -46,7 +54,7 @@
         <input
           class="
             total_mat
-            w-[40px]
+            w-[55px]
             mx-[10px]
             p-[10px]
             border-none
@@ -85,30 +93,41 @@
 <script>
 import SecondaryButton from "@/components/button/SecondaryButton";
 import Swal from "sweetalert2";
+import Service from "@/services/OneMeasureService.js";
 export default {
   name: "total_material_card",
   components: {
     SecondaryButton,
   },
   props: {
-    user: {
+    material_selection: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      number: 1,
+      number: this.material_selection.project_material_total,
+      id: this.material_selection.project_material_id,
       toggle: false,
+      decimal:
+        this.material_selection.project_material_price *
+        this.material_selection.project_material_total,
     };
   },
   methods: {
-    onSubmit() {
-      console.log("yoo");
-    },
     decrease() {
-      if (this.number != 1) {
+      if (this.number > 1) {
         this.number = this.number - 1;
+        Service.number_material(this.number, this.id).catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
+        this.$router.go();
       } else if (this.number == 1) {
         Swal.fire({
           title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
@@ -120,13 +139,53 @@ export default {
           confirmButtonText: "ตกลง",
         }).then((result) => {
           if (result.isConfirmed) {
-            console.log("deleted");
+            Service.delete_material_selection(this.id).catch(() => {
+              Swal.fire({
+                icon: "error",
+                title: "โปรดลองอีกครั้งภายหลัง",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            });
+            this.$router.go();
           }
         });
       }
     },
+    onDelete() {
+      Swal.fire({
+        title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Service.delete_material_selection(this.id).catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "โปรดลองอีกครั้งภายหลัง",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          });
+          this.$router.go();
+        }
+      });
+    },
     increase() {
       this.number = this.number + 1;
+      Service.number_material(this.number, this.id).catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
+      this.$router.go();
     },
   },
 };
@@ -159,5 +218,10 @@ hr {
   right: 9px;
   top: -4px;
   transform: rotate(45deg);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 </style>

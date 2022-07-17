@@ -19,9 +19,9 @@
       <div class="recommend mb-10">
         <FormWrapper label="ประเภทของวัสดุ" />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <MaterialSelectionCard v-for="x in users" :key="x.id" :user="x" />
+          <MaterialSelectionCard v-for="x in GStore.currentMaterialCategory" :key="x.id" :alltype="x" />
         </div>
-        <Pagination />
+        <!-- <Pagination /> -->
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@ import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
 export default {
+  inject: ["GStore"],
   name: "material_selection",
   components: {
     FormWrapper,

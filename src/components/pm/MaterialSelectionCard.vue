@@ -1,33 +1,36 @@
 <template>
   <div
-    class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg"
+    class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg relative"
+    @click="onSubmit(alltype.material_type)"
+    v-if="alltype.material_type != null"
   >
-    <router-link
-      class="link"
-      :to="{ name: 'material_type', params: { id: user.id } }"
+    <div
+      class="
+        contractor
+        text-white
+        relative
+        mb-[20px]
+        pt-[20px]
+        pb-[80px]
+        
+      "
     >
-      <div
-        class="
-          contractor
-          text-white
-          relative
-          mb-[20px]
-          text-lg text-center
-          py-[50px]
-          bg-orange-500
-        "
-      ></div>
-      <div class="text-sm px-[20px] pb-[20px] flex flex-row">
-        <p class="font-bold">ชื่อสินค้า: {{ user.name }}</p>
+     <img class="w-[100px] block m-auto" :src="'Image/'+alltype.material_type+'.png'" />
+    </div>
+    <div class="text-sm px-[20px] pt-[30px] pb-[20px] bg-orange-400 rounded-b-lg absolute bottom-0 w-full text-[#352315]">
+      <div class="grid grid-cols-4 ">
+        <p class="font-bold pr-1">ชื่อสินค้า:</p>
+        <p class="col-span-3">{{ alltype.material_type }}</p>
       </div>
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "material_selection_card",
+  inject: ["GStore"],
   props: {
-    user: {
+    alltype: {
       type: Object,
       required: true,
     },
@@ -38,8 +41,12 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log("yoyo");
+    onSubmit(material_type) {
+      this.GStore.currentSelectiontype = material_type;
+      console.log(material_type);
+      this.$router.push({
+        name: "material_type",
+      });
     },
   },
 };

@@ -16,52 +16,52 @@
     >
       <NavProject />
       <SearchMaterial />
-        <div class="px-10 pt-5 rounded-md grid grid-cols-3">
-          <CategoryMaterial v-for="x in users" :key="x.id" :user="x" />
-        </div>
-        <Pagination />
+      <div class="px-10 pt-5 rounded-md grid grid-cols-3">
+        <CategoryMaterial v-for="x in category" :key="x.id" :category="x" />
+      </div>
+      <!-- <Pagination /> -->
     </div>
   </div>
 </template>
 <script>
+import Service from "@/services/OneMeasureService";
 import CategoryMaterial from "../../components/pm/CategoryMaterial.vue";
 import SearchMaterial from "../../components/pm/SearchMaterial.vue";
 import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
+import Swal from "sweetalert2";
 export default {
+  inject: ["GStore"],
   name: "material_list",
   components: {
     CategoryMaterial,
     SearchMaterial,
     NavProject,
-    Pagination
+    Pagination,
   },
   data() {
     return {
-      users: [
-        {
-          name: "thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      password: "",
+      checked: null,
+      range: [],
+      input: "",
       toggle: false,
+      category: null,
     };
+  },
+   created() {
+    Service.get_all_category()
+      .then((response) => {
+        this.category = response.data;
+      })
+      .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        });
   },
 };
 </script>

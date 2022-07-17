@@ -136,12 +136,22 @@ export default {
             },
             showConfirmButton: false,
             timer: 1500,
-          });
-          this.$router.push({
-            name: "login",
+          }).then(() => {
+            this.$router.push({
+              name: "login",
+            });
           });
         })
-        .catch(() => {});
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
     },
   },
 };
