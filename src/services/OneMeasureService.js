@@ -143,4 +143,23 @@ export default {
       cost_of_wage_per_unit: cost_of_wage_per_unit
     })
   },
+  add_BOQ_list(BOQ_id, list_name,
+    total_quantity,
+    unit,
+    cost_of_materials_per_unit,
+    cost_of_wage_per_unit) {
+    return apiClient.post("/Add_BOQ_List", {
+      BOQ_id: BOQ_id,
+      list_name: list_name,
+      total_quantity: total_quantity,
+      unit: unit,
+      cost_of_materials_per_unit: cost_of_materials_per_unit,
+      cost_of_wage_per_unit: cost_of_wage_per_unit
+    })
+  },
+  remove_BOQ_list(BOQ_list_id) {
+    return apiClient.post("/Remove_BOQ_List", {
+      BOQ_list_id: BOQ_list_id,
+    })
+  },
 };

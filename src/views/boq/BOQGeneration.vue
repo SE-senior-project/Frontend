@@ -58,7 +58,6 @@
   <div class="opertaion-center">
     <button @click="addnewlist()">Add</button>
     <button @click="editlist()">Edit</button>
-    <button @click="removelist()">Remove</button>
   </div>
   <br />
   <table class="center">
@@ -72,9 +71,14 @@
       <td>ค่าแรงต่อหน่วย</td>
       <td>ค่าแรงรวม</td>
       <td>ยอดรวม</td>
+      <td></td>
     </tr>
-    <tr v-for="list in BOQlist" @click="selectRow(list)" :key="list.id">
-      <th>{{ list.BOQ_list_id }}</th>
+    <tr
+      v-for="(list, index) in BOQlist"
+      @click="selectRow(list)"
+      :key="list.id"
+    >
+      <th>{{ index+1 }}</th>
       <td>{{ list.list_name }}</td>
       <td>{{ list.total_quantity }}</td>
       <td>{{ list.unit }}</td>
@@ -83,6 +87,7 @@
       <td>{{ list.cost_of_wage_per_unit }}</td>
       <td>{{ list.total_wages }}</td>
       <td>{{ list.total_price }}</td>
+      <td @click="removelist(list.BOQ_list_id)">remove</td>
     </tr>
   </table>
   <br />
@@ -104,6 +109,7 @@ export default {
       cost_of_materials_per_unit: null,
       cost_of_wage_per_unit: null,
       BOQ_totoal_price: null,
+      BOQ_id: null,
     };
   },
   created() {
@@ -126,7 +132,16 @@ export default {
   },
   methods: {
     addnewlist() {
-      console.log("adding");
+      Service.add_BOQ_list(
+        this.BOQ_id,
+        this.listname,
+        this.total_quantity,
+        this.unit,
+        this.cost_of_materials_per_unit,
+        this.cost_of_wage_per_unit
+      ).then(() => {
+        this.$router.go();
+      });
     },
     editlist() {
       Service.update_BOQ_list(
@@ -140,8 +155,11 @@ export default {
         this.$router.go();
       });
     },
-    removelist() {
-      console.log("removing");
+    removelist(list_id) {
+      console.log(list_id);
+      Service.remove_BOQ_list(list_id).then(() => {
+        this.$router.go();
+      });
     },
     selectRow(list) {
       this.BOQ_list_id = list.BOQ_list_id;
@@ -150,6 +168,7 @@ export default {
       this.unit = list.unit;
       this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
       this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
+      this.BOQ_id = list.BOQ_id;
       console.log(list);
     },
   },
@@ -180,6 +199,6 @@ th {
   padding: 8px;
 }
 tr:nth-child(odd) {
-  background-color: #dddddd;
+  background-color: #dddddda2;
 }
 </style>
