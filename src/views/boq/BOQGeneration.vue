@@ -27,10 +27,35 @@
   <!-- <div class="container"></div> -->
 
   <br />
-  <br />
+  <table class="center">
+    <tr>
+      <td>
+        <div class="input">
+          รายการ :<input type="text" v-model="listname" />
+        </div>
+      </td>
+      <td>
+        <div class="input">
+          พื้นที่ :<input type="text" v-model="total_quantity" />
+        </div>
+      </td>
+      หน่วย :<input type="text" v-model="unit" />
+      <td>
+        <div class="input">
+          ค่าวัสดุต่อหน่วย :<input
+            type="text"
+            v-model="cost_of_materials_per_unit"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="input">
+          ค่าแรงต่อหน่วย :<input type="text" v-model="cost_of_wage_per_unit" />
+        </div>
+      </td>
+    </tr>
+  </table>
   <div class="opertaion-center">
-    รายการ :<input type="text" v-model="listname"/> 
-
     <button @click="addnewlist()">Add</button>
     <button @click="editlist()">Edit</button>
     <button @click="removelist()">Remove</button>
@@ -61,6 +86,8 @@
     </tr>
   </table>
   <br />
+  <div class="opertaion-center">ยอดรวมทั้งหมด:{{ total_BOQ_price }}</div>
+  <br />
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
@@ -68,33 +95,33 @@ export default {
   name: "boq_generation",
   data() {
     return {
-      num: 0,
+      total_BOQ_price: 0,
       BOQlist: null,
-      listname: '',
-      BOQ_list_id:0
+      listname: "",
+      BOQ_list_id: null,
+      total_quantity: null,
+      unit: "",
+      cost_of_materials_per_unit: null,
+      cost_of_wage_per_unit: null,
+      BOQ_totoal_price: null,
     };
   },
-  computed: {
-    tableHeader() {
-      return this.colums || [];
-    },
-    tableData() {
-      return this.entries || [];
-    },
-  },
   created() {
-    Service.get_all_BOQ_list()
+    Service.get_BOQ_list()
       .then((response) => {
         this.BOQlist = response.data;
         console.log(this.BOQlist);
+        var sum = 0;
+        this.BOQlist.forEach((element) => (sum = sum + element.total_price));
+        this.total_BOQ_price = sum;
       })
       .catch(() => {
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // });
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       });
   },
   methods: {
@@ -102,16 +129,27 @@ export default {
       console.log("adding");
     },
     editlist() {
-      console.log(this.BOQ_list_id);
-      console.log(this.listname);
-      Service.update_BOQ_list(this.BOQ_list_id, this.listname);
+      Service.update_BOQ_list(
+        this.BOQ_list_id,
+        this.listname,
+        this.total_quantity,
+        this.unit,
+        this.cost_of_materials_per_unit,
+        this.cost_of_wage_per_unit
+      ).then(() => {
+        this.$router.go();
+      });
     },
     removelist() {
       console.log("removing");
     },
     selectRow(list) {
-      this.BOQ_list_id = list.BOQ_list_id; 
+      this.BOQ_list_id = list.BOQ_list_id;
       this.listname = list.list_name;
+      this.total_quantity = list.total_quantity;
+      this.unit = list.unit;
+      this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
+      this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
       console.log(list);
     },
   },
