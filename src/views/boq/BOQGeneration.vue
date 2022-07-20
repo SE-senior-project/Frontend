@@ -57,12 +57,13 @@
   </table>
   <div class="opertaion-center">
     <button @click="addnewlist()">Add</button>
-    <button @click="editlist()"> | Edit</button>
-    <button @click="clearselectRow()"> | Clear</button>
+    <button @click="editlist()">| Edit</button>
+    <button @click="clearselectRow()">| Clear</button>
   </div>
   <br />
   <table class="center">
     <tr id="header">
+      <td></td>
       <th>ลำดับ</th>
       <td>รายการ</td>
       <td>พื้นที่</td>
@@ -74,11 +75,8 @@
       <td>ยอดรวม</td>
       <td></td>
     </tr>
-    <tr
-      v-for="(list, index) in BOQlist"
-      @click="selectRow(list)"
-      :key="list.id"
-    >
+    <tr v-for="(list, index) in BOQlist" :key="list.id">
+      <td @click="selectRow(list)">select</td>
       <th>{{ index + 1 }}</th>
       <td>{{ list.list_name }}</td>
       <td>{{ list.total_quantity }}</td>
@@ -97,6 +95,7 @@
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
+import Swal from "sweetalert2";
 export default {
   name: "boq_generation",
   data() {
@@ -119,6 +118,8 @@ export default {
         this.BOQlist = response.data;
         console.log(this.BOQlist);
         var sum = 0;
+        this.BOQ_id = response.data[0].BOQ_id;
+        console.log("BOQ_id " + this.BOQ_id);
         this.BOQlist.forEach((element) => (sum = sum + element.total_price));
         this.total_BOQ_price = sum;
       })
@@ -157,9 +158,26 @@ export default {
       });
     },
     removelist(list_id) {
-      console.log(list_id);
-      Service.remove_BOQ_list(list_id).then(() => {
-        this.$router.go();
+      Swal.fire({
+        title: "คุณต้องการที่จะลบรายการใช่ไหม?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ลบรายการ",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Service.remove_BOQ_list(list_id);
+          Swal.fire({
+            icon: "success",
+            title: "ลบสำเร็จ",
+            showConfirmButton: false,
+            timer: 1000,
+          }).then(() => {
+            this.$router.go();
+          });
+        }
       });
     },
     selectRow(list) {
@@ -169,7 +187,6 @@ export default {
       this.unit = list.unit;
       this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
       this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
-      this.BOQ_id = list.BOQ_id;
       console.log(list);
     },
     clearselectRow() {
@@ -179,7 +196,6 @@ export default {
       this.unit = null;
       this.cost_of_materials_per_unit = null;
       this.cost_of_wage_per_unit = null;
-      this.BOQ_id = null;
     },
   },
 };
