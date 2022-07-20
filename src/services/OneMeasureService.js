@@ -57,14 +57,13 @@ export default {
   get_all_category(){
     return apiClient.get("/All_Category")
   },
-
   get_all_project(id, status){
     return apiClient.post("/All_Projects", {
       contractor_id: id,
       status: status
     })
   },
-  
+
   get_all_selection_type(material_category){
     return apiClient.post("/All_Selection_Type", {
       material_category: material_category,
@@ -123,6 +122,17 @@ export default {
   search_result(name){
     return apiClient.post("/Search_Result", {
       material_name: name
+    })
+  },
+  ///// BOQ //////////
+
+  get_all_BOQ_list(){
+    return apiClient.get("/All_BOQ_List")
+  },
+  update_BOQ_list(BOQ_list_id,list_name){
+    return apiClient.post("/Update_BOQ_List", {
+      BOQ_list_id :BOQ_list_id,
+      list_name :list_name
     })
   },
 };

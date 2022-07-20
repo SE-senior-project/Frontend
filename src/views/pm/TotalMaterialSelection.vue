@@ -64,28 +64,6 @@ export default {
   data() {
     return {
       num: 0,
-      // users: [
-      //   {
-      //     name: "thitisan",
-      //     id: 1,
-      //   },
-      //   {
-      //     name: "Phonmongkhon",
-      //     id: 2,
-      //   },
-      //   {
-      //     name: "Pasakon",
-      //     id: 3,
-      //   },
-      //   {
-      //     name: "Sahachan",
-      //     id: 4,
-      //   },
-      //   {
-      //     name: "Khemata",
-      //     id: 5,
-      //   },
-      // ],
       material_selection: null
     };
   },
