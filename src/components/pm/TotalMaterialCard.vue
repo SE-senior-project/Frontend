@@ -127,7 +127,7 @@ export default {
             timer: 2000,
           });
         });
-        this.$router.go();
+        // this.$router.go();
       } else if (this.number == 1) {
         Swal.fire({
           title: "คุณต้องการลบวัสดุนี้ใช่ไหม?",
@@ -185,7 +185,7 @@ export default {
           timer: 2000,
         });
       });
-      this.$router.go();
+      // this.$router.go();
     },
   },
 };
