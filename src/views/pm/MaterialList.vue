@@ -31,7 +31,7 @@ import NavProject from "../../components/NavProject";
 import Pagination from "../../components/Pagination";
 import Swal from "sweetalert2";
 export default {
-  inject: ["GStore"],
+  // inject: ["GStore"],
   name: "material_list",
   components: {
     CategoryMaterial,

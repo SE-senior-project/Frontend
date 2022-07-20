@@ -22,7 +22,7 @@ export default reactive({
   currentMaterial: JSON.parse(localStorage.getItem("external")),
   currentSelectionCategory: null,
   currentSelectiontype: null,
-  currentMaterialCategory: null,
+  CurrentSelectionCategory: null,
   currentMaterialType:null,
   searchResult:null
 });

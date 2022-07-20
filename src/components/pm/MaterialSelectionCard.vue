@@ -1,7 +1,7 @@
 <template>
   <div
     class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg relative"
-    @click="onSubmit(alltype.material_type)"
+    @click="onSubmit()"
     v-if="alltype.material_type != null"
   >
     <div
@@ -41,11 +41,10 @@ export default {
     };
   },
   methods: {
-    onSubmit(material_type) {
-      this.GStore.currentSelectiontype = material_type;
-      console.log(material_type);
+    onSubmit() {
       this.$router.push({
         name: "material_type",
+        params: { material_type: this.alltype.material_type },
       });
     },
   },

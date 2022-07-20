@@ -19,7 +19,7 @@
       <div class="recommend mb-10">
         <FormWrapper label="ประเภทของวัสดุ" />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <MaterialSelectionCard v-for="x in GStore.currentMaterialCategory" :key="x.id" :alltype="x" />
+          <MaterialSelectionCard v-for="x in GStore.CurrentSelectionCategory" :key="x.id" :alltype="x" />
         </div>
         <!-- <Pagination /> -->
       </div>
@@ -41,33 +41,6 @@ export default {
     SearchMaterial,
     NavProject,
     Pagination,
-  },
-  data() {
-    return {
-      users: [
-        {
-          name: "thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
-      toggle: false,
-    };
   },
 };
 </script>

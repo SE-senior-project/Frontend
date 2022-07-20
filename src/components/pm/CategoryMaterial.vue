@@ -15,7 +15,11 @@
     <div @click="onSubmit()">
       <div class="contractor flex flex-row items-center h-[180px]">
         <div class="p-[20px]">
-          <img class="w-[100px]" :src="'Image/'+category.category_name+'.png'" alt="" />
+          <img
+            class="w-[100px]"
+            :src="'Image/' + category.category_name + '.png'"
+            alt=""
+          />
         </div>
         <!-- {{category}} -->
         <div class="text-sm px-[20px]">
@@ -43,11 +47,12 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.GStore.currentSelectionCategory = this.category.category_name;
+      // this.GStore.currentSelectionCategory = this.category.category_name;
       // console.log(this.GStore.currentSelectionCategory )
-        this.$router.push({ 
-          name: 'material_selection', 
-        });
+      this.$router.push({
+        name: "material_selection",
+        params: { category_name: this.category.category_name },
+      });
     },
   },
 };

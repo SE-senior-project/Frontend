@@ -33,45 +33,45 @@ const routes = [
     component: materialList,
   },
   {
-    path: "/material_selection",
+    path: "/material_selection/:category_name",
     name: "material_selection",
     component: materialSelection,
     props: true,
-    beforeEnter: async () => {
-      console.log(GStore.currentSelectionCategory)
-      service.get_all_selection_type(GStore.currentSelectionCategory).then((response) => {
-        GStore.currentMaterialCategory = response.data;
-        // console.log(GStore.currentMaterialType)
-      })
-        .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          })
-        })
+    beforeEnter: async (to) => {
+      try {
+        const response_material_selection = await service.get_all_selection_type(to.params.category_name);
+        GStore.CurrentSelectionCategory = response_material_selection.data;
+        console.log(GStore.CurrentSelectionCategory)
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+
     }
   },
   {
-    path: "/material_type",
+    path: "/material_type/:material_type",
     name: "material_type",
     component: materialType,
     props: true,
-    beforeEnter: async () => {
-      service.get_all_selection_in_type(GStore.currentSelectiontype).then((response) => {
-        GStore.currentMaterialType = response.data;
-
+    beforeEnter: async (to) => {
+      try {
+        const response_material_type_selection = await service.get_all_selection_in_type(to.params.material_type);
+        GStore.currentMaterialType = response_material_type_selection.data;
         console.log(GStore.currentMaterialType)
-      })
-        .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          })
+      }
+      catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
         })
+      }
     }
   },
   {
