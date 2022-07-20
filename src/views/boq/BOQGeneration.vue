@@ -57,7 +57,8 @@
   </table>
   <div class="opertaion-center">
     <button @click="addnewlist()">Add</button>
-    <button @click="editlist()">Edit</button>
+    <button @click="editlist()"> | Edit</button>
+    <button @click="clearselectRow()"> | Clear</button>
   </div>
   <br />
   <table class="center">
@@ -78,7 +79,7 @@
       @click="selectRow(list)"
       :key="list.id"
     >
-      <th>{{ index+1 }}</th>
+      <th>{{ index + 1 }}</th>
       <td>{{ list.list_name }}</td>
       <td>{{ list.total_quantity }}</td>
       <td>{{ list.unit }}</td>
@@ -102,10 +103,10 @@ export default {
     return {
       total_BOQ_price: 0,
       BOQlist: null,
-      listname: "",
+      listname: null,
       BOQ_list_id: null,
       total_quantity: null,
-      unit: "",
+      unit: null,
       cost_of_materials_per_unit: null,
       cost_of_wage_per_unit: null,
       BOQ_totoal_price: null,
@@ -170,6 +171,15 @@ export default {
       this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
       this.BOQ_id = list.BOQ_id;
       console.log(list);
+    },
+    clearselectRow() {
+      this.BOQ_list_id = null;
+      this.listname = null;
+      this.total_quantity = null;
+      this.unit = null;
+      this.cost_of_materials_per_unit = null;
+      this.cost_of_wage_per_unit = null;
+      this.BOQ_id = null;
     },
   },
 };
