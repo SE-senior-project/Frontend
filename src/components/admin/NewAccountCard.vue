@@ -1,15 +1,7 @@
 <template>
   <div class="mx-[60px] lg:mx-[40px] mb-10 shadow-xl rounded-lg">
     <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        text-lg text-center
-        py-[50px]
-        bg-orange-500
-      "
+      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] bg-orange-500"
     >
       <span>ผู้รับเหมาคนที่ {{ user.user_id }}</span>
     </div>
@@ -55,7 +47,7 @@ export default {
         confirmButtonText: "ยืนยัน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.approve_user(id)
+          Service.approve_user(id);
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",
@@ -65,7 +57,7 @@ export default {
             this.$router.go();
           });
         }
-      })
+      });
     },
     unapprove_user(id) {
       Swal.fire({
@@ -78,7 +70,7 @@ export default {
         confirmButtonText: "ยืนยัน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.unapprove_user(id)
+          Service.unapprove_user(id);
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",

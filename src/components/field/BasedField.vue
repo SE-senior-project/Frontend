@@ -3,21 +3,7 @@
     <input
       v-bind="field"
       :type="type"
-      class="
-        outline-none
-        h-[41px]
-        w-full
-        rounded-lg
-        border-[1px]
-        px-4
-        text-sm
-        font-normal
-        leading-[17px]
-        focus:text-black focus:placeholder-transparent
-        disabled:!border-neutral-100
-        disabled:bg-neutral-100
-        disabled:!placeholder-neutral-500
-      "
+      class="outline-none h-[41px] w-full rounded-lg border-[1px] px-4 text-sm font-normal leading-[17px] focus:text-black focus:placeholder-transparent disabled:!border-neutral-100 disabled:bg-neutral-100 disabled:!placeholder-neutral-500"
       :placeholder="placeholder"
       :required="required"
     />

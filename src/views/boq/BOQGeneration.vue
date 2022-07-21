@@ -97,6 +97,7 @@
 import Service from "@/services/OneMeasureService";
 import Swal from "sweetalert2";
 export default {
+  inject: ["GStore"],
   name: "boq_generation",
   data() {
     return {
@@ -113,7 +114,7 @@ export default {
     };
   },
   created() {
-    Service.get_BOQ_list()
+    Service.get_BOQ_list(1)
       .then((response) => {
         this.BOQlist = response.data;
         console.log(this.BOQlist);

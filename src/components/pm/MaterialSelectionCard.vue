@@ -4,21 +4,16 @@
     @click="onSubmit(alltype.material_type)"
     v-if="alltype.material_type != null"
   >
-    <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        pt-[20px]
-        pb-[80px]
-        
-      "
-    >
-     <img class="w-[100px] block m-auto" :src="'Image/'+alltype.material_type+'.png'" />
+    <div class="contractor text-white relative mb-[20px] pt-[20px] pb-[80px]">
+      <img
+        class="w-[100px] block m-auto"
+        :src="'Image/' + alltype.material_type + '.png'"
+      />
     </div>
-    <div class="text-sm px-[20px] pt-[30px] pb-[20px] bg-orange-400 rounded-b-lg absolute bottom-0 w-full text-[#352315]">
-      <div class="grid grid-cols-4 ">
+    <div
+      class="text-sm px-[20px] pt-[30px] pb-[20px] bg-orange-400 rounded-b-lg absolute bottom-0 w-full text-[#352315]"
+    >
+      <div class="grid grid-cols-4">
         <p class="font-bold pr-1">ชื่อสินค้า:</p>
         <p class="col-span-3">{{ alltype.material_type }}</p>
       </div>

@@ -1,18 +1,7 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        max-w-5xl
-        bg-white
-        shadow-xl
-        rounded-lg
-        w-[1028px]
-        mb-4
-        mx-8
-        px-10
-        pt-5
-        pb-14
-      "
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 pt-5 pb-14"
     >
       <NavProject />
       <SearchMaterial />
@@ -49,19 +38,19 @@ export default {
       category: null,
     };
   },
-   created() {
+  created() {
     Service.get_all_category()
       .then((response) => {
         this.category = response.data;
       })
       .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          })
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
         });
+      });
   },
 };
 </script>

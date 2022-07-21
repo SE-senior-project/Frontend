@@ -1,21 +1,12 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        max-w-5xl
-        bg-white
-        shadow-xl
-        rounded-lg
-        w-[1028px]
-        mb-4
-        mx-8
-        px-10
-        py-5
-        flex justify-center items-center flex-col
-      "
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5 flex justify-center items-center flex-col"
     >
       <img class="w-[300px]" src="../assets/LogoOnemeasure.png" />
-      <p class="my-5 text-lg">กรุณารอเจ้าหน้าที่เว็บไซต์อนุมัติการเข้าใช้เว็บไซต์</p>
+      <p class="my-5 text-lg">
+        กรุณารอเจ้าหน้าที่เว็บไซต์อนุมัติการเข้าใช้เว็บไซต์
+      </p>
       <PrimaryButton @click="onSubmit">ย้อนกลับ</PrimaryButton>
     </div>
   </div>
@@ -71,10 +62,7 @@ export default {
         name: "login",
       });
     },
-
   },
 };
 </script>
-<style scoped>
-</style>
-
+<style scoped></style>

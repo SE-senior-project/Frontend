@@ -4,37 +4,14 @@
     v-if="inactive_project.project_id != null"
   >
     <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        text-lg text-center
-        py-[50px]
-        bg-orange-500
-      "
+      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] bg-orange-500"
     >
       <span>โปรเจคที่ {{ inactive_project.project_name }}</span>
       <div>
         <div
           @click="onHide"
           v-if="toggle"
-          class="
-            absolute
-            top-0
-            right-0
-            nav-links
-            flex
-            list-none
-            bg-orange-400
-            h-max
-            w-[150px]
-            px-5
-            py-3
-            mt-9
-            mr-2
-            rounded-lg
-          "
+          class="absolute top-0 right-0 nav-links flex list-none bg-orange-400 h-max w-[150px] px-5 py-3 mt-9 mr-2 rounded-lg"
         >
           <li><span class="text-sm cursor-pointer">แสดงโปรเจค</span></li>
         </div>
@@ -65,7 +42,7 @@
       <hr />
       <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
-        <p class="px-[10px]">{{inactive_project.deadline}}</p>
+        <p class="px-[10px]">{{ inactive_project.deadline }}</p>
       </div>
     </div>
   </div>
@@ -99,7 +76,10 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.setItem("project_id",  JSON.stringify(this.inactive_project.project_id));
+          localStorage.setItem(
+            "project_id",
+            JSON.stringify(this.inactive_project.project_id)
+          );
           console.log(this.GStore.current_project);
           this.$router.push({
             name: "material_list",
@@ -121,7 +101,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.active_status_project(1, this.inactive_project.project_id)
+          Service.active_status_project(1, this.inactive_project.project_id);
           this.$router.go();
         }
       });

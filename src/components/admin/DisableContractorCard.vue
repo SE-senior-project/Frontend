@@ -1,15 +1,7 @@
 <template>
   <div class="mx-[60px] lg:mx-[40px] mb-10 shadow-xl rounded-lg">
     <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        text-lg text-center
-        py-[50px]
-        bg-orange-500
-      "
+      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] bg-orange-500"
     >
       <span>ผู้รับเหมาคนที่ {{ user.contractor_id }}</span>
     </div>
@@ -44,7 +36,7 @@ export default {
   },
   methods: {
     active_contractor(id) {
-      console.log(id)
+      console.log(id);
       Swal.fire({
         title: "คุณต้องการที่จะเปิดใช้งานสมาชิกนี้ใช่ไหม?",
         icon: "warning",
@@ -55,7 +47,7 @@ export default {
         confirmButtonText: "เปิดการใช้งาน",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.active_contractor(id)
+          Service.active_contractor(id);
           Swal.fire({
             icon: "success",
             title: "อัพเดทสำเร็จ",

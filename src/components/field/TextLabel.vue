@@ -1,6 +1,7 @@
 <template>
   <label class="block text-gray-700 text-sm font-bold mb-2"
-    >{{ label }}<span class="text-error-500 text-red-600" v-if="required">&nbsp;*</span>
+    >{{ label
+    }}<span class="text-error-500 text-red-600" v-if="required">&nbsp;*</span>
   </label>
 </template>
 <script>

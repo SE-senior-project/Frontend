@@ -51,10 +51,10 @@ export default {
   },
   data() {
     return {
-      boq: null
+      boq: null,
     };
   },
-   created() {
+  created() {
     Service.get_BOQ()
       .then((response) => {
         this.boq = response.data;

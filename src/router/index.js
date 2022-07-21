@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import service from '../services/OneMeasureService';
-import GStore from '@/store'
+import service from "../services/OneMeasureService";
+import GStore from "@/store";
 //AUTH//
 import HomeView from "../views/HomeView.vue";
 import login from "../views/auth/Login.vue";
@@ -15,7 +15,7 @@ import createProject from "../views/pm/CreateProject.vue";
 import materialSelection from "../views/pm/MaterialSelection.vue";
 import materialType from "../views/pm/MaterialType.vue";
 import totalMaterialSelection from "../views/pm/TotalMaterialSelection.vue";
-import materialTypeSearch from "../views/pm/MaterialTypeSearch.vue"
+import materialTypeSearch from "../views/pm/MaterialTypeSearch.vue";
 //BOQ//
 import boqTemplate from "../views/boq/BOQTemplate.vue";
 import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
@@ -38,20 +38,22 @@ const routes = [
     component: materialSelection,
     props: true,
     beforeEnter: async () => {
-      console.log(GStore.currentSelectionCategory)
-      service.get_all_selection_type(GStore.currentSelectionCategory).then((response) => {
-        GStore.currentMaterialCategory = response.data;
-        // console.log(GStore.currentMaterialType)
-      })
+      console.log(GStore.currentSelectionCategory);
+      service
+        .get_all_selection_type(GStore.currentSelectionCategory)
+        .then((response) => {
+          GStore.currentMaterialCategory = response.data;
+          // console.log(GStore.currentMaterialType)
+        })
         .catch(() => {
           Swal.fire({
             icon: "error",
             title: "โปรดลองอีกครั้งภายหลัง",
             showConfirmButton: false,
             timer: 2000,
-          })
-        })
-    }
+          });
+        });
+    },
   },
   {
     path: "/material_type",
@@ -59,20 +61,22 @@ const routes = [
     component: materialType,
     props: true,
     beforeEnter: async () => {
-      service.get_all_selection_in_type(GStore.currentSelectiontype).then((response) => {
-        GStore.currentMaterialType = response.data;
+      service
+        .get_all_selection_in_type(GStore.currentSelectiontype)
+        .then((response) => {
+          GStore.currentMaterialType = response.data;
 
-        console.log(GStore.currentMaterialType)
-      })
+          console.log(GStore.currentMaterialType);
+        })
         .catch(() => {
           Swal.fire({
             icon: "error",
             title: "โปรดลองอีกครั้งภายหลัง",
             showConfirmButton: false,
             timer: 2000,
-          })
-        })
-    }
+          });
+        });
+    },
   },
   {
     path: "/material_type_search",
@@ -90,24 +94,30 @@ const routes = [
     component: project,
     beforeEnter: async () => {
       try {
-        const response1 = await service.get_all_project(GStore.currentUser.user_id, 1);
+        const response1 = await service.get_all_project(
+          GStore.currentUser.user_id,
+          1
+        );
         GStore.active_project = response1.data;
-        console.log(GStore.active_project)
-        const response2 = await service.get_all_project(GStore.currentUser.user_id, 0);
+        console.log(GStore.active_project);
+        const response2 = await service.get_all_project(
+          GStore.currentUser.user_id,
+          0
+        );
         GStore.inactive_project = response2.data;
-        console.log(GStore.inactive_project)
+        console.log(GStore.inactive_project);
       } catch {
         GStore.active_project = null;
         GStore.inactive_project = null;
-        console.log('cannot load user');
+        console.log("cannot load user");
         Swal.fire({
           icon: "error",
           title: "โปรดลองอีกครั้งภายหลัง",
           showConfirmButton: false,
           timer: 2000,
-        })
+        });
       }
-    }
+    },
   },
   {
     path: "/register",
@@ -127,9 +137,9 @@ const routes = [
         // console.log(provinceAbc)
       } catch {
         GStore.currentMaterial = null;
-        console.log('cannot load data');
+        console.log("cannot load data");
       }
-    }
+    },
   },
   {
     path: "/admin",
@@ -144,7 +154,7 @@ const routes = [
       } catch {
         GStore.waiting_user = null;
         GStore.active_user = null;
-        console.log('cannot load user');
+        console.log("cannot load user");
         Swal.fire({
           icon: "error",
           title: "โปรดลองอีกครั้งภายหลัง",
@@ -154,9 +164,7 @@ const routes = [
           this.$router.go();
         });
       }
-
-    }
-
+    },
   },
   {
     path: "/manage_account",
@@ -174,19 +182,21 @@ const routes = [
     component: totalMaterialSelection,
     beforeEnter: async () => {
       try {
-        const response1 = await service.total_material_selection(GStore.current_project);
+        const response1 = await service.total_material_selection(
+          GStore.current_project
+        );
         GStore.total_material = response1.data[0].total;
       } catch {
         GStore.total_material = null;
-        console.log('cannot load user');
+        console.log("cannot load user");
         Swal.fire({
           icon: "error",
           title: "โปรดลองอีกครั้งภายหลัง",
           showConfirmButton: false,
           timer: 2000,
-        })
+        });
       }
-    }
+    },
   },
   {
     path: "/boq_template",
@@ -194,9 +204,33 @@ const routes = [
     component: boqTemplate,
   },
   {
-    path: "/boq_template_selection",
+    path: "/boq_template_selection/:id",
     name: "boq_template_selection",
     component: boqTemplateSelection,
+    beforeEnter: async (to) => {
+      try {
+        console.log(parseInt(to.params.id));
+        const response_current_select_BOQ = await service.get_BOQ_list(
+          parseInt(to.params.id)
+        );
+        GStore.CurrentBOQUSE = response_current_select_BOQ.data;
+        let keep = response_current_select_BOQ.data;
+        console.log(GStore.CurrentBOQUSE);
+        var sumation = 0;
+        keep.forEach(
+          (element) => (sumation = sumation + element.total_price)
+
+        );
+        GStore.CurrentTotalBOQlist = sumation;
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
   },
   {
     path: "/boq_confirmation",

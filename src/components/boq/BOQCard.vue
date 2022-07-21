@@ -2,7 +2,7 @@
   <div class="col-3">
     <router-link
       class="link"
-      :to="{ name: 'boq_template_selection', params: { id: boq.BOQ_id } }"
+      :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
     >
       <div class="cards_wrap">
         <div class="card_item">
