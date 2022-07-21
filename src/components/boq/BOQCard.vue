@@ -2,13 +2,13 @@
   <div class="col-3">
     <router-link
       class="link"
-      :to="{ name: 'boq_template_selection', params: { id: user.id } }"
+      :to="{ name: 'boq_template_selection', params: { id: boq.BOQ_id } }"
     >
       <div class="cards_wrap">
         <div class="card_item">
           <div class="card_inner">
             <div class="role_name">
-              <b>Project {{ user.name }}</b>
+              <b>{{ boq.BOQ_name }}</b>
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
 export default {
   name: "boq_card",
   props: {
-    user: {
+    boq: {
       type: Object,
       required: true,
     },

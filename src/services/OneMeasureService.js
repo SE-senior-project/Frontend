@@ -125,7 +125,10 @@ export default {
     })
   },
   ///// BOQ //////////
-
+  
+  get_BOQ() {
+    return apiClient.get("/All_BOQ")
+  },
   get_BOQ_list() {
     return apiClient.get("/All_BOQ_List")
   },

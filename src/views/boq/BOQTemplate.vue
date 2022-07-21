@@ -20,7 +20,7 @@
         </button>
         <div>
           <div class="contractor">
-            <BOQCard v-for="x in users" :key="x.id" :user="x" />
+            <BOQCard v-for="x in boq" :key="x.id" :boq="x" />
           </div>
         </div>
         <div class="form-group Search"></div>
@@ -34,13 +34,15 @@
   <div>
     <h5>Custermer views</h5>
     <div class="contractor">
-      <BOQViewCard v-for="x in users" :key="x.id" :user="x" />
+      <BOQViewCard v-for="x in boq" :key="x.id" :boq="x" />
     </div>
   </div>
 </template>
 <script>
 import BOQCard from "../../components/boq/BOQCard.vue";
 import BOQViewCard from "../../components/boq/BOQViewCard.vue";
+import Service from "@/services/OneMeasureService";
+import Swal from "sweetalert2";
 export default {
   name: "boq_generation",
   components: {
@@ -49,29 +51,23 @@ export default {
   },
   data() {
     return {
-      users: [
-        {
-          name: "Thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      boq: null
     };
+  },
+   created() {
+    Service.get_BOQ()
+      .then((response) => {
+        this.boq = response.data;
+        console.log(this.boq);
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   },
 };
 </script>

@@ -1,26 +1,26 @@
 <template>
   <div class="col-3">
-    <router-link
+    <!-- <router-link
       class="link"
       :to="{ name: 'show_template', params: { id: user.id } }"
-    >
-      <div class="cards_wrap">
-        <div class="card_item">
-          <div class="card_inner">
-            <div class="role_name">
-              <b>Project {{ user.name }}</b>
-            </div>
+    > -->
+    <div class="cards_wrap">
+      <div class="card_item">
+        <div class="card_inner">
+          <div class="role_name">
+            <b>{{ boq.BOQ_name }}</b>
           </div>
         </div>
       </div>
-    </router-link>
+    </div>
+    <!-- </router-link> -->
   </div>
 </template>
 <script>
 export default {
   name: "boq_view_card",
   props: {
-    user: {
+    boq: {
       type: Object,
       required: true,
     },
