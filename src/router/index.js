@@ -172,9 +172,31 @@ const routes = [
     component: manageAccount,
   },
   {
-    path: "/boq_generation",
+    path: "/boq_generation/:id",
     name: "boq_generation",
     component: bogGenration,
+    beforeEnter: async (to) => {
+      try {
+        console.log(parseInt(to.params.id));
+        const response_current_BOQ_list = await service.get_BOQ_list(
+          parseInt(to.params.id)
+        );
+        GStore.CurrentBOQUSE = response_current_BOQ_list.data;
+        var sumation = 0;
+        GStore.CurrentBOQUSE.forEach(
+          (element) => (sumation = sumation + element.total_price)
+
+        );
+        GStore.CurrentTotalBOQlist = sumation;
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
   },
   {
     path: "/total_material_selection",
@@ -214,10 +236,9 @@ const routes = [
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_select_BOQ.data;
-        let keep = response_current_select_BOQ.data;
         console.log(GStore.CurrentBOQUSE);
         var sumation = 0;
-        keep.forEach(
+        GStore.CurrentBOQUSE.forEach(
           (element) => (sumation = sumation + element.total_price)
 
         );

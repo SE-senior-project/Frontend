@@ -75,7 +75,7 @@
       <td>ยอดรวม</td>
       <td></td>
     </tr>
-    <tr v-for="(list, index) in BOQlist" :key="list.id">
+    <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
       <td @click="selectRow(list)">select</td>
       <th>{{ index + 1 }}</th>
       <td>{{ list.list_name }}</td>
@@ -90,7 +90,7 @@
     </tr>
   </table>
   <br />
-  <div class="opertaion-center">ยอดรวมทั้งหมด:{{ total_BOQ_price }}</div>
+  <div class="opertaion-center">ยอดรวมทั้งหมด:{{  GStore.CurrentTotalBOQlist }}</div>
   <br />
 </template>
 <script>
@@ -113,26 +113,26 @@ export default {
       BOQ_id: null,
     };
   },
-  created() {
-    Service.get_BOQ_list(1)
-      .then((response) => {
-        this.BOQlist = response.data;
-        console.log(this.BOQlist);
-        var sum = 0;
-        this.BOQ_id = response.data[0].BOQ_id;
-        console.log("BOQ_id " + this.BOQ_id);
-        this.BOQlist.forEach((element) => (sum = sum + element.total_price));
-        this.total_BOQ_price = sum;
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "โปรดลองอีกครั้งภายหลัง",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      });
-  },
+  // created() {
+  //   Service.get_BOQ_list(1)
+  //     .then((response) => {
+  //       this.BOQlist = response.data;
+  //       console.log(this.BOQlist);
+  //       var sum = 0;
+  //       this.BOQ_id = response.data[0].BOQ_id;
+  //       console.log("BOQ_id " + this.BOQ_id);
+  //       this.BOQlist.forEach((element) => (sum = sum + element.total_price));
+  //       this.total_BOQ_price = sum;
+  //     })
+  //     .catch(() => {
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "โปรดลองอีกครั้งภายหลัง",
+  //         showConfirmButton: false,
+  //         timer: 2000,
+  //       });
+  //     });
+  // },
   methods: {
     addnewlist() {
       Service.add_BOQ_list(
@@ -143,7 +143,7 @@ export default {
         this.cost_of_materials_per_unit,
         this.cost_of_wage_per_unit
       ).then(() => {
-        this.$router.go();
+        // this.$router.go();
       });
     },
     editlist() {
@@ -182,6 +182,7 @@ export default {
       });
     },
     selectRow(list) {
+      this.BOQ_id= list.BOQ_id;
       this.BOQ_list_id = list.BOQ_list_id;
       this.listname = list.list_name;
       this.total_quantity = list.total_quantity;

@@ -167,7 +167,9 @@ export default {
     unit,
     cost_of_materials_per_unit,
     cost_of_wage_per_unit
-  ) {
+  ) 
+  {
+    console.log("BOQid: "+BOQ_id)
     return apiClient.post("/Add_BOQ_List", {
       BOQ_id: BOQ_id,
       list_name: list_name,

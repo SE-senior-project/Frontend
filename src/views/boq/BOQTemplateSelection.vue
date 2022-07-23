@@ -38,7 +38,12 @@
       <router-link :to="{ name: 'boq_template' }"> Back </router-link>
     </button>
     <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_generation'}">
+      <router-link
+        :to="{
+          name: 'boq_generation',
+          params: { id: GStore.CurrentBOQUSE[0].BOQ_id },
+        }"
+      >
         Use as template
       </router-link>
     </button>
