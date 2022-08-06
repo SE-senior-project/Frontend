@@ -8,7 +8,7 @@
       <div class="card_item">
         <div class="card_inner">
           <div class="role_name">
-            <b>{{ boq.BOQ_name }}</b>
+            <b>{{ customer.customer_view_name }}</b>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
 export default {
   name: "boq_view_card",
   props: {
-    boq: {
+    customer: {
       type: Object,
       required: true,
     },

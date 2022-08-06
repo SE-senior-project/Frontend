@@ -133,7 +133,9 @@ export default {
     });
   },
   ///// BOQ //////////
-
+  get_customer_view() {
+    return apiClient.get("/All_Customer_View");
+  },
   get_BOQ() {
     return apiClient.get("/All_BOQ");
   },

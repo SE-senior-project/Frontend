@@ -20,7 +20,7 @@
         </button>
         <div>
           <div class="contractor">
-            <BOQCard v-for="x in boq" :key="x.id" :boq="x" />
+            <BOQCard v-for="x in GStore.currentBOQ " :key="x.id" :boq="x" />
           </div>
         </div>
         <div class="form-group Search"></div>
@@ -34,7 +34,7 @@
   <div>
     <h5>Custermer views</h5>
     <div class="contractor">
-      <BOQViewCard v-for="x in boq" :key="x.id" :boq="x" />
+      <BOQViewCard v-for="x in GStore.currentCustomerView" :key="x.id" :customer="x" />
     </div>
   </div>
 </template>
@@ -44,6 +44,7 @@ import BOQViewCard from "../../components/boq/BOQViewCard.vue";
 import Service from "@/services/OneMeasureService";
 import Swal from "sweetalert2";
 export default {
+  inject: ["GStore"],
   name: "boq_generation",
   components: {
     BOQCard,

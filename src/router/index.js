@@ -142,6 +142,31 @@ const routes = [
     },
   },
   {
+    path: "/boq_template",
+    name: "boq_template",
+    component: boqTemplate,
+    beforeEnter: async () => {
+      try {
+        const currentBOQ = await service.get_BOQ();
+        GStore.currentBOQ = currentBOQ.data;
+        const currentCustomerView = await service.get_customer_view();
+        GStore.currentCustomerView = currentCustomerView.data;
+      } catch {
+        GStore.currentBOQ = null;
+        GStore.currentCustomerView = null;
+        console.log("cannot load user");
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.$router.go();
+        });
+      }
+    },
+  },
+  {
     path: "/admin",
     name: "admin",
     component: admin,
@@ -219,11 +244,6 @@ const routes = [
         });
       }
     },
-  },
-  {
-    path: "/boq_template",
-    name: "boq_template",
-    component: boqTemplate,
   },
   {
     path: "/boq_template_selection/:id",
