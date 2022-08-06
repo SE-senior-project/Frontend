@@ -40,7 +40,7 @@
     <button class="btn btn-primary">
       <router-link
         :to="{
-          name: 'boq_generation',
+          name: 'boq_gen',
           params: { id: GStore.CurrentBOQUSE[0].BOQ_id },
         }"
       >

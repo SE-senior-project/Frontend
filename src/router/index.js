@@ -21,7 +21,8 @@ import boqTemplate from "../views/boq/BOQTemplate.vue";
 import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
 import boqConfirmation from "../views/boq/BOQConfirmation.vue";
 import showTemplate from "../views/boq/ShowTemplate.vue";
-import bogGenration from "../views/boq/BOQGeneration.vue";
+import bogGen from "../views/boq/BOQGen.vue";
+import createGen from "../views/boq/CreateBOQ.vue";
 
 import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
@@ -172,9 +173,9 @@ const routes = [
     component: manageAccount,
   },
   {
-    path: "/boq_generation/:id",
-    name: "boq_generation",
-    component: bogGenration,
+    path: "/boq_gen/:id",
+    name: "boq_gen",
+    component: bogGen,
     beforeEnter: async (to) => {
       try {
         console.log(parseInt(to.params.id));
@@ -197,6 +198,11 @@ const routes = [
         });
       }
     },
+  },
+  {
+    path: "/create_boq",
+    name: "create_boq",
+    component: createGen
   },
   {
     path: "/total_material_selection",
