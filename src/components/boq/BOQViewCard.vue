@@ -1,13 +1,12 @@
 <template>
-  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg w-max">
+  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg w-max bg-orange-500">
     <router-link
       class="link"
-      :to="{ name: 'show_template', params: { id: customer.id } }"
+      :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
     >
-    <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[50px] pt-[20px] pl-[20px]">
+    <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[50px] pt-[20px] pl-[20px] rounded-lg border-solid border-4 border-orange-500 bg-white">
         <div class="p-[20px]">
-            <b>{{ customer.customer_view_name }}</b>
-
+          <b>BOQ: {{ boq.BOQ_name }}</b>
         </div>
     </div>
     </router-link>
@@ -17,7 +16,7 @@
 export default {
   name: "boq_view_card",
   props: {
-    customer: {
+    boq: {
       type: Object,
       required: true,
     },
