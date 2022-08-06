@@ -133,6 +133,12 @@ export default {
     });
   },
   ///// BOQ //////////
+  show_template(customer_id) {
+    console.log(customer_id)
+    return apiClient.post("/All_Customer_List", {
+      customer_id: customer_id,
+    });
+  },
   get_customer_view() {
     return apiClient.get("/All_Customer_View");
   },

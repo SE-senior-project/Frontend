@@ -1,9 +1,9 @@
 <template>
   <div class="col-3">
-    <!-- <router-link
+    <router-link
       class="link"
-      :to="{ name: 'show_template', params: { id: user.id } }"
-    > -->
+      :to="{ name: 'show_template', params: { id: customer.id } }"
+    >
     <div class="cards_wrap">
       <div class="card_item">
         <div class="card_inner">
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <!-- </router-link> -->
+    </router-link>
   </div>
 </template>
 <script>
