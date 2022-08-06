@@ -6,7 +6,7 @@
     >
     <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[50px] pt-[20px] pl-[20px]">
         <div class="p-[20px]">
-            <b>{{ customer.customer_view_name }}</b>
+            <b>{{ customer.BOQ_name }}</b>
 
         </div>
     </div>
