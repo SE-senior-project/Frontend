@@ -1,9 +1,11 @@
 <template>
-  <!-- list -->
-  <div class="container"></div>
-  <!-- BOQ Table -->
+  <div class="relative flex justify-center items-center">
+    <div
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
+    >
+    {{ GStore.currentBOQ }}
   <br />
-  <table class="center">
+  <table class="w-full">
     <tr id="header">
       <th>ลำดับ</th>
       <td>รายการ</td>
@@ -28,16 +30,11 @@
     </tr>
   </table>
   <br />
-  <div class="opertaion-center">
     ยอดรวมทั้งหมด:{{ GStore.CurrentTotalBOQlist }}
-  </div>
   <br />
 
   <div class="container">
-    <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_template' }"> Back </router-link>
-    </button>
-    <button class="btn btn-primary">
+    <PrimaryButton class="float-right mb-[20px] mt-[50px]">
       <router-link
         :to="{
           name: 'boq_gen',
@@ -46,15 +43,19 @@
       >
         Use as template
       </router-link>
-    </button>
+    </PrimaryButton>
   </div>
-  <!-- Price Tread pf material -->
-  <div class="container"></div>
+    </div>
+  </div>
 </template>
 <script>
+import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
+  components: {
+    PrimaryButton
+  },
 };
 </script>
 
@@ -69,11 +70,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-}
+
 
 td,
 th {
