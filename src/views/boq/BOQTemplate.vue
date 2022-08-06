@@ -26,7 +26,7 @@
       <br />
       <FormWrapper label="ลูกค้า" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BOQViewCard v-for="x in GStore.currentBOQ" :key="x.id" :customer="x" />
+        <BOQCard v-for="x in  GStore.currentBOQ" :key="x.id" :boq="x" />
       </div>
     </div>
   </div>

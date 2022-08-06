@@ -1,12 +1,14 @@
 <template>
-  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg w-max">
+  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg w-max bg-orange-500">
     <router-link
       class="link"
       :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
     >
-    <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[50px] pt-[20px] pl-[20px]">
-        <div class="p-[20px]">
-          <b>BOQ: {{ boq.BOQ_name }}</b>
+    <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[5px] p-[20px] rounded-lg border-solid border-4 border-orange-500 bg-orange-100">
+        <div class="p-[20px] space-x-1 flex">
+           <p class="font-bold">BOQ: </p>
+            <p class="w-[100px] break-words">{{ boq.BOQ_name }}</p>
+
         </div>
     </div>
     </router-link>
