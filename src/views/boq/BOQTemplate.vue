@@ -8,7 +8,7 @@
     <br>
       <FormWrapper label="BOQ" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BOQCard v-for="x in boq" :key="x.id" :boq="x" />
+        <BOQCard v-for="x in  GStore.currentBOQ" :key="x.id" :boq="x" />
       </div>
       <router-link :to="{ name: 'create_boq' }">
         <PrimaryButton class="float-right mb-[20px]"
@@ -18,8 +18,9 @@
       <br>
       <FormWrapper label="ลูกค้า" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BOQViewCard v-for="x in boq" :key="x.id" :boq="x" />
+        <BOQViewCard v-for="x in GStore.currentCustomerView" :key="x.id" :customer="x" />
       </div>
+
     </div>
   </div>
 </template>
@@ -33,6 +34,7 @@ import Swal from "sweetalert2";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
+  inject: ["GStore"],
   name: "boq_generation",
   components: {
     BOQCard,

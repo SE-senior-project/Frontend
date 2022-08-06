@@ -143,6 +143,31 @@ const routes = [
     },
   },
   {
+    path: "/boq_template",
+    name: "boq_template",
+    component: boqTemplate,
+    beforeEnter: async () => {
+      try {
+        const currentBOQ = await service.get_BOQ();
+        GStore.currentBOQ = currentBOQ.data;
+        const currentCustomerView = await service.get_customer_view();
+        GStore.currentCustomerView = currentCustomerView.data;
+      } catch {
+        GStore.currentBOQ = null;
+        GStore.currentCustomerView = null;
+        console.log("cannot load user");
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.$router.go();
+        });
+      }
+    },
+  },
+  {
     path: "/admin",
     name: "admin",
     component: admin,
@@ -227,11 +252,6 @@ const routes = [
     },
   },
   {
-    path: "/boq_template",
-    name: "boq_template",
-    component: boqTemplate,
-  },
-  {
     path: "/boq_template_selection/:id",
     name: "boq_template_selection",
     component: boqTemplateSelection,
@@ -265,9 +285,32 @@ const routes = [
     component: boqConfirmation,
   },
   {
-    path: "/show_template",
+    path: "/show_template/:id",
     name: "show_template",
     component: showTemplate,
+    beforeEnter: async (to) => {
+      try {
+        console.log(parseInt(to.params.id));
+        const response_current_select_customer_view = await service.show_template(
+          parseInt(to.params.id)
+        );
+        GStore.currentShowView = response_current_select_customer_view.data;
+        console.log(GStore.currentShowView);
+        var sumation = 0;
+        GStore.currentShowView.forEach(
+          (element) => (sumation = sumation + element.total_price)
+
+        );
+        GStore.CurrentTotalBOQlist = sumation;
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
   },
   {
     path: "/showcase",

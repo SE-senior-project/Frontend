@@ -31,4 +31,7 @@ export default reactive({
   searchResult: null,
   CurrentBOQUSE: null,
   CurrentTotalBOQlist: null,
+  currentBOQ:null,
+  currentShowView:null,
+  currentCustomerView:null
 });
