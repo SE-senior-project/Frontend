@@ -27,11 +27,12 @@ export default reactive({
   currentSelectiontype: null,
   currentMaterialCategory: null,
   currentMaterialType: null,
-  ////// BOQ ////////////
   searchResult: null,
+  ////// BOQ ////////////
   CurrentBOQUSE: null,
   CurrentTotalBOQlist: null,
   currentBOQ:null,
   currentShowView:null,
-  currentCustomerView:null
+  currentCustomerView:null,
+  currentLastBOQId:null
 });

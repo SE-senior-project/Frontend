@@ -28,6 +28,7 @@
     </tr>
   </table>
   <br />
+
   <div class="opertaion-center">
     ยอดรวมทั้งหมด:{{ GStore.CurrentTotalBOQlist }}
   </div>
