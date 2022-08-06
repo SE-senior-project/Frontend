@@ -150,11 +150,8 @@ const routes = [
       try {
         const currentBOQ = await service.get_BOQ();
         GStore.currentBOQ = currentBOQ.data;
-        const currentCustomerView = await service.get_customer_view();
-        GStore.currentCustomerView = currentCustomerView.data;
       } catch {
         GStore.currentBOQ = null;
-        GStore.currentCustomerView = null;
         console.log("cannot load user");
         Swal.fire({
           icon: "error",
@@ -262,7 +259,9 @@ const routes = [
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_select_BOQ.data;
+        GStore.currentLastBOQId = GStore.CurrentBOQUSE[0].BOQ_id_last_id;
         console.log(GStore.CurrentBOQUSE);
+        console.log('last id: ' +  GStore.currentLastBOQId);
         var sumation = 0;
         GStore.CurrentBOQUSE.forEach(
           (element) => (sumation = sumation + element.total_price)
@@ -291,7 +290,7 @@ const routes = [
     beforeEnter: async (to) => {
       try {
         console.log(parseInt(to.params.id));
-        const response_current_select_customer_view = await service.show_template(
+        const response_current_select_customer_view = await service.get_BOQ_list(
           parseInt(to.params.id)
         );
         GStore.currentShowView = response_current_select_customer_view.data;
