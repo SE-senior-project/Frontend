@@ -5,8 +5,8 @@ export default {
       first_name: user.firstname,
       last_name: user.lastname,
       email: user.email,
-      password: user.password
-    })
+      password: user.password,
+    });
   },
   ///////////// Admin /////////////////
   update_external_data(month) {
@@ -26,21 +26,22 @@ export default {
   disable_contractor(id) {
     return apiClient.post("/Disable", {
       contractor_id: id,
-    })
+    });
   },
   active_contractor(id) {
     return apiClient.post("/Active", {
       contractor_id: id,
-    })
-  }, approve_user(id) {
+    });
+  },
+  approve_user(id) {
     return apiClient.post("/Approve", {
       user_id: id,
-    })
-  }
-  , unapprove_user(id) {
+    });
+  },
+  unapprove_user(id) {
     return apiClient.post("/Unapprove", {
       user_id: id,
-    })
+    });
   },
   ///////////// PM /////////////////
   get_all_materials() {
@@ -52,63 +53,70 @@ export default {
       material_price: price,
       project_material_total: 1,
       project_id: id,
-    })
+    });
   },
   get_all_category() {
-    return apiClient.get("/All_Category")
+    return apiClient.get("/All_Category");
   },
   get_all_project(id, status) {
     return apiClient.post("/All_Projects", {
       contractor_id: id,
-      status: status
-    })
+      status: status,
+    });
   },
 
   get_all_selection_type(material_category) {
     return apiClient.post("/All_Selection_Type", {
       material_category: material_category,
-    })
+    });
   },
 
   get_all_selection_in_type(material_type) {
     return apiClient.post("/All_Material_Selection_Type", {
       material_type: material_type,
-    })
+    });
   },
 
   number_material(total, id) {
     return apiClient.post("/Number_Material", {
       project_material_total: total,
-      project_material_id: id
-    })
+      project_material_id: id,
+    });
   },
 
   get_all_total_material_selection(id) {
     return apiClient.post("/Get_All_Total_Material_Selection", {
       project_id: id,
-    })
+    });
   },
 
   total_material_selection(id) {
     return apiClient.post("/Total_Material_Selection", {
       project_id: id,
-    })
+    });
   },
 
   delete_material_selection(id) {
     return apiClient.post("/Delete_Material_Selection", {
       project_material_id: id,
-    })
+    });
   },
 
   active_status_project(status, id) {
     return apiClient.post("/Active_Status_Project", {
       status: status,
-      project_id: id
-    })
+      project_id: id,
+    });
   },
 
-  add_project(project_name, customer_name, project_description, deadline, status, id) {
+  add_project(
+    project_name,
+    customer_name,
+    project_description,
+    deadline,
+    status,
+    id
+  ) {
     return apiClient.post("/Add_Project", {
       project_name: project_name,
       customer_name: customer_name,
@@ -116,50 +124,72 @@ export default {
       deadline: deadline,
       status: status,
       contractor_id: id,
-    })
+    });
   },
 
   search_result(name) {
     return apiClient.post("/Search_Result", {
-      material_name: name
-    })
+      material_name: name,
+    });
   },
   ///// BOQ //////////
-
-  get_BOQ_list() {
-    return apiClient.get("/All_BOQ_List")
+  show_template(customer_id) {
+    console.log(customer_id)
+    return apiClient.post("/All_Customer_List", {
+      customer_id: customer_id,
+    });
   },
-  update_BOQ_list(BOQ_list_id, list_name,
+  get_customer_view() {
+    return apiClient.get("/All_Customer_View");
+  },
+  get_BOQ() {
+    return apiClient.get("/All_BOQ");
+  },
+  get_BOQ_list(BOQ_id) {
+    console.log(BOQ_id)
+    return apiClient.post("/All_BOQ_List", {
+      BOQ_id: BOQ_id,
+    });
+  },
+  update_BOQ_list(
+    BOQ_list_id,
+    list_name,
     total_quantity,
     unit,
     cost_of_materials_per_unit,
-    cost_of_wage_per_unit) {
+    cost_of_wage_per_unit
+  ) {
     return apiClient.post("/Update_BOQ_List", {
       BOQ_list_id: BOQ_list_id,
       list_name: list_name,
       total_quantity: total_quantity,
       unit: unit,
       cost_of_materials_per_unit: cost_of_materials_per_unit,
-      cost_of_wage_per_unit: cost_of_wage_per_unit
-    })
+      cost_of_wage_per_unit: cost_of_wage_per_unit,
+    });
   },
-  add_BOQ_list(BOQ_id, list_name,
+  add_BOQ_list(
+    BOQ_id,
+    list_name,
     total_quantity,
     unit,
     cost_of_materials_per_unit,
-    cost_of_wage_per_unit) {
+    cost_of_wage_per_unit
+  ) 
+  {
+    console.log("BOQid: "+BOQ_id)
     return apiClient.post("/Add_BOQ_List", {
       BOQ_id: BOQ_id,
       list_name: list_name,
       total_quantity: total_quantity,
       unit: unit,
       cost_of_materials_per_unit: cost_of_materials_per_unit,
-      cost_of_wage_per_unit: cost_of_wage_per_unit
-    })
+      cost_of_wage_per_unit: cost_of_wage_per_unit,
+    });
   },
   remove_BOQ_list(BOQ_list_id) {
     return apiClient.post("/Remove_BOQ_List", {
       BOQ_list_id: BOQ_list_id,
-    })
+    });
   },
 };

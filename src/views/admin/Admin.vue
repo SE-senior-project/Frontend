@@ -1,17 +1,7 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        max-w-5xl
-        bg-white
-        shadow-xl
-        rounded-lg
-        w-[1028px]
-        mb-4
-        mx-8
-        px-10
-        py-5
-      "
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
     >
       <NavAdmin />
       <div class="updateForm float-right">
@@ -21,17 +11,7 @@
               <select
                 name="month"
                 autocomplete="month"
-                class="
-                  outline-none
-                  h-[41px]
-                  w-[280px]
-                  rounded-lg
-                  border-[1px]
-                  px-4
-                  text-sm
-                  font-normal
-                  leading-[17px]
-                "
+                class="outline-none h-[41px] w-[280px] rounded-lg border-[1px] px-4 text-sm font-normal leading-[17px]"
               >
                 <option selected>กรุณาเลือกเดือน</option>
                 <option value="1">มกราคม</option>
@@ -69,7 +49,7 @@
           <TextLabel class="text-2xl mb-10" label="บัญชีใหม่" />
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <NewAccountCard
-              v-for="user in GStore.waiting_user "
+              v-for="user in GStore.waiting_user"
               :key="user.id"
               :user="user"
             />
@@ -97,7 +77,7 @@ export default {
     FormWrapper,
     PrimaryButton,
     TextLabel,
-    NavAdmin
+    NavAdmin,
   },
   data() {
     return {
@@ -215,7 +195,7 @@ export default {
             title: "โปรดลองอีกครั้งภายหลัง",
             showConfirmButton: false,
             timer: 2000,
-          })
+          });
         });
     },
   },

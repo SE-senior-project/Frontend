@@ -4,21 +4,12 @@
     v-if="materialtype.material_id != null"
   >
     <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        text-lg text-center
-        py-[50px]
-        border-solid border-4
-        border-t-orange-400
-        border-l-orange-500
-        border-r-orange-400
-        border-b-orange-300
-      "
+      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] border-solid border-4 border-t-orange-400 border-l-orange-500 border-r-orange-400 border-b-orange-300"
     >
-     <img class="w-[180px] block m-auto px-5 " :src="'Image/'+materialtype.material_id+'.png'" />
+      <img
+        class="w-[180px] block m-auto px-5"
+        :src="'Image/' + materialtype.material_id + '.png'"
+      />
     </div>
     <div class="text-sm px-[20px] pb-[60px]">
       <div class="grid grid-cols-4 mb-10">
@@ -71,7 +62,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log('project id: '+project_id);
+          console.log("project id: " + project_id);
           Service.add_material(
             this.materialtype.material_name,
             parseFloat(this.materialtype.material_price),

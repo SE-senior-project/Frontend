@@ -10,9 +10,7 @@
     <SecondaryButton>test</SecondaryButton>
 
     <h1>Field</h1>
-    <TextField >
-
-    </TextField>
+    <TextField> </TextField>
   </div>
 </template>
 
@@ -20,7 +18,7 @@
 import BaseButton from "../components/button/BaseButton.vue";
 import PrimaryButton from "../components/button/PrimaryButton.vue";
 import SecondaryButton from "../components/button/SecondaryButton.vue";
-import TextField from "../components/field/TextField.vue"
+import TextField from "../components/field/TextField.vue";
 export default {
   name: "showcase",
   components: {
@@ -32,5 +30,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,14 +1,7 @@
 <template>
   <div class="card mb-10 shadow-xl rounded-lg">
     <div
-      class="
-        contractor
-        text-white
-        relative
-        text-lg text-center
-        py-[50px]
-        bg-orange-500
-      "
+      class="contractor text-white relative text-lg text-center py-[50px] bg-orange-500"
     >
       <div>
         <div class="absolute top-0 right-0 px-2 pt-1">
@@ -33,55 +26,20 @@
       </div>
       <div class="flex justify-center items-center pt-[20px]">
         <p
-          class="
-            hidden
-            px-4
-            py-2
-            mx-1
-            text-gray-500
-            transition-colors
-            duration-200
-            transform
-            bg-white
-            rounded-md
-            sm:inline
-            hover:bg-orange-500 hover:text-white
-          "
+          class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
           @click="decrease"
         >
           -
         </p>
         <input
-          class="
-            total_mat
-            w-[55px]
-            mx-[10px]
-            p-[10px]
-            border-none
-            outline-none
-            text-center
-            rounded-lg
-          "
+          class="total_mat w-[55px] mx-[10px] p-[10px] border-none outline-none text-center rounded-lg"
           type="number"
           :value="number"
           min="1"
           disabled="disabled"
         />
         <p
-          class="
-            hidden
-            px-4
-            py-2
-            mx-1
-            text-gray-500
-            transition-colors
-            duration-200
-            transform
-            bg-white
-            rounded-md
-            sm:inline
-            hover:bg-orange-500 hover:text-white
-          "
+          class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
           @click="increase"
         >
           +

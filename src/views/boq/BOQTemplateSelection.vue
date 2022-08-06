@@ -1,24 +1,84 @@
 <template>
-  <!-- list -->
-  <div class="container"></div>
-  <!-- BOQ Table -->
+  <div class="relative flex justify-center items-center">
+    <div
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
+    >
+    {{ GStore.currentBOQ }}
+  <br />
+  <table class="w-full">
+    <tr id="header">
+      <th>ลำดับ</th>
+      <td>รายการ</td>
+      <td>พื้นที่</td>
+      <td>หน่วย</td>
+      <td>ค่าวัสดุต่อหน่วย</td>
+      <td>ราคาวัสดุรวม</td>
+      <td>ค่าแรงต่อหน่วย</td>
+      <td>ค่าแรงรวม</td>
+      <td>ยอดรวม</td>
+    </tr>
+    <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
+      <th>{{ index + 1 }}</th>
+      <td>{{ list.list_name }}</td>
+      <td>{{ list.total_quantity }}</td>
+      <td>{{ list.unit }}</td>
+      <td>{{ list.cost_of_materials_per_unit }}</td>
+      <td>{{ list.total_cost_materials }}</td>
+      <td>{{ list.cost_of_wage_per_unit }}</td>
+      <td>{{ list.total_wages }}</td>
+      <td>{{ list.total_price }}</td>
+    </tr>
+  </table>
+  <br />
+    ยอดรวมทั้งหมด:{{ GStore.CurrentTotalBOQlist }}
+  <br />
+
   <div class="container">
-    <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_template' }"> Back </router-link>
-    </button>
-    <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_generation' }">
+    <PrimaryButton class="float-right mb-[20px] mt-[50px]">
+      <router-link
+        :to="{
+          name: 'boq_gen',
+          params: { id: GStore.CurrentBOQUSE[0].BOQ_id },
+        }"
+      >
         Use as template
       </router-link>
-    </button>
+    </PrimaryButton>
   </div>
-  <!-- Price Tread pf material -->
-  <div class="container"></div>
+    </div>
+  </div>
 </template>
 <script>
+import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
+  inject: ["GStore"],
   name: "boq_confirmation",
+  components: {
+    PrimaryButton
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.opertaion-center {
+  text-align: center;
+}
+#header {
+  -webkit-text-stroke: 1px black;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(odd) {
+  background-color: #dddddda2;
+}
+</style>

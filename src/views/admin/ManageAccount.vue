@@ -1,25 +1,13 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        max-w-5xl
-        bg-white
-        shadow-xl
-        rounded-lg
-        w-[1028px]
-        mb-4
-        mx-8
-        px-10
-        py-5
-      "
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
     >
       <NavAdmin />
       <div class="clear-both">
         <div>
           <TextLabel class="text-2xl mt-[50px] mb-10" label="ผู้รับเหมา" />
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          >
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <ContactorCard
               label="เปิดการใช้งาน"
               v-for="user in disable_contractor"
@@ -45,7 +33,7 @@ export default {
     ContactorCard,
     PrimaryButton,
     TextLabel,
-    NavAdmin
+    NavAdmin,
   },
   data() {
     return {
@@ -58,13 +46,13 @@ export default {
         this.disable_contractor = response.data;
       })
       .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          })
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
         });
+      });
   },
 };
 </script>

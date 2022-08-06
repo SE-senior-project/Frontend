@@ -1,30 +1,9 @@
 <template>
   <div
-    class="
-      relative
-      flex
-      justify-center
-      items-center
-      my-10
-      xl:my-[150px]
-      w-full
-      h-full
-      px-5
-      py-25
-    "
+    class="relative flex justify-center items-center my-10 xl:my-[150px] w-full h-full px-5 py-25"
   >
     <div
-      class="
-        max-w-5xl
-        flex flex-col
-        xl:flex-row
-        justify-center
-        items-center
-        bg-white
-        shadow-xl
-        rounded-lg
-        mb-4
-      "
+      class="max-w-5xl flex flex-col xl:flex-row justify-center items-center bg-white shadow-xl rounded-lg mb-4"
     >
       <div class="w-full xl:w-[800px]">
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />

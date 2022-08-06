@@ -1,77 +1,67 @@
 <template>
-  <div class="contractor">
-    <a :href="'project'">Project</a>
-    | <a :href="'boq_generation'">BOQ Generation</a> |
-    <a :href="''">Project Schedule</a>
-    | <a :href="''">Check list</a>
-  </div>
-  <div class="container">
-    <div class="updateForm">
-      <br />
-      <h2>BOQ Generation</h2>
-      <form>
-        <br />
-        <div class="form-group inputform">
-          <input class="form-control" type="search" />
-        </div>
-        <br />
-        <button type="submit" class="btn btn-light btnSubmit">
-          Search <font-awesome-icon icon="sign-in-alt" id="icon" />
-        </button>
-        <div>
-          <div class="contractor">
-            <BOQCard v-for="x in users" :key="x.id" :user="x" />
-          </div>
-        </div>
-        <div class="form-group Search"></div>
-      </form>
-    </div>
-    <div class="container">
-      <button type="submit" class="btn btn-light btnSubmit">Create BOQ</button>
-    </div>
-  </div>
-  <br />
-  <div>
-    <h5>Custermer views</h5>
-    <div class="contractor">
-      <BOQViewCard v-for="x in users" :key="x.id" :user="x" />
+  <div class="relative flex justify-center items-center">
+    <!-- {{GStore.currentMaterial}} -->
+    <div
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
+    >
+    <NavProject />
+    <br>
+      <FormWrapper label="BOQ" />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <BOQCard v-for="x in  GStore.currentBOQ" :key="x.id" :boq="x" />
+      </div>
+      <router-link :to="{ name: 'create_boq' }">
+        <PrimaryButton class="float-right mb-[20px]"
+          >สร้าง BOQ</PrimaryButton
+        >
+      </router-link>
+      <br>
+      <FormWrapper label="ลูกค้า" />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <BOQCard v-for="x in  GStore.currentBOQ" :key="x.id" :boq="x" />
+      </div>
+
     </div>
   </div>
 </template>
+
 <script>
+import NavProject from "../../components/NavProject";
 import BOQCard from "../../components/boq/BOQCard.vue";
 import BOQViewCard from "../../components/boq/BOQViewCard.vue";
+import Service from "@/services/OneMeasureService";
+import Swal from "sweetalert2";
+import FormWrapper from "@/components/form/FormWrapper";
+import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
+  inject: ["GStore"],
   name: "boq_generation",
   components: {
     BOQCard,
     BOQViewCard,
+    NavProject,
+    FormWrapper,
+    PrimaryButton
   },
   data() {
     return {
-      users: [
-        {
-          name: "Thitisan",
-          id: 1,
-        },
-        {
-          name: "Phonmongkhon",
-          id: 2,
-        },
-        {
-          name: "Pasakon",
-          id: 3,
-        },
-        {
-          name: "Sahachan",
-          id: 4,
-        },
-        {
-          name: "Khemata",
-          id: 5,
-        },
-      ],
+      boq: null,
     };
+  },
+  created() {
+    Service.get_BOQ()
+      .then((response) => {
+        this.boq = response.data;
+        console.log(this.boq);
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   },
 };
 </script>
