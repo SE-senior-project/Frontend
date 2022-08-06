@@ -98,7 +98,7 @@ import Service from "@/services/OneMeasureService";
 import Swal from "sweetalert2";
 export default {
   inject: ["GStore"],
-  name: "boq_generation",
+  name: "boq_gen",
   data() {
     return {
       total_BOQ_price: 0,
