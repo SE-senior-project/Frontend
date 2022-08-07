@@ -38,24 +38,42 @@
     <button class="btn btn-primary">
       <router-link :to="{ name: 'boq_template' }"> Back </router-link>
     </button>
-    <button class="btn btn-primary">
-      <router-link
+    <button class="btn btn-primary" @click="generate()">
+      <!-- <router-link
         :to="{
           name: 'boq_gen',
-          params: { id: GStore.CurrentBOQUSE[0].BOQ_id },
+           params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id }
         }"
-      >
-        Use as template
-      </router-link>
+      > -->
+      Use as template
+      <!-- </router-link> -->
     </button>
   </div>
   <!-- Price Tread pf material -->
   <div class="container"></div>
 </template>
 <script>
+import Service from "@/services/OneMeasureService";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
+  data() {
+    return {
+      last_id: null,
+    };
+  },
+  methods: {
+    generate() {
+      let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
+      Service.generateBOQ(id).then((response) => {
+        this.GStore.currentLastBOQId = response.data;
+        this.last_id = this.GStore.currentLastBOQId.last_id;
+        console.log("new id " + this.last_id);
+        this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
+        // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
+      });
+    },
+  },
 };
 </script>
 

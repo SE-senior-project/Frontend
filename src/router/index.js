@@ -200,11 +200,13 @@ const routes = [
     component: bogGen,
     beforeEnter: async (to) => {
       try {
-        console.log(parseInt(to.params.id));
-        const response_current_BOQ_list = await service.get_BOQ_list(
+        // const currentLastBOQId = await service.generateBOQ(parseInt(to.params.id));
+        // console.log(currentLastBOQId.data.last_id)
+        const response_current_BOQ_list = await service.get_BOQ_list_selection(
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_BOQ_list.data;
+        console.log(GStore.CurrentBOQUSE)
         var sumation = 0;
         GStore.CurrentBOQUSE.forEach(
           (element) => (sumation = sumation + element.total_price)
@@ -212,12 +214,14 @@ const routes = [
         );
         GStore.CurrentTotalBOQlist = sumation;
       } catch {
-        Swal.fire({
-          icon: "error",
-          title: "โปรดลองอีกครั้งภายหลัง",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        console.log(GStore.CurrentBOQUSE)
+        console.log(GStore.CurrentTotalBOQlist)
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "โปรดลองอีกครั้งภายหลัง",
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // });
       }
     },
   },
@@ -255,13 +259,11 @@ const routes = [
     beforeEnter: async (to) => {
       try {
         console.log(parseInt(to.params.id));
-        const response_current_select_BOQ = await service.get_BOQ_list(
+        const response_current_select_BOQ = await service.get_BOQ_list_selection(
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_select_BOQ.data;
-        GStore.currentLastBOQId = GStore.CurrentBOQUSE[0].BOQ_id_last_id;
         console.log(GStore.CurrentBOQUSE);
-        console.log('last id: ' +  GStore.currentLastBOQId);
         var sumation = 0;
         GStore.CurrentBOQUSE.forEach(
           (element) => (sumation = sumation + element.total_price)
@@ -290,7 +292,7 @@ const routes = [
     beforeEnter: async (to) => {
       try {
         console.log(parseInt(to.params.id));
-        const response_current_select_customer_view = await service.get_BOQ_list(
+        const response_current_select_customer_view = await service.get_BOQ_list_selection(
           parseInt(to.params.id)
         );
         GStore.currentShowView = response_current_select_customer_view.data;
