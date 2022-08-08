@@ -32,24 +32,6 @@ const routes = [
     path: "/material_list",
     name: "material_list",
     component: materialList,
-    beforeEnter: async () => {
-      try {
-        localStorage.setItem(
-          "project_id",
-          JSON.stringify(parseInt(GStore.currentProjectId))
-        );
-        console.log('current project' + this.GStore.current_project);
-        console.log(typeof this.GStore.current_project);
-      } catch {
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // });
-      }
-    },
-
   },
   {
     path: "/material_selection",
