@@ -13,31 +13,44 @@
         py-5
       "
     >
-        <div class="pt-6 text-base flex flex-row space-x-2">
-          <div class="pt-[15px]">
-            <p class="font-bold">ชื่อ BOQ:</p>
-          </div>
-          <div>
-            <TextField
-              type="text"
-              name="boq"
-              placeholder="BOQ"
-              :value="BOQ_name"
-            />
-          </div>
+      <div class="pt-6 text-base flex flex-row space-x-2">
+        <div class="pt-[15px]">
+          <p class="font-bold">ชื่อ BOQ:</p>
         </div>
+        <div>
+          <TextField
+            type="text"
+            name="boq"
+            placeholder="BOQ"
+            :value="BOQ_name"
+          />
+        </div>
+      </div>
       <div class="w-max">
         <Form @submit="addnewlist" :validation-schema="schema">
           <FormWrapper label="สร้างงาน">
             <div class="flex flex-col lg:flex-row">
               <div class="w-[400px] mx-4">
-                <TextField
-                  type="text"
-                  name="list"
-                  placeholder="งาน"
-                  label="งาน"
-                  required
-                />
+                <div class="w-full flex flex-row space-x-2">
+                  <div class="w-full flex flex-col space-x-2">
+                    <TextField
+                      type="text"
+                      name="list"
+                      placeholder="งาน"
+                      label="งาน"
+                      required
+                    />
+                  </div>
+                  <div class="w-full flex flex-col space-x-2">
+                    <TextField
+                      type="text"
+                      name="unit"
+                      placeholder="หน่วย"
+                      label="หน่วย"
+                      required
+                    />
+                  </div>
+                </div>
                 <TextField
                   type="text"
                   name="total_quantity"
@@ -64,7 +77,7 @@
               </div>
             </div>
             <div class="flex flex-row mt-5 space-x-2 justify-end items-end">
-              <PrimaryButton >เพิ่ม</PrimaryButton>
+              <PrimaryButton>เพิ่ม</PrimaryButton>
               <SecondaryButton @click="editlist()">แก้ไข</SecondaryButton>
             </div>
           </FormWrapper>
@@ -133,16 +146,18 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      list: yup.string().required("กรุณาระบุชื่อโปรเจค"),
-      total_quantity: yup.string().required("กรุณาระบุชื่อลูกค้า"),
-      cost_of_materials_per_unit: yup.string().required("กรุณาระบุรายระเอียดโปรเจค"),
-      cost_of_wage_per_unit: yup.string().required("กรุณาเลือกวันกำหนดส่งงาน"),
+      list: yup.string().required("กรุณาระบุงาน"),
+      unit: yup.string().required("กรุณาระบุหน่วย"),
+      total_quantity: yup.string().required("กรุณาระบุปริมาณรวม"),
+      cost_of_materials_per_unit: yup
+        .string()
+        .required("กรุณาระบุค่าวัสดุต่อหน่วย"),
+      cost_of_wage_per_unit: yup.string().required("กรุณาระบุค่าแรงต่อหน่วย"),
     });
     return {
       BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
       BOQ_id: this.GStore.CurrentBOQUSE[0].BOQ_id,
       listname: this.GStore.CurrentBOQUSE[0].list_name,
-      unit: this.GStore.CurrentBOQUSE[0].unit,
       schema,
     };
   },
@@ -170,12 +185,18 @@ export default {
     addnewlist(list) {
       Service.add_BOQ_list(
         this.BOQ_id,
-        this.listname,
+        list.list,
         list.total_quantity,
-        this.unit,
+        list.unit,
         list.cost_of_materials_per_unit,
-        list.cost_of_wage_per_unit,
-      ).then(() => {
+        list.cost_of_wage_per_unit
+      );
+      Swal.fire({
+        icon: "success",
+        title: "เพิ่มงานสำเร็จ",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
         this.$router.go();
       });
     },
@@ -204,6 +225,14 @@ export default {
         if (result.isConfirmed) {
         } else {
           Service.remove_BOQ_list(list_id);
+          Swal.fire({
+            icon: "success",
+            title: "ลบสำเร็จ",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
         }
       });
     },
