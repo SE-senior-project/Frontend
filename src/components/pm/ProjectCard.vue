@@ -4,14 +4,37 @@
     v-if="active_project.project_id != null"
   >
     <div
-      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] bg-orange-500"
+      class="
+        contractor
+        text-white
+        relative
+        mb-[20px]
+        text-lg text-center
+        py-[50px]
+        bg-orange-500
+      "
     >
       <span>{{ active_project.project_name }}</span>
       <div>
         <div
           @click="onHide"
           v-if="toggle"
-          class="absolute top-0 right-0 nav-links flex list-none bg-orange-400 h-max w-[150px] px-5 py-3 mt-9 mr-2 rounded-lg"
+          class="
+            absolute
+            top-0
+            right-0
+            nav-links
+            flex
+            list-none
+            bg-orange-400
+            h-max
+            w-[150px]
+            px-5
+            py-3
+            mt-9
+            mr-2
+            rounded-lg
+          "
         >
           <li><span class="text-sm cursor-pointer">ซ่อนโปรเจค</span></li>
         </div>
@@ -76,16 +99,12 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.setItem(
-            "project_id",
-            JSON.stringify(this.active_project.project_id)
-          );
-          console.log(this.GStore.current_project);
+          this.GStore.currentProjectId = this.active_project.project_id;
           this.$router.push({
             name: "material_list",
-            params: {
-              id: this.active_project.project_id,
-            },
+            // params: {
+            //   id: this.active_project.project_id,
+            // },
           });
         }
       });

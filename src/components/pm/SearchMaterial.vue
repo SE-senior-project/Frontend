@@ -83,7 +83,6 @@ export default {
   },
   computed: {
     filteredList() {
-      console.log(this.GStore.currentMaterial);
       let store = this.GStore.currentMaterial;
       return store.filter((e) => e.material_name.includes(this.input));
     },
