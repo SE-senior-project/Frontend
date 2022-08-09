@@ -26,7 +26,7 @@
       <br />
       <FormWrapper label="ลูกค้า" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BOQCard v-for="x in  GStore.currentBOQ" :key="x.id" :boq="x" />
+        <BOQCard v-for="x in GStore.currentBOQ" :key="x.id" :boq="x" />
       </div>
     </div>
   </div>
@@ -55,21 +55,11 @@ export default {
       boq: null,
     };
   },
-  // created() {
-  //   Service.get_BOQ()
-  //     .then((response) => {
-  //       this.boq = response.data;
-  //       console.log(this.boq);
-  //     })
-  //     .catch(() => {
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: "โปรดลองอีกครั้งภายหลัง",
-  //         showConfirmButton: false,
-  //         timer: 2000,
-  //       });
-  //     });
-  // },
+  mounted() {
+    console.log(
+      "current project in BOQ template" + this.GStore.current_project
+    );
+  },
 };
 </script>
 

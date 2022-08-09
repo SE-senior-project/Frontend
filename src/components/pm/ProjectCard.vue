@@ -87,9 +87,6 @@ export default {
       toggle: false,
     };
   },
-  // mounted() {
-  //   localStorage.setItem("project_id", JSON.stringify(null));
-  // },
   methods: {
     onSubmit() {
       Swal.fire({
@@ -106,13 +103,10 @@ export default {
             "project_id",
             JSON.stringify(parseInt(this.active_project.project_id))
           );
-          console.log("current project" + this.GStore.current_project);
+          console.log("Sometime not show the current project" + this.GStore.current_project);
           console.log(typeof this.GStore.current_project);
           this.$router.push({
-            name: "material_list",
-            // params: {
-            //   id: this.active_project.project_id,
-            // },
+            name: "material_list"
           });
         }
       });
