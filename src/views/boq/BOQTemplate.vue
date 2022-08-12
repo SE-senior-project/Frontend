@@ -24,7 +24,7 @@
       <br />
       <FormWrapper label="ลูกค้า" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BOQCard v-for="x in GStore.currentBOQ" :key="x.id" :boq="x" />
+        <BOQCustomerCard v-for="x in GStore.currentBOQ" :key="x.id" :boq="x" />
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@
 <script>
 import NavProject from "../../components/NavProject";
 import BOQCard from "../../components/boq/BOQCard.vue";
+import BOQCustomerCard from "../../components/boq/BOQCustomerCard.vue";
 import BOQViewCard from "../../components/boq/BOQViewCard.vue";
 import Service from "@/services/OneMeasureService";
 // import Swal from "sweetalert2";
@@ -43,6 +44,7 @@ export default {
   name: "boq_generation",
   components: {
     BOQCard,
+    BOQCustomerCard,
     BOQViewCard,
     NavProject,
     FormWrapper,
