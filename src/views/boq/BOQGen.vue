@@ -18,7 +18,12 @@
           <p class="font-bold">ชื่อ BOQ:</p>
         </div>
         <div class="mt-2">
-          <Field name="BOQ_name" type="text" v-slot="{ field }" v-model="BOQ_name">
+          <Field
+            name="BOQ_name"
+            type="text"
+            v-slot="{ field }"
+            v-model="BOQ_name"
+          >
             <input
               v-bind="field"
               type="text"
@@ -269,9 +274,7 @@
           <td>{{ list.total_wages }}</td>
           <td>{{ list.total_price }}</td>
           <td class="w-[100px]">
-            <SecondaryButton
-              class="rounded-none"
-              @click="manage(list.BOQ_list_id)"
+            <SecondaryButton class="rounded-none" @click="manage(list)"
               >จัดการ</SecondaryButton
             >
           </td>
@@ -284,9 +287,7 @@
       </div>
       <br />
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
-        <PrimaryButton @click="changeName">
-            ยืนยัน
-        </PrimaryButton>
+        <PrimaryButton @click="changeName"> ยืนยัน </PrimaryButton>
       </div>
     </div>
   </div>
@@ -323,11 +324,27 @@ export default {
       cost_of_wage_per_unit: yup.string().required("กรุณาระบุค่าแรงต่อหน่วย"),
     });
     return {
-      BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
-      BOQ_id: this.GStore.CurrentBOQUSE[0].BOQ_id,
+      BOQ_name: null,
+      BOQ_id: null,
       schema,
       bait: null,
     };
+  },
+  mounted() {
+    let len = parseInt(Object.keys(this.GStore.CurrentBOQUSE).length);
+    if (len == 0) {
+      this.BOQ_name = null;
+      this.BOQ_id = null;
+    } else {
+      this.BOQ_name = this.GStore.CurrentBOQUSE[0].BOQ_name;
+      this.BOQ_id = this.GStore.CurrentBOQUSE[0].BOQ_id;
+      console.log("BOQgen BOQ_id" + this.BOQ_id);
+      console.log("BOQgen BOQ_name" + this.BOQ_name);
+      // if( this.BOQ_id ==null){
+      //   this.BOQ_id = this.bait
+      // }
+      console.log("Current BOQ id" + this.BOQ_id);
+    }
   },
   methods: {
     addnewlist() {
@@ -366,7 +383,8 @@ export default {
         this.$router.go();
       });
     },
-    manage(list_id) {
+    manage(list) {
+      console.log(list);
       Swal.fire({
         title: "การจัดการ",
         icon: "warning",
@@ -377,17 +395,16 @@ export default {
         confirmButtonText: "แก้ไข",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.list = this.GStore.CurrentBOQUSE[list_id - 1].list_name;
-          this.unit = this.GStore.CurrentBOQUSE[list_id - 1].unit;
-          this.total_quantity =
-            this.GStore.CurrentBOQUSE[list_id - 1].total_quantity;
-          this.cost_of_materials_per_unit =
-            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
-          this.cost_of_wage_per_unit =
-            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
-          this.bait = this.GStore.CurrentBOQUSE[list_id - 1].BOQ_list_id;
+          this.list = list.list_name;
+          this.unit = list.unit;
+          this.total_quantity = list.total_quantity;
+          this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
+          this.cost_of_wage_per_unit = list.cost_of_materials_per_unit;
+          this.BOQ_id = list.BOQ_id;
+          this.bait = list.BOQ_list_id;
+          console.log(this.bait);
         } else {
-          Service.remove_BOQ_list(list_id);
+          Service.remove_BOQ_list(this.bait);
           Swal.fire({
             icon: "success",
             title: "ลบสำเร็จ",
@@ -400,14 +417,13 @@ export default {
       });
     },
     changeName() {
-      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
-      .then(() => {
+      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name).then(() => {
         this.$router.push({
-          name: 'boq_confirmation',
+          name: "boq_confirmation",
           params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
         });
-      })
-    }
+      });
+    },
   },
 };
 </script>

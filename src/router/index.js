@@ -147,19 +147,19 @@ const routes = [
     component: boqTemplate,
     beforeEnter: async () => {
       try {
-        const currentBOQ = await service.get_BOQ();
+        const currentBOQ = await service.get_BOQ(GStore.current_project);
         GStore.currentBOQ = currentBOQ.data;
       } catch {
         GStore.currentBOQ = null;
         console.log("cannot load user");
-        Swal.fire({
-          icon: "error",
-          title: "โปรดลองอีกครั้งภายหลัง",
-          showConfirmButton: false,
-          timer: 2000,
-        }).then(() => {
-          this.$router.go();
-        });
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "โปรดลองอีกครั้งภายหลัง",
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // }).then(() => {
+        //   this.$router.go();
+        // });
       }
     },
   },
@@ -205,6 +205,12 @@ const routes = [
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_BOQ_list.data;
+        if (GStore.CurrentBOQUSE == null) {
+          GStore.CurrentBOQUSE = {
+            BOQ_name: 'BOQ' + to.params.id,
+            BOQ_id: parseInt(to.params.id)
+          }
+        }
         console.log(GStore.CurrentBOQUSE)
         var sumation = 0;
         GStore.CurrentBOQUSE.forEach(
@@ -292,7 +298,7 @@ const routes = [
         );
         GStore.CurrentTotalBOQlist = sumation;
       } catch {
-        
+
       }
     },
   },

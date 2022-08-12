@@ -145,16 +145,19 @@ export default {
   // get_customer_view() {
   //   return apiClient.get("/All_Customer_View");
   // },
-  get_BOQ() {
-    return apiClient.get("/All_BOQ");
+  get_BOQ(project_id) {
+    return apiClient.post("/All_BOQ",{
+      project_id: project_id
+    });
   },
-  generateBOQ(BOQ_id) {
+  generateBOQ(BOQ_id,project_id) {
     return apiClient.post("/Generate_BOQ", {
       BOQ_id: BOQ_id,
+      project_id: project_id
     });
   },
   get_BOQ_list_selection(BOQ_id) {
-    console.log('current_id ' +BOQ_id)
+    console.log('current BOQ Selection id ' +BOQ_id)
     return apiClient.post("/All_BOQ_List_Selection", {
       BOQ_id: BOQ_id,
     });
@@ -185,7 +188,7 @@ export default {
     cost_of_wage_per_unit
   ) 
   {
-    console.log("BOQid: "+BOQ_id)
+    console.log("BOQid: "+ BOQ_id)
     return apiClient.post("/Add_BOQ_List", {
       BOQ_id: BOQ_id,
       list_name: list_name,

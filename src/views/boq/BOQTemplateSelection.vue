@@ -77,7 +77,8 @@ export default {
     },
     generate() {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
-      Service.generateBOQ(id).then((response) => {
+      console.log(id);
+      Service.generateBOQ(id,parseInt(this.GStore.current_project)).then((response) => {
         this.GStore.currentLastBOQId = response.data;
         this.last_id = this.GStore.currentLastBOQId.last_id;
         console.log("new id " + this.last_id);
