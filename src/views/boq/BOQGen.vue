@@ -17,71 +17,232 @@
         <div class="pt-[15px]">
           <p class="font-bold">ชื่อ BOQ:</p>
         </div>
-        <div>
-          <TextField
-            type="text"
-            name="boq"
-            placeholder="BOQ"
-            :value="BOQ_name"
-          />
+        <div class="mt-2">
+          <Field name="BOQ_name" type="text" v-slot="{ field }" v-model="BOQ_name">
+            <input
+              v-bind="field"
+              type="text"
+              class="
+                outline-none
+                h-[41px]
+                w-full
+                rounded-lg
+                border-[1px]
+                px-4
+                text-sm
+                font-normal
+                leading-[17px]
+                focus:text-black focus:placeholder-transparent
+                disabled:!border-neutral-100
+                disabled:bg-neutral-100
+                disabled:!placeholder-neutral-500
+              "
+              placeholder="BOQ"
+            />
+          </Field>
         </div>
       </div>
-      <div class="w-max">
-        <Form @submit="addnewlist" :validation-schema="schema">
+      <div class="relative w-max">
+        <Form :validation-schema="schema">
           <FormWrapper label="สร้างงาน">
             <div class="flex flex-col lg:flex-row">
               <div class="w-[400px] mx-4">
                 <div class="w-full flex flex-row space-x-2">
                   <div class="w-full flex flex-col space-x-2">
-                    <TextField
-                      type="text"
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                      งาน
+                      <span class="text-error-500 text-red-600">&nbsp;*</span>
+                    </label>
+                    <Field
                       name="list"
-                      placeholder="งาน"
-                      label="งาน"
-                      required
+                      type="text"
+                      v-slot="{ field }"
+                      v-model="list"
+                    >
+                      <input
+                        v-bind="field"
+                        type="text"
+                        class="
+                          outline-none
+                          h-[41px]
+                          w-full
+                          rounded-lg
+                          border-[1px]
+                          px-4
+                          text-sm
+                          font-normal
+                          leading-[17px]
+                          focus:text-black focus:placeholder-transparent
+                          disabled:!border-neutral-100
+                          disabled:bg-neutral-100
+                          disabled:!placeholder-neutral-500
+                        "
+                        placeholder="งาน"
+                      />
+                    </Field>
+                    <ErrorMessage
+                      class="text-red-500 text-xs italic"
+                      name="list"
                     />
                   </div>
                   <div class="w-full flex flex-col space-x-2">
-                    <TextField
-                      type="text"
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                      หน่วย
+                      <span class="text-error-500 text-red-600">&nbsp;*</span>
+                    </label>
+                    <Field
                       name="unit"
-                      placeholder="หน่วย"
-                      label="หน่วย"
-                      required
+                      type="text"
+                      v-slot="{ field }"
+                      v-model="unit"
+                    >
+                      <input
+                        v-bind="field"
+                        type="text"
+                        class="
+                          outline-none
+                          h-[41px]
+                          w-full
+                          rounded-lg
+                          border-[1px]
+                          px-4
+                          text-sm
+                          font-normal
+                          leading-[17px]
+                          focus:text-black focus:placeholder-transparent
+                          disabled:!border-neutral-100
+                          disabled:bg-neutral-100
+                          disabled:!placeholder-neutral-500
+                        "
+                        placeholder="หน่วย"
+                      />
+                    </Field>
+                    <ErrorMessage
+                      class="text-red-500 text-xs italic"
+                      name="unit"
                     />
                   </div>
                 </div>
-                <TextField
-                  type="text"
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2 pt-[30px]"
+                >
+                  ปริมาณรวม
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
                   name="total_quantity"
-                  placeholder="ปริมาณรวม"
-                  label="ปริมาณรวม"
-                  required
+                  type="text"
+                  v-slot="{ field }"
+                  v-model="total_quantity"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ปริมาณรวม"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="total_quantity"
                 />
               </div>
               <div class="w-[400px] mx-4">
-                <TextField
-                  type="text"
+                <label class="block text-gray-700 text-sm font-bold mb-2">
+                  ค่าวัสดุต่อหน่วย
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
                   name="cost_of_materials_per_unit"
-                  placeholder="ค่าวัสดุต่อหน่วย"
-                  label="ค่าวัสดุต่อหน่วย"
-                  required
-                />
-                <TextField
                   type="text"
-                  name="cost_of_wage_per_unit"
-                  placeholder="ค่าแรงต่อหน่วย"
-                  label="ค่าแรงต่อหน่วย"
-                  required
+                  v-slot="{ field }"
+                  v-model="cost_of_materials_per_unit"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ค่าวัสดุต่อหน่วย"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="cost_of_materials_per_unit"
                 />
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2 pt-[30px]"
+                >
+                  ค่าแรงต่อหน่วย
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
+                  name="cost_of_wage_per_unit"
+                  type="text"
+                  v-slot="{ field }"
+                  v-model="cost_of_wage_per_unit"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ค่าแรงต่อหน่วย"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="cost_of_wage_per_unit"
+                />
+                <input type="hidden" v-model="bait" />
               </div>
-            </div>
-            <div class="flex flex-row mt-5 space-x-2 justify-end items-end">
-              <PrimaryButton>เพิ่ม</PrimaryButton>
-              <SecondaryButton @click="editlist()">แก้ไข</SecondaryButton>
             </div>
           </FormWrapper>
         </Form>
+        <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+          <PrimaryButton @click="addnewlist">เพิ่ม</PrimaryButton>
+          <SecondaryButton @click="editlist(bait)">แก้ไข</SecondaryButton>
+        </div>
       </div>
       <br />
       <table class="w-full">
@@ -122,13 +283,18 @@
         <p>{{ GStore.CurrentTotalBOQlist }} บาท</p>
       </div>
       <br />
+      <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+        <PrimaryButton @click="changeName">
+            ยืนยัน
+        </PrimaryButton>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
 import Swal from "sweetalert2";
-import { Form } from "vee-validate";
+import { Form, Field, ErrorMessage } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import FormWrapper from "@/components/form/FormWrapper";
 import PrimaryButton from "@/components/button/PrimaryButton";
@@ -139,6 +305,8 @@ export default {
   name: "boq_gen",
   components: {
     Form,
+    Field,
+    ErrorMessage,
     TextField,
     FormWrapper,
     PrimaryButton,
@@ -157,39 +325,19 @@ export default {
     return {
       BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
       BOQ_id: this.GStore.CurrentBOQUSE[0].BOQ_id,
-      listname: this.GStore.CurrentBOQUSE[0].list_name,
       schema,
+      bait: null,
     };
   },
-  // created() {
-  //   Service.get_BOQ_list(1)
-  //     .then((response) => {
-  //       this.BOQlist = response.data;
-  //       console.log(this.BOQlist);
-  //       var sum = 0;
-  //       this.BOQ_id = response.data[0].BOQ_id;
-  //       console.log("BOQ_id " + this.BOQ_id);
-  //       this.BOQlist.forEach((element) => (sum = sum + element.total_price));
-  //       this.total_BOQ_price = sum;
-  //     })
-  //     .catch(() => {
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: "โปรดลองอีกครั้งภายหลัง",
-  //         showConfirmButton: false,
-  //         timer: 2000,
-  //       });
-  //     });
-  // },
   methods: {
-    addnewlist(list) {
+    addnewlist() {
       Service.add_BOQ_list(
         this.BOQ_id,
-        list.list,
-        list.total_quantity,
-        list.unit,
-        list.cost_of_materials_per_unit,
-        list.cost_of_wage_per_unit
+        this.list,
+        this.total_quantity,
+        this.unit,
+        this.cost_of_materials_per_unit,
+        this.cost_of_wage_per_unit
       );
       Swal.fire({
         icon: "success",
@@ -200,15 +348,21 @@ export default {
         this.$router.go();
       });
     },
-    editlist() {
+    editlist(bait) {
       Service.update_BOQ_list(
-        this.BOQ_list_id,
-        this.listname,
+        bait,
+        this.list,
         this.total_quantity,
         this.unit,
         this.cost_of_materials_per_unit,
         this.cost_of_wage_per_unit
-      ).then(() => {
+      );
+      Swal.fire({
+        icon: "success",
+        title: "แก้ไขงานสำเร็จ",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
         this.$router.go();
       });
     },
@@ -223,6 +377,15 @@ export default {
         confirmButtonText: "แก้ไข",
       }).then((result) => {
         if (result.isConfirmed) {
+          this.list = this.GStore.CurrentBOQUSE[list_id - 1].list_name;
+          this.unit = this.GStore.CurrentBOQUSE[list_id - 1].unit;
+          this.total_quantity =
+            this.GStore.CurrentBOQUSE[list_id - 1].total_quantity;
+          this.cost_of_materials_per_unit =
+            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
+          this.cost_of_wage_per_unit =
+            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
+          this.bait = this.GStore.CurrentBOQUSE[list_id - 1].BOQ_list_id;
         } else {
           Service.remove_BOQ_list(list_id);
           Swal.fire({
@@ -236,16 +399,15 @@ export default {
         }
       });
     },
-    selectRow(list) {
-      this.BOQ_id = list.BOQ_id;
-      this.BOQ_list_id = list.BOQ_list_id;
-      this.listname = list.list_name;
-      this.total_quantity = list.total_quantity;
-      this.unit = list.unit;
-      this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
-      this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
-      console.log(list);
-    },
+    changeName() {
+      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
+      .then(() => {
+        this.$router.push({
+          name: 'boq_confirmation',
+          params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
+        });
+      })
+    }
   },
 };
 </script>
