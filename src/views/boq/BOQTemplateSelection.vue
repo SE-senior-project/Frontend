@@ -43,9 +43,12 @@
   </div>
   <br />
 
-  <div class="container">
-  <PrimaryButton @click="generate()" class="float-right mb-[20px] mt-[50px]">
-        ใช้แบบที่เลือก
+   <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+  <SecondaryButton @click="edit()">
+        แก้ไขแบบที่เลือก
+   </SecondaryButton>
+  <PrimaryButton @click="generate()">
+        สร้าง BOQ ใหม่
    </PrimaryButton>
   </div>
     </div>
@@ -54,11 +57,13 @@
 <script>
 import Service from "@/services/OneMeasureService";
 import PrimaryButton from "@/components/button/PrimaryButton";
+import SecondaryButton from "@/components/button/SecondaryButton";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
   components: {
-    PrimaryButton
+    PrimaryButton,
+    SecondaryButton
   },
   data() {
     return {
@@ -66,6 +71,10 @@ export default {
     };
   },
   methods: {
+    edit() {
+      let idused = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
+        this.$router.push({ name: "boq_gen", params: { id: idused } });
+    },
     generate() {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
       Service.generateBOQ(id).then((response) => {

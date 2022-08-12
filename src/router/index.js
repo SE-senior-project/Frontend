@@ -22,7 +22,6 @@ import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
 import boqConfirmation from "../views/boq/BOQConfirmation.vue";
 import showTemplate from "../views/boq/ShowTemplate.vue";
 import bogGen from "../views/boq/BOQGen.vue";
-import createGen from "../views/boq/CreateBOQ.vue";
 
 import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
@@ -224,11 +223,6 @@ const routes = [
         // });
       }
     },
-  },
-  {
-    path: "/create_boq",
-    name: "create_boq",
-    component: createGen
   },
   {
     path: "/total_material_selection",
