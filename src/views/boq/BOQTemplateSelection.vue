@@ -1,9 +1,16 @@
 <template>
-  <!-- list -->
-  <div class="container"></div>
-  <!-- BOQ Table -->
+  <div class="relative flex justify-center items-center">
+    <div
+      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
+    >
+    <div class="pt-6 text-base flex space-x-2">
+      <p class="font-bold">ชื่อ BOQ:</p>
+      <p>
+        {{ GStore.CurrentBOQUSE[0].BOQ_name }}
+      </p>
+    </div>
   <br />
-  <table class="center">
+  <table class="w-full">
     <tr id="header">
       <th>ลำดับ</th>
       <td>รายการ</td>
@@ -28,35 +35,31 @@
     </tr>
   </table>
   <br />
-
-  <div class="opertaion-center">
-    ยอดรวมทั้งหมด:{{ GStore.CurrentTotalBOQlist }}
+  <div class="flex space-x-1">
+      <p class="font-bold">ยอดรวมทั้งหมด:</p>
+      <p>
+        {{ GStore.CurrentTotalBOQlist }} บาท
+      </p>
   </div>
   <br />
 
   <div class="container">
-    <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_template' }"> Back </router-link>
-    </button>
-    <button class="btn btn-primary" @click="generate()">
-      <!-- <router-link
-        :to="{
-          name: 'boq_gen',
-           params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id }
-        }"
-      > -->
-      Use as template
-      <!-- </router-link> -->
-    </button>
+  <PrimaryButton class="float-right mb-[20px] mt-[50px] @click="generate">
+        ใช้แบบที่เลือก
+   </PrimaryButton>
   </div>
-  <!-- Price Tread pf material -->
-  <div class="container"></div>
+    </div>
+  </div>
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
+import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
+  components: {
+    PrimaryButton
+  },
   data() {
     return {
       last_id: null,
@@ -88,11 +91,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-}
+
 
 td,
 th {

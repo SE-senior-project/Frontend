@@ -198,4 +198,10 @@ export default {
       BOQ_list_id: BOQ_list_id,
     });
   },
+  update_BOQ_name(BOQ_id, BOQ_name) {
+    return apiClient.post("/Update_BOQ_name", {
+      BOQ_id: BOQ_id,
+      BOQ_name: BOQ_name
+    })
+  }
 };

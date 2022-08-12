@@ -1,204 +1,413 @@
 <template>
-  <!-- list -->
-  <!-- <div class="container">
-    <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">BOQ Name</label>
-        <input
-          type="boqGeneration"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-        />
+  <div class="relative flex justify-center items-center">
+    <div
+      class="
+        max-w-5xl
+        bg-white
+        shadow-xl
+        rounded-lg
+        w-[1028px]
+        mb-4
+        mx-8
+        px-10
+        py-5
+      "
+    >
+      <div class="pt-6 text-base flex flex-row space-x-2">
+        <div class="pt-[15px]">
+          <p class="font-bold">ชื่อ BOQ:</p>
+        </div>
+        <div class="mt-2">
+          <Field name="BOQ_name" type="text" v-slot="{ field }" v-model="BOQ_name">
+            <input
+              v-bind="field"
+              type="text"
+              class="
+                outline-none
+                h-[41px]
+                w-full
+                rounded-lg
+                border-[1px]
+                px-4
+                text-sm
+                font-normal
+                leading-[17px]
+                focus:text-black focus:placeholder-transparent
+                disabled:!border-neutral-100
+                disabled:bg-neutral-100
+                disabled:!placeholder-neutral-500
+              "
+              placeholder="BOQ"
+            />
+          </Field>
+        </div>
       </div>
-      <button class="btn btn-primary">Search</button>
-      <button class="btn btn-primary">Add</button>
-      <button class="btn btn-primary">Edit</button>
-    </form>
-  </div> -->
-  <!-- BOQ Table -->
-  <!-- <div class="container">
-    <button class="btn btn-primary">
-      <router-link :to="{ name: 'boq_confirmation' }"> Submit </router-link>
-    </button>
-  </div> -->
-  <!-- Price Tread pf material -->
-  <!-- <div class="container"></div> -->
-
-  <br />
-  <table class="center">
-    <tr>
-      <td>
-        <div class="input">
-          รายการ :<input type="text" v-model="listname" />
+      <div class="relative w-max">
+        <Form :validation-schema="schema">
+          <FormWrapper label="สร้างงาน">
+            <div class="flex flex-col lg:flex-row">
+              <div class="w-[400px] mx-4">
+                <div class="w-full flex flex-row space-x-2">
+                  <div class="w-full flex flex-col space-x-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                      งาน
+                      <span class="text-error-500 text-red-600">&nbsp;*</span>
+                    </label>
+                    <Field
+                      name="list"
+                      type="text"
+                      v-slot="{ field }"
+                      v-model="list"
+                    >
+                      <input
+                        v-bind="field"
+                        type="text"
+                        class="
+                          outline-none
+                          h-[41px]
+                          w-full
+                          rounded-lg
+                          border-[1px]
+                          px-4
+                          text-sm
+                          font-normal
+                          leading-[17px]
+                          focus:text-black focus:placeholder-transparent
+                          disabled:!border-neutral-100
+                          disabled:bg-neutral-100
+                          disabled:!placeholder-neutral-500
+                        "
+                        placeholder="งาน"
+                      />
+                    </Field>
+                    <ErrorMessage
+                      class="text-red-500 text-xs italic"
+                      name="list"
+                    />
+                  </div>
+                  <div class="w-full flex flex-col space-x-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                      หน่วย
+                      <span class="text-error-500 text-red-600">&nbsp;*</span>
+                    </label>
+                    <Field
+                      name="unit"
+                      type="text"
+                      v-slot="{ field }"
+                      v-model="unit"
+                    >
+                      <input
+                        v-bind="field"
+                        type="text"
+                        class="
+                          outline-none
+                          h-[41px]
+                          w-full
+                          rounded-lg
+                          border-[1px]
+                          px-4
+                          text-sm
+                          font-normal
+                          leading-[17px]
+                          focus:text-black focus:placeholder-transparent
+                          disabled:!border-neutral-100
+                          disabled:bg-neutral-100
+                          disabled:!placeholder-neutral-500
+                        "
+                        placeholder="หน่วย"
+                      />
+                    </Field>
+                    <ErrorMessage
+                      class="text-red-500 text-xs italic"
+                      name="unit"
+                    />
+                  </div>
+                </div>
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2 pt-[30px]"
+                >
+                  ปริมาณรวม
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
+                  name="total_quantity"
+                  type="text"
+                  v-slot="{ field }"
+                  v-model="total_quantity"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ปริมาณรวม"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="total_quantity"
+                />
+              </div>
+              <div class="w-[400px] mx-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">
+                  ค่าวัสดุต่อหน่วย
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
+                  name="cost_of_materials_per_unit"
+                  type="text"
+                  v-slot="{ field }"
+                  v-model="cost_of_materials_per_unit"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ค่าวัสดุต่อหน่วย"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="cost_of_materials_per_unit"
+                />
+                <label
+                  class="block text-gray-700 text-sm font-bold mb-2 pt-[30px]"
+                >
+                  ค่าแรงต่อหน่วย
+                  <span class="text-error-500 text-red-600">&nbsp;*</span>
+                </label>
+                <Field
+                  name="cost_of_wage_per_unit"
+                  type="text"
+                  v-slot="{ field }"
+                  v-model="cost_of_wage_per_unit"
+                >
+                  <input
+                    v-bind="field"
+                    type="text"
+                    class="
+                      outline-none
+                      h-[41px]
+                      w-full
+                      rounded-lg
+                      border-[1px]
+                      px-4
+                      text-sm
+                      font-normal
+                      leading-[17px]
+                      focus:text-black focus:placeholder-transparent
+                      disabled:!border-neutral-100
+                      disabled:bg-neutral-100
+                      disabled:!placeholder-neutral-500
+                    "
+                    placeholder="ค่าแรงต่อหน่วย"
+                  />
+                </Field>
+                <ErrorMessage
+                  class="text-red-500 text-xs italic"
+                  name="cost_of_wage_per_unit"
+                />
+                <input type="hidden" v-model="bait" />
+              </div>
+            </div>
+          </FormWrapper>
+        </Form>
+        <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+          <PrimaryButton @click="addnewlist">เพิ่ม</PrimaryButton>
+          <SecondaryButton @click="editlist(bait)">แก้ไข</SecondaryButton>
         </div>
-      </td>
-      <td>
-        <div class="input">
-          พื้นที่ :<input type="text" v-model="total_quantity" />
-        </div>
-      </td>
-      หน่วย :<input type="text" v-model="unit" />
-      <td>
-        <div class="input">
-          ค่าวัสดุต่อหน่วย :<input
-            type="text"
-            v-model="cost_of_materials_per_unit"
-          />
-        </div>
-      </td>
-      <td>
-        <div class="input">
-          ค่าแรงต่อหน่วย :<input type="text" v-model="cost_of_wage_per_unit" />
-        </div>
-      </td>
-    </tr>
-  </table>
-  <div class="opertaion-center">
-    <button @click="addnewlist()">Add</button>
-    <button @click="editlist()">| Edit</button>
-    <button @click="clearselectRow()">| Clear</button>
+      </div>
+      <br />
+      <table class="w-full">
+        <tr id="header">
+          <td></td>
+          <td>งาน</td>
+          <td>ปริมาณรวม</td>
+          <td>หน่วย</td>
+          <td>ค่าวัสดุต่อหน่วย</td>
+          <td>ค่าวัสดุรวม</td>
+          <td>ค่าแรงต่อหน่วย</td>
+          <td>ค่าแรงรวม</td>
+          <td>ราคารวม</td>
+          <td></td>
+        </tr>
+        <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
+          <th>{{ index + 1 }}</th>
+          <td>{{ list.list_name }}</td>
+          <td>{{ list.total_quantity }}</td>
+          <td>{{ list.unit }}</td>
+          <td>{{ list.cost_of_materials_per_unit }}</td>
+          <td>{{ list.total_cost_materials }}</td>
+          <td>{{ list.cost_of_wage_per_unit }}</td>
+          <td>{{ list.total_wages }}</td>
+          <td>{{ list.total_price }}</td>
+          <td class="w-[100px]">
+            <SecondaryButton
+              class="rounded-none"
+              @click="manage(list.BOQ_list_id)"
+              >จัดการ</SecondaryButton
+            >
+          </td>
+        </tr>
+      </table>
+      <br />
+      <div class="flex space-x-1">
+        <p class="font-bold">ยอดรวมทั้งหมด:</p>
+        <p>{{ GStore.CurrentTotalBOQlist }} บาท</p>
+      </div>
+      <br />
+      <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+        <PrimaryButton @click="changeName">
+            ยืนยัน
+        </PrimaryButton>
+      </div>
+    </div>
   </div>
-  <br />
-  <table class="center">
-    <tr id="header">
-      <td></td>
-      <th>ลำดับ</th>
-      <td>รายการ</td>
-      <td>พื้นที่</td>
-      <td>หน่วย</td>
-      <td>ค่าวัสดุต่อหน่วย</td>
-      <td>ราคาวัสดุรวม</td>
-      <td>ค่าแรงต่อหน่วย</td>
-      <td>ค่าแรงรวม</td>
-      <td>ยอดรวม</td>
-      <td></td>
-    </tr>
-    <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
-      <td @click="selectRow(list)">select</td>
-      <th>{{ index + 1 }}</th>
-      <td>{{ list.list_name }}</td>
-      <td>{{ list.total_quantity }}</td>
-      <td>{{ list.unit }}</td>
-      <td>{{ list.cost_of_materials_per_unit }}</td>
-      <td>{{ list.total_cost_materials }}</td>
-      <td>{{ list.cost_of_wage_per_unit }}</td>
-      <td>{{ list.total_wages }}</td>
-      <td>{{ list.total_price }}</td>
-      <td @click="removelist(list.BOQ_list_id)">remove</td>
-    </tr>
-  </table>
-  <br />
-  <div class="opertaion-center">ยอดรวมทั้งหมด:{{  GStore.CurrentTotalBOQlist }}</div>
-  <br />
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
 import Swal from "sweetalert2";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import TextField from "@/components/field/TextField";
+import FormWrapper from "@/components/form/FormWrapper";
+import PrimaryButton from "@/components/button/PrimaryButton";
+import SecondaryButton from "@/components/button/SecondaryButton";
+import * as yup from "yup";
 export default {
   inject: ["GStore"],
   name: "boq_gen",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+    TextField,
+    FormWrapper,
+    PrimaryButton,
+    SecondaryButton,
+  },
   data() {
+    const schema = yup.object().shape({
+      list: yup.string().required("กรุณาระบุงาน"),
+      unit: yup.string().required("กรุณาระบุหน่วย"),
+      total_quantity: yup.string().required("กรุณาระบุปริมาณรวม"),
+      cost_of_materials_per_unit: yup
+        .string()
+        .required("กรุณาระบุค่าวัสดุต่อหน่วย"),
+      cost_of_wage_per_unit: yup.string().required("กรุณาระบุค่าแรงต่อหน่วย"),
+    });
     return {
-      total_BOQ_price: 0,
-      BOQlist: null,
-      listname: null,
-      BOQ_list_id: null,
-      total_quantity: null,
-      unit: null,
-      cost_of_materials_per_unit: null,
-      cost_of_wage_per_unit: null,
-      BOQ_totoal_price: null,
-      BOQ_id: null,
+      BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
+      BOQ_id: this.GStore.CurrentBOQUSE[0].BOQ_id,
+      schema,
+      bait: null,
     };
   },
-  // created() {
-  //   Service.get_BOQ_list(1)
-  //     .then((response) => {
-  //       this.BOQlist = response.data;
-  //       console.log(this.BOQlist);
-  //       var sum = 0;
-  //       this.BOQ_id = response.data[0].BOQ_id;
-  //       console.log("BOQ_id " + this.BOQ_id);
-  //       this.BOQlist.forEach((element) => (sum = sum + element.total_price));
-  //       this.total_BOQ_price = sum;
-  //     })
-  //     .catch(() => {
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: "โปรดลองอีกครั้งภายหลัง",
-  //         showConfirmButton: false,
-  //         timer: 2000,
-  //       });
-  //     });
-  // },
   methods: {
     addnewlist() {
       Service.add_BOQ_list(
         this.BOQ_id,
-        this.listname,
+        this.list,
         this.total_quantity,
         this.unit,
         this.cost_of_materials_per_unit,
         this.cost_of_wage_per_unit
-      ).then(() => {
-        // this.$router.go();
-      });
-    },
-    editlist() {
-      Service.update_BOQ_list(
-        this.BOQ_list_id,
-        this.listname,
-        this.total_quantity,
-        this.unit,
-        this.cost_of_materials_per_unit,
-        this.cost_of_wage_per_unit
-      ).then(() => {
+      );
+      Swal.fire({
+        icon: "success",
+        title: "เพิ่มงานสำเร็จ",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
         this.$router.go();
       });
     },
-    removelist(list_id) {
+    editlist(bait) {
+      Service.update_BOQ_list(
+        bait,
+        this.list,
+        this.total_quantity,
+        this.unit,
+        this.cost_of_materials_per_unit,
+        this.cost_of_wage_per_unit
+      );
       Swal.fire({
-        title: "คุณต้องการที่จะลบรายการใช่ไหม?",
+        icon: "success",
+        title: "แก้ไขงานสำเร็จ",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
+        this.$router.go();
+      });
+    },
+    manage(list_id) {
+      Swal.fire({
+        title: "การจัดการ",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        cancelButtonText: "ยกเลิก",
-        confirmButtonText: "ลบรายการ",
+        cancelButtonText: "ลบ",
+        confirmButtonText: "แก้ไข",
       }).then((result) => {
         if (result.isConfirmed) {
+          this.list = this.GStore.CurrentBOQUSE[list_id - 1].list_name;
+          this.unit = this.GStore.CurrentBOQUSE[list_id - 1].unit;
+          this.total_quantity =
+            this.GStore.CurrentBOQUSE[list_id - 1].total_quantity;
+          this.cost_of_materials_per_unit =
+            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
+          this.cost_of_wage_per_unit =
+            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
+          this.bait = this.GStore.CurrentBOQUSE[list_id - 1].BOQ_list_id;
+        } else {
           Service.remove_BOQ_list(list_id);
           Swal.fire({
             icon: "success",
             title: "ลบสำเร็จ",
             showConfirmButton: false,
-            timer: 1000,
+            timer: 2000,
           }).then(() => {
             this.$router.go();
           });
         }
       });
     },
-    selectRow(list) {
-      this.BOQ_id= list.BOQ_id;
-      this.BOQ_list_id = list.BOQ_list_id;
-      this.listname = list.list_name;
-      this.total_quantity = list.total_quantity;
-      this.unit = list.unit;
-      this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
-      this.cost_of_wage_per_unit = list.cost_of_wage_per_unit;
-      console.log(list);
-    },
-    clearselectRow() {
-      this.BOQ_list_id = null;
-      this.listname = null;
-      this.total_quantity = null;
-      this.unit = null;
-      this.cost_of_materials_per_unit = null;
-      this.cost_of_wage_per_unit = null;
-    },
+    changeName() {
+      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
+      .then(() => {
+        this.$router.push({
+          name: 'boq_confirmation',
+          params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
+        });
+      })
+    }
   },
 };
 </script>
@@ -214,12 +423,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-}
-
 td,
 th {
   border: 1px solid #dddddd;
