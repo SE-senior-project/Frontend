@@ -3,7 +3,12 @@
     <div
       class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
     >
-    {{ GStore.currentBOQ }}
+    <div class="pt-6 text-base flex space-x-2">
+      <p class="font-bold">ชื่อ BOQ:</p>
+      <p>
+        {{ GStore.CurrentBOQUSE[0].BOQ_name }}
+      </p>
+    </div>
   <br />
   <table class="w-full">
     <tr id="header">
@@ -30,7 +35,12 @@
     </tr>
   </table>
   <br />
-    ยอดรวมทั้งหมด:{{ GStore.CurrentTotalBOQlist }}
+  <div class="flex space-x-1">
+      <p class="font-bold">ยอดรวมทั้งหมด:</p>
+      <p>
+        {{ GStore.CurrentTotalBOQlist }} บาท
+      </p>
+  </div>
   <br />
 
   <div class="container">

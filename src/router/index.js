@@ -282,6 +282,28 @@ const routes = [
     path: "/boq_confirmation",
     name: "boq_confirmation",
     component: boqConfirmation,
+    beforeEnter: async (to) => {
+      try {
+        console.log(parseInt(to.params.id));
+        const response_current_BOQ_list = await service.get_BOQ_list(
+          parseInt(to.params.id)
+        );
+        GStore.CurrentBOQUSE = response_current_BOQ_list.data;
+        var sumation = 0;
+        GStore.CurrentBOQUSE.forEach(
+          (element) => (sumation = sumation + element.total_price)
+
+        );
+        GStore.CurrentTotalBOQlist = sumation;
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    },
   },
   {
     path: "/show_template/:id",

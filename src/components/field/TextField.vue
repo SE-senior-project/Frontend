@@ -5,6 +5,7 @@
       :name="name"
       :type="type"
       :placeholder="placeholder"
+      :value= value
       :required="required"
     />
   </div>
@@ -19,6 +20,7 @@ import TextMessage from "../field/TextMessage.vue";
 import BasedField from "../field/BasedField.vue";
 export default {
   name: "text_field",
+  inject: ["GStore"],
   components: {
     TextLabel,
     TextMessage,
@@ -51,6 +53,10 @@ export default {
       required: false,
       default: true,
     },
+    value: {
+      type: String,
+      required: true,
+    }
   },
 };
 </script>
