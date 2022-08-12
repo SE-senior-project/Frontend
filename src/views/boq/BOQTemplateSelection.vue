@@ -44,27 +44,38 @@
   <br />
 
   <div class="container">
-    <PrimaryButton class="float-right mb-[20px] mt-[50px]">
-      <router-link
-        :to="{
-          name: 'boq_gen',
-          params: { id: GStore.CurrentBOQUSE[0].BOQ_id },
-        }"
-      >
-        Use as template
-      </router-link>
-    </PrimaryButton>
+  <PrimaryButton class="float-right mb-[20px] mt-[50px] @click="generate">
+        ใช้แบบที่เลือก
+   </PrimaryButton>
   </div>
     </div>
   </div>
 </template>
 <script>
+import Service from "@/services/OneMeasureService";
 import PrimaryButton from "@/components/button/PrimaryButton";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
   components: {
     PrimaryButton
+  },
+  data() {
+    return {
+      last_id: null,
+    };
+  },
+  methods: {
+    generate() {
+      let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
+      Service.generateBOQ(id).then((response) => {
+        this.GStore.currentLastBOQId = response.data;
+        this.last_id = this.GStore.currentLastBOQId.last_id;
+        console.log("new id " + this.last_id);
+        this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
+        // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
+      });
+    },
   },
 };
 </script>

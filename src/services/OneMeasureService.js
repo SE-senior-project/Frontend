@@ -146,9 +146,14 @@ export default {
   get_BOQ() {
     return apiClient.get("/All_BOQ");
   },
-  get_BOQ_list(BOQ_id) {
-    console.log(BOQ_id)
-    return apiClient.post("/All_BOQ_List", {
+  generateBOQ(BOQ_id) {
+    return apiClient.post("/Generate_BOQ", {
+      BOQ_id: BOQ_id,
+    });
+  },
+  get_BOQ_list_selection(BOQ_id) {
+    console.log('current_id ' +BOQ_id)
+    return apiClient.post("/All_BOQ_List_Selection", {
       BOQ_id: BOQ_id,
     });
   },
