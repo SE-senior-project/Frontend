@@ -44,7 +44,7 @@
   <br />
 
   <div class="container">
-  <PrimaryButton class="float-right mb-[20px] mt-[50px] @click="generate">
+  <PrimaryButton @click="generate()" class="float-right mb-[20px] mt-[50px]">
         ใช้แบบที่เลือก
    </PrimaryButton>
   </div>

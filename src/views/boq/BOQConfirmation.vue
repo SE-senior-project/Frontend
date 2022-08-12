@@ -51,14 +51,13 @@
       </div>
       <br />
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
-        <PrimaryButton @click="nextPage">ยืนยัน</PrimaryButton>
+        <PrimaryButton @click="nextPage()">ยืนยัน</PrimaryButton>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Service from "@/services/OneMeasureService";
-import Swal from "sweetalert2";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import TextField from "@/components/field/TextField";
 import FormWrapper from "@/components/form/FormWrapper";
@@ -95,73 +94,10 @@ export default {
     };
   },
   methods: {
-    addnewlist() {
-      Service.add_BOQ_list(
-        this.BOQ_id,
-        this.list,
-        this.total_quantity,
-        this.unit,
-        this.cost_of_materials_per_unit,
-        this.cost_of_wage_per_unit
-      );
-      Swal.fire({
-        icon: "success",
-        title: "เพิ่มงานสำเร็จ",
-        showConfirmButton: false,
-        timer: 2000,
-      }).then(() => {
-        this.$router.go();
-      });
-    },
-    editlist(bait) {
-      Service.update_BOQ_list(
-        bait,
-        this.list,
-        this.total_quantity,
-        this.unit,
-        this.cost_of_materials_per_unit,
-        this.cost_of_wage_per_unit
-      );
-      Swal.fire({
-        icon: "success",
-        title: "แก้ไขงานสำเร็จ",
-        showConfirmButton: false,
-        timer: 2000,
-      }).then(() => {
-        this.$router.go();
-      });
-    },
-    manage(list_id) {
-      Swal.fire({
-        title: "การจัดการ",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        cancelButtonText: "ลบ",
-        confirmButtonText: "แก้ไข",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.list = this.GStore.CurrentBOQUSE[list_id - 1].list_name;
-          this.unit = this.GStore.CurrentBOQUSE[list_id - 1].unit;
-          this.total_quantity =
-            this.GStore.CurrentBOQUSE[list_id - 1].total_quantity;
-          this.cost_of_materials_per_unit =
-            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
-          this.cost_of_wage_per_unit =
-            this.GStore.CurrentBOQUSE[list_id - 1].cost_of_materials_per_unit;
-          this.bait = this.GStore.CurrentBOQUSE[list_id - 1].BOQ_list_id;
-        } else {
-          Service.remove_BOQ_list(list_id);
-          Swal.fire({
-            icon: "success",
-            title: "ลบสำเร็จ",
-            showConfirmButton: false,
-            timer: 2000,
-          }).then(() => {
-            this.$router.go();
-          });
-        }
+    nextPage() {
+      Service.update_BOQ_status(this.BOQ_id);
+      this.$router.push({ 
+        name: "boq_template"
       });
     },
   },

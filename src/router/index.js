@@ -298,12 +298,7 @@ const routes = [
         );
         GStore.CurrentTotalBOQlist = sumation;
       } catch {
-        Swal.fire({
-          icon: "error",
-          title: "โปรดลองอีกครั้งภายหลัง",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        
       }
     },
   },
