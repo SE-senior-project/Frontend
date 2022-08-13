@@ -1,14 +1,13 @@
 <template>
-  <div class="card mx-[60px] md:mx-[40px] lg:mx-[20px] mb-10 shadow-xl rounded-lg w-max bg-orange-500">
+  <div class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max">
     <router-link
       class="link"
       :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
     >
-    <div class="contractor flex flex-row items-center h-[100px] w-[300px] mb-[5px] p-[20px] rounded-lg border-solid border-4 border-orange-500 bg-orange-100">
-        <div class="p-[20px] space-x-1 flex">
-           <p class="font-bold">BOQ: </p>
-            <p class="w-[100px] break-words">{{ boq.BOQ_name }}</p>
-
+    <div class="flex flex-row h-auto pl-[30px] pt-[20px] pb-[90px] w-[300px] shadow-xl rounded-[5px] border-solid border-[2px] border-orange-400">
+        <div class="w-full">
+           <p class="text-xs">ชื่อ BOQ: </p>
+            <p class="pt-[2px] pl-[10px] pr-[40px] w-full text-2xl font-sans font-bold break-words">{{ boq.BOQ_name }}</p>
         </div>
     </div>
     </router-link>
@@ -29,5 +28,6 @@ export default {
 <style scoped>
 .card:hover {
   transform: scale(1.05);
+  background-color: #f2f2f2;
 }
 </style>
