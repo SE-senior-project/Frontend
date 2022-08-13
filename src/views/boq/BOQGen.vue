@@ -335,15 +335,15 @@ export default {
     if (len == 0) {
       this.BOQ_name = null;
       this.BOQ_id = null;
+      // if (this.BOQ_id == null) {
+      //   this.BOQ_id = this.GStore.generateId;
+      //   console.log("Current BOQ id" + this.BOQ_id);
+      // }
     } else {
       this.BOQ_name = this.GStore.CurrentBOQUSE[0].BOQ_name;
       this.BOQ_id = this.GStore.CurrentBOQUSE[0].BOQ_id;
       console.log("BOQgen BOQ_id" + this.BOQ_id);
       console.log("BOQgen BOQ_name" + this.BOQ_name);
-      // if( this.BOQ_id ==null){
-      //   this.BOQ_id = this.bait
-      // }
-      console.log("Current BOQ id" + this.BOQ_id);
     }
   },
   methods: {

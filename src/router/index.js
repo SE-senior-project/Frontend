@@ -152,14 +152,6 @@ const routes = [
       } catch {
         GStore.currentBOQ = null;
         console.log("cannot load user");
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // }).then(() => {
-        //   this.$router.go();
-        // });
       }
     },
   },
@@ -199,19 +191,12 @@ const routes = [
     component: bogGen,
     beforeEnter: async (to) => {
       try {
-        // const currentLastBOQId = await service.generateBOQ(parseInt(to.params.id));
-        // console.log(currentLastBOQId.data.last_id)
         const response_current_BOQ_list = await service.get_BOQ_list_selection(
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_BOQ_list.data;
-        if (GStore.CurrentBOQUSE == null) {
-          GStore.CurrentBOQUSE = {
-            BOQ_name: 'BOQ' + to.params.id,
-            BOQ_id: parseInt(to.params.id)
-          }
-        }
-        console.log(GStore.CurrentBOQUSE)
+        GStore.generateId = parseInt(to.params.id)
+        // console.log(GStore.CurrentBOQUSE)
         var sumation = 0;
         GStore.CurrentBOQUSE.forEach(
           (element) => (sumation = sumation + element.total_price)
@@ -219,14 +204,9 @@ const routes = [
         );
         GStore.CurrentTotalBOQlist = sumation;
       } catch {
+        
         console.log(GStore.CurrentBOQUSE)
         console.log(GStore.CurrentTotalBOQlist)
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // });
       }
     },
   },
@@ -270,6 +250,8 @@ const routes = [
 
         );
         GStore.CurrentTotalBOQlist = sumation;
+      
+       
       } catch {
         Swal.fire({
           icon: "error",
