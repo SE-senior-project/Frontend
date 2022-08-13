@@ -204,7 +204,7 @@ const routes = [
         );
         GStore.CurrentTotalBOQlist = sumation;
       } catch {
-        
+
         console.log(GStore.CurrentBOQUSE)
         console.log(GStore.CurrentTotalBOQlist)
       }
@@ -250,8 +250,8 @@ const routes = [
 
         );
         GStore.CurrentTotalBOQlist = sumation;
-      
-       
+
+
       } catch {
         Swal.fire({
           icon: "error",
@@ -263,13 +263,12 @@ const routes = [
     },
   },
   {
-    path: "/boq_confirmation",
+    path: "/boq_confirmation/:id",
     name: "boq_confirmation",
     component: boqConfirmation,
     beforeEnter: async (to) => {
       try {
-        console.log(parseInt(to.params.id));
-        const response_current_BOQ_list = await service.get_BOQ_list(
+        const response_current_BOQ_list = await service.get_BOQ_list_selection(
           parseInt(to.params.id)
         );
         GStore.CurrentBOQUSE = response_current_BOQ_list.data;

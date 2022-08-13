@@ -252,28 +252,29 @@
       <br />
       <table class="w-full">
         <tr id="header">
-          <td></td>
+          <th>ลำดับ</th>
           <td>งาน</td>
-          <td>ปริมาณรวม</td>
+          <td>พื้นที่</td>
           <td>หน่วย</td>
           <td>ค่าวัสดุต่อหน่วย</td>
-          <td>ค่าวัสดุรวม</td>
+          <td>ราคาวัสดุรวม</td>
           <td>ค่าแรงต่อหน่วย</td>
           <td>ค่าแรงรวม</td>
-          <td>ราคารวม</td>
-          <td></td>
+          <td>ยอดรวม</td>
+          <td v-if="!check"></td>
         </tr>
         <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
-          <th>{{ index + 1 }}</th>
-          <td>{{ list.list_name }}</td>
-          <td>{{ list.total_quantity }}</td>
-          <td>{{ list.unit }}</td>
-          <td>{{ list.cost_of_materials_per_unit }}</td>
-          <td>{{ list.total_cost_materials }}</td>
-          <td>{{ list.cost_of_wage_per_unit }}</td>
-          <td>{{ list.total_wages }}</td>
-          <td>{{ list.total_price }}</td>
-          <td class="w-[100px]">
+          <th v-if="!check">{{ index + 1 }}</th>
+          <td v-if="!check">{{ list.list_name }}</td>
+          <td v-if="!check">{{ list.total_quantity }}</td>
+          <td v-if="!check">{{ list.unit }}</td>
+          <td v-if="!check">{{ list.cost_of_materials_per_unit }}</td>
+          <td v-if="!check">{{ list.total_cost_materials }}</td>
+          <td v-if="!check">{{ list.cost_of_wage_per_unit }}</td>
+          <td v-if="!check">{{ list.total_wages }}</td>
+          <td v-if="!check">{{ list.total_price }}</td>
+
+          <td class="w-[100px]" v-if="!check">
             <SecondaryButton class="rounded-none" @click="manage(list)"
               >จัดการ</SecondaryButton
             >
@@ -283,7 +284,7 @@
       <br />
       <div class="flex space-x-1">
         <p class="font-bold">ยอดรวมทั้งหมด:</p>
-        <p>{{ GStore.CurrentTotalBOQlist }} บาท</p>
+        <p>{{ totalCost }} บาท</p>
       </div>
       <br />
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
@@ -326,25 +327,29 @@ export default {
     return {
       BOQ_name: null,
       BOQ_id: null,
+      BOQ_list_id: null,
       schema,
       bait: null,
+      check: false,
+      totalCost: 0,
     };
   },
   mounted() {
+    if (isNaN(this.GStore.CurrentTotalBOQlist)) {
+      this.totalCost = 0;
+    } else {
+      this.totalCost = this.GStore.CurrentTotalBOQlist;
+    }
     let len = parseInt(Object.keys(this.GStore.CurrentBOQUSE).length);
+    if (this.GStore.CurrentBOQUSE[0].list_name === undefined) {
+      this.check = true;
+    }
     if (len == 0) {
       this.BOQ_name = null;
-      this.BOQ_id = null;
-      // if (this.BOQ_id == null) {
-      //   this.BOQ_id = this.GStore.generateId;
-      //   console.log("Current BOQ id" + this.BOQ_id);
-      // }
     } else {
       this.BOQ_name = this.GStore.CurrentBOQUSE[0].BOQ_name;
-      this.BOQ_id = this.GStore.CurrentBOQUSE[0].BOQ_id;
-      console.log("BOQgen BOQ_id" + this.BOQ_id);
-      console.log("BOQgen BOQ_name" + this.BOQ_name);
     }
+    this.BOQ_id = this.GStore.CurrentBOQUSE[0].BOQ_id;
   },
   methods: {
     addnewlist() {
@@ -384,7 +389,6 @@ export default {
       });
     },
     manage(list) {
-      console.log(list);
       Swal.fire({
         title: "การจัดการ",
         icon: "warning",
@@ -401,10 +405,10 @@ export default {
           this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
           this.cost_of_wage_per_unit = list.cost_of_materials_per_unit;
           this.BOQ_id = list.BOQ_id;
+          this.BOQ_list_id = list.BOQ_list_id;
           this.bait = list.BOQ_list_id;
-          console.log(this.bait);
         } else {
-          Service.remove_BOQ_list(this.bait);
+          Service.remove_BOQ_list(parseInt(list.BOQ_list_id));
           Swal.fire({
             icon: "success",
             title: "ลบสำเร็จ",
@@ -418,10 +422,11 @@ export default {
     },
     changeName() {
       Service.update_BOQ_name(this.BOQ_id, this.BOQ_name).then(() => {
-        this.$router.push({
-          name: "boq_confirmation",
-          params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
-        });
+        this.$router
+          .push({
+            name: "boq_confirmation",
+            params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
+          })
       });
     },
   },

@@ -1,56 +1,65 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
+      class="
+        max-w-5xl
+        bg-white
+        shadow-xl
+        rounded-lg
+        w-[1028px]
+        mb-4
+        mx-8
+        px-10
+        py-5
+      "
     >
-    <div class="pt-6 text-base flex space-x-2">
-      <p class="font-bold">ชื่อ BOQ:</p>
-      <p>
-        {{ GStore.CurrentBOQUSE[0].BOQ_name }}
-      </p>
-    </div>
-  <br />
-  <table class="w-full">
-    <tr id="header">
-      <th>ลำดับ</th>
-      <td>รายการ</td>
-      <td>พื้นที่</td>
-      <td>หน่วย</td>
-      <td>ค่าวัสดุต่อหน่วย</td>
-      <td>ราคาวัสดุรวม</td>
-      <td>ค่าแรงต่อหน่วย</td>
-      <td>ค่าแรงรวม</td>
-      <td>ยอดรวม</td>
-    </tr>
-    <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
-      <th>{{ index + 1 }}</th>
-      <td>{{ list.list_name }}</td>
-      <td>{{ list.total_quantity }}</td>
-      <td>{{ list.unit }}</td>
-      <td>{{ list.cost_of_materials_per_unit }}</td>
-      <td>{{ list.total_cost_materials }}</td>
-      <td>{{ list.cost_of_wage_per_unit }}</td>
-      <td>{{ list.total_wages }}</td>
-      <td>{{ list.total_price }}</td>
-    </tr>
-  </table>
-  <br />
-  <div class="flex space-x-1">
-      <p class="font-bold">ยอดรวมทั้งหมด:</p>
-      <p>
-        {{ GStore.CurrentTotalBOQlist }} บาท
-      </p>
-  </div>
-  <br />
+      <div class="pt-6 text-base flex space-x-2">
+        <p class="font-bold">ชื่อ BOQ:</p>
+        <p>
+          {{ BOQ_name }}
+        </p>
+      </div>
+      <br />
+      <!-- {{ GStore.CurrentBOQUSE }} -->
+      <table class="w-full">
+        <tr id="header">
+          <th>ลำดับ</th>
+          <td>งาน</td>
+          <td>พื้นที่</td>
+          <td>หน่วย</td>
+          <td>ค่าวัสดุต่อหน่วย</td>
+          <td>ราคาวัสดุรวม</td>
+          <td>ค่าแรงต่อหน่วย</td>
+          <td>ค่าแรงรวม</td>
+          <td>ยอดรวม</td>
+        </tr>
 
-   <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
-  <SecondaryButton @click="edit()">
-        แก้ไขแบบที่เลือก
-   </SecondaryButton>
-  <PrimaryButton @click="generate()">
-        สร้าง BOQ ใหม่
-   </PrimaryButton>
-  </div>
+        <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
+          <th v-if="!check">{{ index + 1 }}</th>
+          <td v-if="!check">{{ list.list_name }}</td>
+          <td v-if="!check">{{ list.total_quantity }}</td>
+          <td v-if="!check">{{ list.unit }}</td>
+          <td v-if="!check">{{ list.cost_of_materials_per_unit }}</td>
+          <td v-if="!check">{{ list.total_cost_materials }}</td>
+          <td v-if="!check">{{ list.cost_of_wage_per_unit }}</td>
+          <td v-if="!check">{{ list.total_wages }}</td>
+          <td v-if="!check">{{ list.total_price }}</td>
+        </tr>
+      </table>
+      <br />
+      <div class="flex space-x-1">
+        <p class="font-bold">ยอดรวมทั้งหมด:</p>
+        <p>
+          {{ totalCost }}
+          บาท
+        </p>
+      </div>
+      <br />
+
+      <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
+        <SecondaryButton @click="edit()"> แก้ไขแบบที่เลือก </SecondaryButton>
+        <PrimaryButton @click="generate()"> สร้าง BOQ ใหม่ </PrimaryButton>
+      </div>
     </div>
   </div>
 </template>
@@ -63,28 +72,49 @@ export default {
   name: "boq_confirmation",
   components: {
     PrimaryButton,
-    SecondaryButton
+    SecondaryButton,
   },
   data() {
     return {
       last_id: null,
+      BOQ_name: null,
+      check: false,
+      totalCost: 0,
     };
+  },
+  mounted() {
+    if (isNaN(this.GStore.CurrentTotalBOQlist)) {
+      this.totalCost = 0;
+    } else {
+      this.totalCost = this.GStore.CurrentTotalBOQlist;
+    }
+    let len = parseInt(Object.keys(this.GStore.CurrentBOQUSE).length);
+    if (this.GStore.CurrentBOQUSE[0].list_name === undefined) {
+      this.check = true;
+    }
+    if (len == 0) {
+      this.BOQ_name = null;
+    } else {
+      this.BOQ_name = this.GStore.CurrentBOQUSE[0].BOQ_name;
+    }
   },
   methods: {
     edit() {
       let idused = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
-        this.$router.push({ name: "boq_gen", params: { id: idused } });
+      this.$router.push({ name: "boq_gen", params: { id: idused } });
     },
     generate() {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
       console.log(id);
-      Service.generateBOQ(id,parseInt(this.GStore.current_project)).then((response) => {
-        this.GStore.currentLastBOQId = response.data;
-        this.last_id = this.GStore.currentLastBOQId.last_id;
-        console.log("new id " + this.last_id);
-        this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
-        // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
-      });
+      Service.generateBOQ(id, parseInt(this.GStore.current_project)).then(
+        (response) => {
+          this.GStore.currentLastBOQId = response.data;
+          this.last_id = this.GStore.currentLastBOQId.last_id;
+          console.log("new id " + this.last_id);
+          this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
+          // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
+        }
+      );
     },
   },
 };
@@ -101,7 +131,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-
 
 td,
 th {

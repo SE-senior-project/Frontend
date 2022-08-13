@@ -93,11 +93,14 @@ export default {
       bait: null,
     };
   },
+  mounted() {
+    console.log(this.GStore.CurrentBOQUSE);
+  },
   methods: {
     nextPage() {
       Service.update_BOQ_status(this.BOQ_id);
-      this.$router.push({ 
-        name: "boq_template"
+      this.$router.push({
+        name: "boq_template",
       });
     },
   },
