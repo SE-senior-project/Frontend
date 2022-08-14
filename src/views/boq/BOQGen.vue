@@ -254,7 +254,7 @@
         <tr id="header">
           <th>ลำดับ</th>
           <td>งาน</td>
-          <td>พื้นที่</td>
+          <td>ปริมาณรวม</td>
           <td>หน่วย</td>
           <td>ค่าวัสดุต่อหน่วย</td>
           <td>ราคาวัสดุรวม</td>
@@ -367,6 +367,7 @@ export default {
         showConfirmButton: false,
         timer: 2000,
       }).then(() => {
+        Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
         this.$router.go();
       });
     },
@@ -385,6 +386,7 @@ export default {
         showConfirmButton: false,
         timer: 2000,
       }).then(() => {
+        Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
         this.$router.go();
       });
     },
@@ -407,8 +409,10 @@ export default {
           this.BOQ_id = list.BOQ_id;
           this.BOQ_list_id = list.BOQ_list_id;
           this.bait = list.BOQ_list_id;
+          Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
         } else {
           Service.remove_BOQ_list(parseInt(list.BOQ_list_id));
+          Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
           Swal.fire({
             icon: "success",
             title: "ลบสำเร็จ",
