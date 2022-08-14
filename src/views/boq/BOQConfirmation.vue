@@ -33,21 +33,21 @@
           <td>ราคารวม</td>
         </tr>
         <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
-          <th>{{ index + 1 }}</th>
-          <td>{{ list.list_name }}</td>
-          <td>{{ list.total_quantity }}</td>
-          <td>{{ list.unit }}</td>
-          <td>{{ list.cost_of_materials_per_unit }}</td>
-          <td>{{ list.total_cost_materials }}</td>
-          <td>{{ list.cost_of_wage_per_unit }}</td>
-          <td>{{ list.total_wages }}</td>
-          <td>{{ list.total_price }}</td>
+          <th v-if="!check">{{ index + 1 }}</th>
+          <td v-if="!check">{{ list.list_name }}</td>
+          <td v-if="!check">{{ list.total_quantity }}</td>
+          <td v-if="!check">{{ list.unit }}</td>
+          <td v-if="!check">{{ list.cost_of_materials_per_unit }}</td>
+          <td v-if="!check">{{ list.total_cost_materials }}</td>
+          <td v-if="!check">{{ list.cost_of_wage_per_unit }}</td>
+          <td v-if="!check">{{ list.total_wages }}</td>
+          <td v-if="!check">{{ list.total_price }}</td>
         </tr>
       </table>
       <br />
       <div class="flex space-x-1">
         <p class="font-bold">ยอดรวมทั้งหมด:</p>
-        <p>{{ GStore.CurrentTotalBOQlist }} บาท</p>
+        <p>{{ totalCost }} บาท</p>
       </div>
       <br />
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
@@ -87,18 +87,35 @@ export default {
       cost_of_wage_per_unit: yup.string().required("กรุณาระบุค่าแรงต่อหน่วย"),
     });
     return {
-      BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
+      // BOQ_name: this.GStore.CurrentBOQUSE[0].BOQ_name,
       BOQ_id: this.GStore.CurrentBOQUSE[0].BOQ_id,
+      BOQ_name: null,
+      check: false,
+      totalCost: 0,
       schema,
       bait: null,
     };
   },
   mounted() {
-    console.log(this.GStore.CurrentBOQUSE);
+    if (isNaN(this.GStore.CurrentTotalBOQlist)) {
+      this.totalCost = 0;
+    } else {
+      this.totalCost = this.GStore.CurrentTotalBOQlist;
+    }
+    let len = parseInt(Object.keys(this.GStore.CurrentBOQUSE).length);
+    if (this.GStore.CurrentBOQUSE[0].list_name === undefined) {
+      this.check = true;
+    }
+    if (len == 0) {
+      this.BOQ_name = null;
+    } else {
+      this.BOQ_name = this.GStore.CurrentBOQUSE[0].BOQ_name;
+    }
   },
   methods: {
     nextPage() {
-      Service.update_BOQ_status(this.BOQ_id);
+      // Service.update_BOQ_status(this.BOQ_id);
+
       this.$router.push({
         name: "boq_template",
       });
