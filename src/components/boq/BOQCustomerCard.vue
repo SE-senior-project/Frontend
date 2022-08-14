@@ -3,7 +3,7 @@
     class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max bg-orange-400 hover:bg-orange-500" v-if="boq.status==1">
     <router-link
       class="link"
-      :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
+      :to="{ name: 'show_template', params: { id: boq.id } }"
     >
     <div class="flex flex-row h-auto pl-[30px] pt-[20px] pb-[90px] w-[300px] shadow-xl rounded-[5px]">
         <div class="w-full">
