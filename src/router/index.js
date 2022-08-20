@@ -22,11 +22,61 @@ import boqTemplateSelection from "../views/boq/BOQTemplateSelection.vue";
 import boqConfirmation from "../views/boq/BOQConfirmation.vue";
 import showTemplate from "../views/boq/ShowTemplate.vue";
 import bogGen from "../views/boq/BOQGen.vue";
+//Checklist//
+import checklist from "../views/checklist/Checklist.vue";
+import list from "../views/checklist/List.vue";
 
 import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
 import Swal from "sweetalert2";
 const routes = [
+  {
+    path: "/checklist",
+    name: "checklist",
+    component: checklist,
+    beforeEnter: async () => {
+      try {
+        const checkList = await service.get_checklist();
+        GStore.allCheckList = checkList.data;
+        const selecTask= await service.get_select_task(GStore.current_project);
+        GStore.selectTask = selecTask.data;
+      } catch {
+        GStore.allCheckList = null;
+        GStore.selectTask = null;
+        console.log("cannot load checklist");
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "โปรดลองอีกครั้งภายหลัง",
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // }).then(() => {
+        //   this.$router.go();
+        // });
+      }
+    },
+  },
+  {
+    path: "/list/:id",
+    name: "list",
+    component: list,
+    beforeEnter: async (to) => {
+      try {
+        const allList = await service.get_list(to.params.id);
+        GStore.allList = allList.data;
+      } catch {
+        GStore.allList = null;
+        console.log("cannot load list");
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "โปรดลองอีกครั้งภายหลัง",
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // }).then(() => {
+        //   this.$router.go();
+        // });
+      }
+    },
+  },
   {
     path: "/material_list",
     name: "material_list",
