@@ -40,6 +40,7 @@ const routes = [
         GStore.allCheckList = checkList.data;
         const selecTask= await service.get_select_task(GStore.current_project);
         GStore.selectTask = selecTask.data;
+        console.log(GStore.selectTask)
       } catch {
         GStore.allCheckList = null;
         GStore.selectTask = null;

@@ -9,7 +9,7 @@
   What ur select
   <ul>
     <li v-for="y in GStore.selectTask" :key="y.id" @click="selectInTask(y)">
-     <b>{{ y.checklist_name }}</b> 
+      <b>{{ y.checklist_name }}</b>
     </li>
   </ul>
 </template>
@@ -31,12 +31,10 @@ export default {
       this.$router.go();
     },
     selectInTask(selectedTask) {
-      console.log(
-        "select task which checklist_id:" + selectedTask.checklist_id
-      );
+      console.log("select task which checklist_id:" + selectedTask.task_id);
       this.$router.push({
         name: "list",
-        params: { id: selectedTask.checklist_id },
+        params: { id: selectedTask.task_id },
       });
     },
   },

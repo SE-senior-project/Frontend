@@ -218,9 +218,14 @@ export default {
       project_id: project_id
     })
   },
-  get_list(checklist_id) {
+  get_list(task_id) {
     return apiClient.post("/Get_list", {
-      checklist_id: checklist_id
+      task_id: task_id
+    })
+  },
+  check_checkbox(checkbox_id) {
+    return apiClient.post("/Check_checkbox", {
+      checkbox_id: checkbox_id
     })
   },
 };
