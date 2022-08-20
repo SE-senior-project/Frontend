@@ -36,5 +36,10 @@ export default reactive({
   currentShowView:null,
   currentCustomerView:null,
   currentLastBOQId:null,
-  generateId:0
+  generateId:0,
+  //// CheckList/////
+  allCheckList:null,
+  selectTask:null,
+  allList:null
+
 });

@@ -203,5 +203,24 @@ export default {
     return apiClient.post("/Update_BOQ_status", {
       BOQ_id: BOQ_id
     })
-  }
+  },
+  get_checklist() {
+    return apiClient.get("/Get_checkList")
+  },
+  select_task(checklist_id, project_id) {
+    return apiClient.post("/Select_task", {
+      checklist_id: checklist_id,
+      project_id: project_id
+    })
+  },
+  get_select_task(project_id) {
+    return apiClient.post("/Get_select_task", {
+      project_id: project_id
+    })
+  },
+  get_list(checklist_id) {
+    return apiClient.post("/Get_list", {
+      checklist_id: checklist_id
+    })
+  },
 };
