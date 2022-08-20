@@ -1,19 +1,15 @@
 <template>
-  <div class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max">
-    <router-link
-      class="link"
-      :to="{ name: 'boq_template_selection', params: { id: boq.id } }"
-    >
+  <div @click="onSubmit(boq.id)" class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max">
     <div class="flex flex-row h-auto pl-[30px] pt-[20px] pb-[90px] w-[300px] shadow-xl rounded-[5px] border-solid border-[2px] border-orange-400">
         <div class="w-full">
            <p class="text-xs">ชื่อ BOQ: </p>
             <p class="pt-[2px] pl-[10px] pr-[40px] w-full text-2xl font-sans font-bold break-words">{{ boq.BOQ_name }}</p>
         </div>
     </div>
-    </router-link>
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "boq_card",
   props: {
@@ -22,6 +18,36 @@ export default {
       required: true,
     },
   },
+  methods: {
+    onSubmit(boq_id) {
+      Swal.fire({
+        title: "คุณต้องการที่เลือก BOQ นี้ใช่ไหม",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$router.push({
+            name: 'boq_template_selection', 
+            params: { id: boq_id }
+          });
+        }
+      })
+      .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
+    }
+  }
 };
 </script>
 

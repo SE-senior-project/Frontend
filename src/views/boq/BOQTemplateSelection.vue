@@ -25,7 +25,7 @@
         <tr id="header">
           <th>ลำดับ</th>
           <td>งาน</td>
-          <td>พื้นที่</td>
+          <td>ปริมาณรวม</td>
           <td>หน่วย</td>
           <td>ค่าวัสดุต่อหน่วย</td>
           <td>ราคาวัสดุรวม</td>
@@ -67,6 +67,7 @@
 import Service from "@/services/OneMeasureService";
 import PrimaryButton from "@/components/button/PrimaryButton";
 import SecondaryButton from "@/components/button/SecondaryButton";
+import Swal from "sweetalert2";
 export default {
   inject: ["GStore"],
   name: "boq_confirmation",
@@ -106,15 +107,38 @@ export default {
     generate() {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
       console.log(id);
-      Service.generateBOQ(id, parseInt(this.GStore.current_project)).then(
-        (response) => {
-          this.GStore.currentLastBOQId = response.data;
-          this.last_id = this.GStore.currentLastBOQId.last_id;
-          console.log("new id " + this.last_id);
-          this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
-          // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
+      Swal.fire({
+        title: "คุณต้องการเลือกแบบ BOQ ที่เลือกนี้ใช่ไหม",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Service.generateBOQ(id, parseInt(this.GStore.current_project))
+          .then((response) => {
+              this.GStore.currentLastBOQId = response.data;
+              this.last_id = this.GStore.currentLastBOQId.last_id;
+              this.$router.push({
+                name: "boq_gen",
+                params: { id: this.last_id },
+              });
+            }
+          )
+          .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
         }
-      );
+      })
     },
   },
 };
