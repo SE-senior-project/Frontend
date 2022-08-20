@@ -107,7 +107,6 @@ export default {
     generate() {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
       console.log(id);
-
       Swal.fire({
         title: "คุณต้องการเลือกแบบ BOQ ที่เลือกนี้ใช่ไหม",
         icon: "warning",
@@ -127,9 +126,19 @@ export default {
                 params: { id: this.last_id },
               });
             }
-          );
+          )
+          .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
         }
-      });
+      })
     },
   },
 };
