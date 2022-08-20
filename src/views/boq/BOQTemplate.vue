@@ -20,7 +20,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <BOQCard v-for="x in GStore.currentBOQ" :key="x.id" :boq="x" />
       </div>
-   
+
       <PrimaryButton @click="generate()" class="float-right mb-[20px]"
         >สร้าง BOQ</PrimaryButton
       >
@@ -68,15 +68,14 @@ export default {
     generate() {
       // let id = parseInt(Object.keys(this.GStore.currentBOQ).length+1);
       // console.log('id generate in BOQ template'+id);
-      Service.generateBOQ(0, parseInt(this.GStore.current_project)).then(
-        (response) => {
+      Service.generateBOQ(0, parseInt(this.GStore.current_project))
+        .then((response) => {
           this.GStore.currentLastBOQId = response.data;
           this.last_id = this.GStore.currentLastBOQId.last_id;
           console.log("new id " + this.last_id);
           this.$router.push({ name: "boq_gen", params: { id: this.last_id } });
           // console.log(this.GStore.currentLastBOQId.last_id), params: { id: this.last_id }
-        }
-      );
+        })
     },
   },
 };

@@ -254,7 +254,7 @@
         <tr id="header">
           <th>ลำดับ</th>
           <td>งาน</td>
-          <td>พื้นที่</td>
+          <td>ปริมาณรวม</td>
           <td>หน่วย</td>
           <td>ค่าวัสดุต่อหน่วย</td>
           <td>ราคาวัสดุรวม</td>
@@ -362,12 +362,25 @@ export default {
         this.cost_of_wage_per_unit
       );
       Swal.fire({
-        icon: "success",
-        title: "เพิ่มงานสำเร็จ",
-        showConfirmButton: false,
-        timer: 2000,
-      }).then(() => {
-        this.$router.go();
+        title: "คุณต้องการเพิ่มงานนี้ใช่ไหม",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ตกลง",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: "เพิ่มงานสำเร็จ",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
+            this.$router.go();
+          });
+        }
       });
     },
     editlist(bait) {
@@ -385,6 +398,7 @@ export default {
         showConfirmButton: false,
         timer: 2000,
       }).then(() => {
+        Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
         this.$router.go();
       });
     },
@@ -407,27 +421,40 @@ export default {
           this.BOQ_id = list.BOQ_id;
           this.BOQ_list_id = list.BOQ_list_id;
           this.bait = list.BOQ_list_id;
+          Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
         } else {
-          Service.remove_BOQ_list(parseInt(list.BOQ_list_id));
-          Swal.fire({
-            icon: "success",
-            title: "ลบสำเร็จ",
-            showConfirmButton: false,
-            timer: 2000,
-          }).then(() => {
-            this.$router.go();
+          Service.remove_BOQ_list(parseInt(list.BOQ_list_id)).then(() => {
+            Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
+            Swal.fire({
+              icon: "success",
+              title: "ลบงานสำเร็จ",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              this.$router.go();
+            });
           });
         }
       });
     },
     changeName() {
-      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name).then(() => {
-        this.$router
-          .push({
+      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name)
+        .then(() => {
+          this.$router.push({
             name: "boq_confirmation",
             params: { id: this.GStore.CurrentBOQUSE[0].BOQ_id },
-          })
-      });
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
+          });
+        });
     },
   },
 };

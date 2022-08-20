@@ -114,11 +114,11 @@ export default {
   },
   methods: {
     nextPage() {
-      // Service.update_BOQ_status(this.BOQ_id);
-
-      this.$router.push({
-        name: "boq_template",
+      Service.update_BOQ_status(this.BOQ_id).then(() => {
+        this.$router.push({
+          name: "boq_template",
       });
+      })
     },
   },
 };

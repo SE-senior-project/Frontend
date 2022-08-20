@@ -202,6 +202,14 @@ const routes = [
       } catch {
         GStore.currentBOQ = null;
         console.log("cannot load user");
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.$router.go();
+        });
       }
     },
   },
