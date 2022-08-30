@@ -29,6 +29,7 @@ export default reactive({
   currentMaterialType: null,
   searchResult: null,
   currentProjectId: null,
+  material_selection:null,
   ////// BOQ ////////////
   CurrentBOQUSE: null,
   CurrentTotalBOQlist: null,

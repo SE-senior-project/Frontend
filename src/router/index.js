@@ -239,6 +239,10 @@ const routes = [
 
         );
         GStore.CurrentTotalBOQlist = sumation;
+        const total_material_selection = await service.get_all_total_material_selection(
+          GStore.current_project
+        );
+        GStore.material_selection = total_material_selection.data
       } catch {
 
         console.log(GStore.CurrentBOQUSE)

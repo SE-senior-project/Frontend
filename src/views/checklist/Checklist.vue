@@ -49,6 +49,7 @@ export default {
   },
   inject: ["GStore"],
   mounted() {
+    console.log(this.GStore.selectTask);
     console.log(
       "Now is checklist and in project" + this.GStore.current_project
     );
