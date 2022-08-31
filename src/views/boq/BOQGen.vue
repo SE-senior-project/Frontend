@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex justify-center items-center">
+  <div class="relative flex justify-center">
     <div
       class="
         max-w-5xl
@@ -274,10 +274,15 @@
           <td v-if="!check">{{ list.total_wages }}</td>
           <td v-if="!check">{{ list.total_price }}</td>
 
-          <td class="w-[100px]" v-if="!check">
-            <SecondaryButton class="rounded-none" @click="manage(list)"
-              >จัดการ</SecondaryButton
-            >
+          <td class="w-[200px]" v-if="!check">
+            <div class="flex space-x-2">
+              <PrimaryButton class="rounded-none" @click="edit(list)"
+                >เลือก</PrimaryButton
+              >
+              <SecondaryButton class="rounded-none" @click="remove(list)"
+                >ลบ</SecondaryButton
+              >
+            </div>
           </td>
         </tr>
       </table>
@@ -287,9 +292,26 @@
         <p>{{ totalCost }} บาท</p>
       </div>
       <br />
-      {{GStore.material_selection}}
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
         <PrimaryButton @click="changeName"> ยืนยัน </PrimaryButton>
+      </div>
+    </div>
+
+
+    <div class="pt-[50px] relative">
+      <div
+        class="card mb-10 shadow-xl rounded-lg mr-[30px]">
+        <p class="text-2xl text-center pb-[20px]">ราคาวัสดุ</p>
+        <div class="text-sm mb-[20px] px-[20px] pb-[30px] pt-[20px] bg-white" v-for="list in GStore.material_selection" :key="list.id">
+          <div class="grid grid-cols-7">
+            <p class="font-bold pr-1">ชื่อวัสดุ:</p>
+            <p class="col-span-6">{{ list.project_material_name }}</p>
+          </div>
+          <div class="grid grid-cols-7">
+            <p class="font-bold pr-1">ราคา:</p>
+            <p class="col-span-6">{{ list.project_material_price }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -404,27 +426,28 @@ export default {
         this.$router.go();
       });
     },
-    manage(list) {
+    edit(list) {
+      this.list = list.list_name;
+      this.unit = list.unit;
+      this.total_quantity = list.total_quantity;
+      this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
+      this.cost_of_wage_per_unit = list.cost_of_materials_per_unit;
+      this.BOQ_id = list.BOQ_id;
+      this.BOQ_list_id = list.BOQ_list_id;
+      this.bait = list.BOQ_list_id;
+      Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
+    },
+    remove(list) {
       Swal.fire({
-        title: "การจัดการ",
+        title: "ต้องการลบงานนี้ใช่ไหม?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        cancelButtonText: "ลบ",
-        confirmButtonText: "แก้ไข",
+        cancelButtonText: "ยกเลิก",
+        confirmButtonText: "ยืนยัน",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.list = list.list_name;
-          this.unit = list.unit;
-          this.total_quantity = list.total_quantity;
-          this.cost_of_materials_per_unit = list.cost_of_materials_per_unit;
-          this.cost_of_wage_per_unit = list.cost_of_materials_per_unit;
-          this.BOQ_id = list.BOQ_id;
-          this.BOQ_list_id = list.BOQ_list_id;
-          this.bait = list.BOQ_list_id;
-          Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
-        } else {
           Service.remove_BOQ_list(parseInt(list.BOQ_list_id)).then(() => {
             Service.update_BOQ_name(this.BOQ_id, this.BOQ_name);
             Swal.fire({
