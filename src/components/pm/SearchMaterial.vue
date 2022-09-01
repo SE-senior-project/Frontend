@@ -22,9 +22,11 @@
                 v-for="item in filteredList"
                 :key="item.id"
               >
+              <!-- {{ item.material_name }} -->
                 <p class="mt-5" v-if="show">{{ item.material_name }}</p>
                 <hr v-if="show" />
               </div>
+     
             </div>
           </div>
           <div class="h-[30px]" v-if="showError">
@@ -83,8 +85,9 @@ export default {
   },
   computed: {
     filteredList() {
-      let store = this.GStore.currentMaterial;
-      return store.filter((e) => e.material_name.includes(this.input));
+      let output = this.GStore.currentMaterial.filter((e) => e.material_name.includes(this.input));
+      console.log(output);
+      return output
     },
   },
 };
