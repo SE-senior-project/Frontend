@@ -57,29 +57,8 @@
       <br />
 
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
-        <SecondaryButton @click="edit()"> แก้ไขแบบที่เลือก </SecondaryButton>
-        <button
-          @click="generate()"
-          class="
-            bg-orange-500
-            text-white
-            hover:bg-orange
-            active:bg-orange-900
-            flex
-            h-[37px]
-            w-full
-            max-w-[160px]
-            items-center
-            justify-center
-            rounded-full
-            py-[15px]
-            font-bold
-            text-base
-            hover:cursor-pointer
-          "
-        >
-          สร้างจากแบบที่เลือก
-        </button>
+        <PrimaryButton @click="edit()">ใช้ BOQ </PrimaryButton>
+        <SecondaryButton @click="generate()" class="max-w-[200px]">สร้าง BOQ จากสำเนาเดิม</SecondaryButton>
       </div>
     </div>
   </div>
@@ -129,7 +108,7 @@ export default {
       let id = parseInt(this.GStore.CurrentBOQUSE[0].BOQ_id);
       console.log(id);
       Swal.fire({
-        title: "คุณต้องการเลือกแบบ BOQ ที่เลือกนี้ใช่ไหม",
+        title: "คุณต้องการสร้าง BOQ ใหม่จากแบบ BOQ ที่เลือกนี้ใช่ไหม",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

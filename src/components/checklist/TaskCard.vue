@@ -48,7 +48,7 @@
           "
         >
           {{ task.checklist_name }}
-          <span v-if="complete">Task Complete</span>
+          <span v-if="complete" class="text-orange-500">Task Complete</span>
         </p>
       </div>
     </div>

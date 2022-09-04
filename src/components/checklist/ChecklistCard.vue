@@ -8,7 +8,6 @@
   </div>
 </template>
 <script>
-import Swal from "sweetalert2";
 import Service from "../../services/OneMeasureService";
 
 export default {
