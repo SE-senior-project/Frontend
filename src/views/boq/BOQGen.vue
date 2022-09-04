@@ -287,6 +287,7 @@
         <p>{{ totalCost }} บาท</p>
       </div>
       <br />
+      {{GStore.material_selection}}
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
         <PrimaryButton @click="changeName"> ยืนยัน </PrimaryButton>
       </div>
@@ -335,6 +336,7 @@ export default {
     };
   },
   mounted() {
+    // console.log(this.GStore.material_selection);
     if (isNaN(this.GStore.CurrentTotalBOQlist)) {
       this.totalCost = 0;
     } else {

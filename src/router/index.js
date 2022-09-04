@@ -24,7 +24,6 @@ import showTemplate from "../views/boq/ShowTemplate.vue";
 import bogGen from "../views/boq/BOQGen.vue";
 //Checklist//
 import checklist from "../views/checklist/Checklist.vue";
-import list from "../views/checklist/List.vue";
 
 import showcase from "../views/Showcase.vue";
 import form from "../views/Form.vue";
@@ -45,36 +44,14 @@ const routes = [
         GStore.allCheckList = null;
         GStore.selectTask = null;
         console.log("cannot load checklist");
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // }).then(() => {
-        //   this.$router.go();
-        // });
-      }
-    },
-  },
-  {
-    path: "/list/:id",
-    name: "list",
-    component: list,
-    beforeEnter: async (to) => {
-      try {
-        const allList = await service.get_list(to.params.id);
-        GStore.allList = allList.data;
-      } catch {
-        GStore.allList = null;
-        console.log("cannot load list");
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "โปรดลองอีกครั้งภายหลัง",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // }).then(() => {
-        //   this.$router.go();
-        // });
+        Swal.fire({
+          icon: "error",
+          title: "โปรดลองอีกครั้งภายหลัง",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.$router.go();
+        });
       }
     },
   },
@@ -262,6 +239,10 @@ const routes = [
 
         );
         GStore.CurrentTotalBOQlist = sumation;
+        const total_material_selection = await service.get_all_total_material_selection(
+          GStore.current_project
+        );
+        GStore.material_selection = total_material_selection.data
       } catch {
 
         console.log(GStore.CurrentBOQUSE)

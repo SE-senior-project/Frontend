@@ -29,6 +29,7 @@ export default reactive({
   currentMaterialType: null,
   searchResult: null,
   currentProjectId: null,
+  material_selection:null,
   ////// BOQ ////////////
   CurrentBOQUSE: null,
   CurrentTotalBOQlist: null,
@@ -40,6 +41,7 @@ export default reactive({
   //// CheckList/////
   allCheckList:null,
   selectTask:null,
-  allList:null
+  allList:null,
+  SH:null,
 
 });

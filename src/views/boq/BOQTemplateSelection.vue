@@ -58,7 +58,28 @@
 
       <div class="flex flex-row mb-5 space-x-2 justify-end items-end">
         <SecondaryButton @click="edit()"> แก้ไขแบบที่เลือก </SecondaryButton>
-        <PrimaryButton @click="generate()"> สร้าง BOQ ใหม่ </PrimaryButton>
+        <button
+          @click="generate()"
+          class="
+            bg-orange-500
+            text-white
+            hover:bg-orange
+            active:bg-orange-900
+            flex
+            h-[37px]
+            w-full
+            max-w-[160px]
+            items-center
+            justify-center
+            rounded-full
+            py-[15px]
+            font-bold
+            text-base
+            hover:cursor-pointer
+          "
+        >
+          สร้างจากแบบที่เลือก
+        </button>
       </div>
     </div>
   </div>
@@ -118,27 +139,26 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           Service.generateBOQ(id, parseInt(this.GStore.current_project))
-          .then((response) => {
+            .then((response) => {
               this.GStore.currentLastBOQId = response.data;
               this.last_id = this.GStore.currentLastBOQId.last_id;
               this.$router.push({
                 name: "boq_gen",
                 params: { id: this.last_id },
               });
-            }
-          )
-          .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "โปรดลองอีกครั้งภายหลัง",
-            showConfirmButton: false,
-            timer: 2000,
-          }).then(() => {
-            this.$router.go();
-          });
-        });
+            })
+            .catch(() => {
+              Swal.fire({
+                icon: "error",
+                title: "โปรดลองอีกครั้งภายหลัง",
+                showConfirmButton: false,
+                timer: 2000,
+              }).then(() => {
+                this.$router.go();
+              });
+            });
         }
-      })
+      });
     },
   },
 };
