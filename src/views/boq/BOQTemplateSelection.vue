@@ -31,7 +31,7 @@
           <td>ราคาวัสดุรวม</td>
           <td>ค่าแรงต่อหน่วย</td>
           <td>ค่าแรงรวม</td>
-          <td>ยอดรวม</td>
+          <td>ราคารวม</td>
         </tr>
 
         <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">

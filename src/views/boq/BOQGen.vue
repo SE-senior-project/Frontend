@@ -260,7 +260,7 @@
           <td>ราคาวัสดุรวม</td>
           <td>ค่าแรงต่อหน่วย</td>
           <td>ค่าแรงรวม</td>
-          <td>ยอดรวม</td>
+          <td>ราคารวม</td>
           <td v-if="!check"></td>
         </tr>
         <tr v-for="(list, index) in GStore.CurrentBOQUSE" :key="list.id">
@@ -298,7 +298,7 @@
     </div>
 
 
-    <div class="pt-[50px] relative">
+    <div class="pt-[50px] w-[380px] relative">
       <div
         class="card mb-10 shadow-xl rounded-lg mr-[30px]">
         <p class="text-2xl text-center pb-[20px]">ราคาวัสดุ</p>
