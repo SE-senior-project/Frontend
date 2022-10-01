@@ -1,18 +1,7 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        bg-white
-        shadow-xl
-        rounded-lg
-        lg:w-[1028px] lg:my-0
-        my-3
-        mb-4
-        mx-8
-        px-5
-        pt-5
-        pb-[50px]
-      "
+      class="bg-white shadow-xl rounded-lg lg:w-[1028px] lg:my-0 my-3 mb-4 mx-8 px-5 pt-5 pb-[50px]"
     >
       <div class="w-max">
         <Form @submit="onSubmit" :validation-schema="schema">
@@ -105,7 +94,7 @@ export default {
           title: "โปรดลองอีกครั้งภายหลัง",
           showConfirmButton: false,
           timer: 2000,
-        })
+        });
       });
       Swal.fire({
         icon: "success",
@@ -122,5 +111,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

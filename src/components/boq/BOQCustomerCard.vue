@@ -1,8 +1,8 @@
 <template>
-  <div @click="onSubmit(boq.id)" class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max">
-    <div class="flex flex-row h-auto pl-[30px] pt-[20px] pb-[90px] w-[300px] shadow-xl rounded-[5px] border-solid border-[2px] border-orange-400">
+  <div @click="onSubmit(boq.id)" class="card h-fit mx-[60px] md:mx-[40px] lg:mx-[20px] rounded-[5px] mb-10 w-max bg-orange-400 hover:bg-orange-500" v-if="boq.status==1">
+    <div class="flex flex-row h-auto pl-[30px] pt-[20px] pb-[90px] w-[300px] shadow-xl rounded-[5px]">
         <div class="w-full">
-           <p class="text-xs">ชื่อ BOQ: </p>
+           <p class="text-xs">แบบลูกค้า: </p>
             <p class="pt-[2px] pl-[10px] pr-[40px] w-full text-2xl font-sans font-bold break-words">{{ boq.BOQ_name }}</p>
         </div>
     </div>
@@ -31,7 +31,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.$router.push({
-            name: 'boq_template_selection', 
+            name: 'show_template', 
             params: { id: boq_id }
           });
         }
@@ -54,6 +54,5 @@ export default {
 <style scoped>
 .card:hover {
   transform: scale(1.05);
-  background-color: #f2f2f2;
 }
 </style>

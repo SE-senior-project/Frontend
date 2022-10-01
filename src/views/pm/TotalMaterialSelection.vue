@@ -29,7 +29,11 @@
             "
           >
             <div class="grid grid-cols-1">
-              <TotalMaterialCard v-for="x in material_selection" :key="x.id" :material_selection="x" />
+              <TotalMaterialCard
+                v-for="x in material_selection"
+                :key="x.id"
+                :material_selection="x"
+              />
             </div>
           </div>
         </div>
@@ -64,34 +68,13 @@ export default {
   data() {
     return {
       num: 0,
-      // users: [
-      //   {
-      //     name: "thitisan",
-      //     id: 1,
-      //   },
-      //   {
-      //     name: "Phonmongkhon",
-      //     id: 2,
-      //   },
-      //   {
-      //     name: "Pasakon",
-      //     id: 3,
-      //   },
-      //   {
-      //     name: "Sahachan",
-      //     id: 4,
-      //   },
-      //   {
-      //     name: "Khemata",
-      //     id: 5,
-      //   },
-      // ],
-      material_selection: null
+      material_selection: null,
     };
   },
-   created() {
+  created() {
     Service.get_all_total_material_selection(this.GStore.current_project)
       .then((response) => {
+        console.log("current project" + this.GStore.current_project);
         this.material_selection = response.data;
       })
       .catch(() => {
@@ -100,12 +83,10 @@ export default {
           title: "โปรดลองอีกครั้งภายหลัง",
           showConfirmButton: false,
           timer: 2000,
-        })
-      })
-      
+        });
+      });
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

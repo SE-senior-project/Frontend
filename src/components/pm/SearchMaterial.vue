@@ -10,40 +10,23 @@
               type="text"
               v-model="input"
               @input="handleInput"
-              class="
-                outline-none
-                h-[41px]
-                w-full
-                rounded-lg
-                border-[1px]
-                px-4
-                text-sm
-                font-normal
-                leading-[17px]
-                focus:text-black focus:placeholder-transparent
-                disabled:!border-neutral-100
-                disabled:bg-neutral-100
-                disabled:!placeholder-neutral-500
-              "
+              class="outline-none h-[41px] w-full rounded-lg border-[1px] px-4 text-sm font-normal leading-[17px] focus:text-black focus:placeholder-transparent disabled:!border-neutral-100 disabled:bg-neutral-100 disabled:!placeholder-neutral-500"
               placeholder="ค้นหาวัสดุ"
             />
             <div
-              class="
-                bg-white
-                px-5
-                rounded-b-lg
-                shadow-sm
-                w-[400px]
-                z-50
-                absolute
-                overflow-y-scroll
-                max-h-[400px]
-              "
+              class="bg-white px-5 rounded-b-lg shadow-sm w-[400px] z-50 absolute overflow-y-scroll max-h-[400px]"
             >
-              <div class="search" @click="onSelect(item.material_name)" v-for="item in filteredList" :key="item.id">
+              <div
+                class="search"
+                @click="onSelect(item.material_name)"
+                v-for="item in filteredList"
+                :key="item.id"
+              >
+              <!-- {{ item.material_name }} -->
                 <p class="mt-5" v-if="show">{{ item.material_name }}</p>
                 <hr v-if="show" />
               </div>
+     
             </div>
           </div>
           <div class="h-[30px]" v-if="showError">
@@ -83,28 +66,28 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.GStore.searchResult = this.input
+      this.GStore.searchResult = this.input;
       this.$router.push({
-        name: "material_type_search"
+        name: "material_type_search",
       });
     },
-    onSelect(value){
-      console.log(value)
-      this.input = value
-      this.show = false
+    onSelect(value) {
+      console.log(value);
+      this.input = value;
+      this.show = false;
     },
     handleInput(e) {
       this.show = true;
-      if(e.target.value === ''){
-        this.show = false
+      if (e.target.value === "") {
+        this.show = false;
       }
     },
   },
   computed: {
     filteredList() {
-      console.log(this.GStore.currentMaterial);
-      let store = this.GStore.currentMaterial;
-      return store.filter((e) => e.material_name.includes(this.input));
+      let output = this.GStore.currentMaterial.filter((e) => e.material_name.includes(this.input));
+      console.log(output);
+      return output
     },
   },
 };
@@ -123,5 +106,3 @@ hr {
   transform: scale(1.02);
 }
 </style>
-
-

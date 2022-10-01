@@ -5,21 +5,7 @@
       :cols="cols"
       v-bind="field"
       :type="type"
-      class="
-        outline-none
-        w-full
-        rounded-lg
-        border-[1px]
-        px-4
-        pt-3
-        text-sm
-        font-normal
-        leading-[17px]
-        focus:text-black focus:placeholder-transparent
-        disabled:!border-neutral-100
-        disabled:bg-neutral-100
-        disabled:!placeholder-neutral-500
-      "
+      class="outline-none w-full rounded-lg border-[1px] px-4 pt-3 text-sm font-normal leading-[17px] focus:text-black focus:placeholder-transparent disabled:!border-neutral-100 disabled:bg-neutral-100 disabled:!placeholder-neutral-500"
       :placeholder="placeholder"
       :required="required"
     />

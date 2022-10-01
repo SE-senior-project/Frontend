@@ -10,5 +10,4 @@ export default {
   name: "nav_admin",
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

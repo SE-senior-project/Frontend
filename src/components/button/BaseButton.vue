@@ -1,18 +1,6 @@
 <template>
   <button
-    class="
-      flex
-      h-[37px]
-      w-full
-      max-w-[140px]
-      items-center
-      justify-center
-      rounded-full
-      py-[15px]
-      font-bold
-      text-base
-      hover:cursor-pointer
-    "
+    class="flex h-[37px] w-full max-w-[140px] items-center justify-center rounded-full py-[15px] font-bold text-base hover:cursor-pointer"
   >
     <slot />
   </button>
@@ -24,5 +12,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

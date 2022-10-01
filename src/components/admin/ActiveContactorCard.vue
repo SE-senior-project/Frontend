@@ -1,15 +1,7 @@
 <template>
   <div class="mx-[60px] lg:mx-[40px] mb-10 shadow-xl rounded-lg">
     <div
-      class="
-        contractor
-        text-white
-        relative
-        mb-[20px]
-        text-lg text-center
-        py-[50px]
-        bg-orange-500
-      "
+      class="contractor text-white relative mb-[20px] text-lg text-center py-[50px] bg-orange-500"
     >
       <span>ผู้รับเหมาคนที่ {{ user.contractor_id }}</span>
     </div>

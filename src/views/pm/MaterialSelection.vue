@@ -1,25 +1,18 @@
 <template>
   <div class="relative flex justify-center items-center">
     <div
-      class="
-        relative
-        max-w-5xl
-        bg-white
-        shadow-xl
-        rounded-lg
-        w-[1028px]
-        mb-4
-        mx-8
-        px-10
-        py-5
-      "
+      class="relative max-w-5xl bg-white shadow-xl rounded-lg w-[1028px] mb-4 mx-8 px-10 py-5"
     >
       <NavProject />
       <SearchMaterial />
       <div class="recommend mb-10">
         <FormWrapper label="ประเภทของวัสดุ" />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <MaterialSelectionCard v-for="x in GStore.currentMaterialCategory" :key="x.id" :alltype="x" />
+          <MaterialSelectionCard
+            v-for="x in GStore.currentMaterialCategory"
+            :key="x.id"
+            :alltype="x"
+          />
         </div>
         <!-- <Pagination /> -->
       </div>

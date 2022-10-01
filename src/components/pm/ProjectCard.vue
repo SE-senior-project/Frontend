@@ -65,7 +65,7 @@
       <hr />
       <div class="text-sm px-[20px] pb-[20px] flex flex-row float-right">
         <p class="text-sm font-bold">กำหนดการส่ง:</p>
-        <p class="px-[10px]">{{active_project.deadline}}</p>
+        <p class="px-[10px]">{{ active_project.deadline }}</p>
       </div>
     </div>
   </div>
@@ -99,13 +99,14 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.setItem("project_id",  JSON.stringify(this.active_project.project_id));
-          console.log(this.GStore.current_project);
+          localStorage.setItem(
+            "project_id",
+            JSON.stringify(parseInt(this.active_project.project_id))
+          );
+          console.log("Sometime not show the current project" + this.GStore.current_project);
+          console.log(typeof this.GStore.current_project);
           this.$router.push({
-            name: "material_list",
-            params: {
-              id: this.active_project.project_id,
-            },
+            name: "material_list"
           });
         }
       });
@@ -121,7 +122,7 @@ export default {
         confirmButtonText: "ตกลง",
       }).then((result) => {
         if (result.isConfirmed) {
-          Service.active_status_project(0, this.active_project.project_id)
+          Service.active_status_project(0, this.active_project.project_id);
           this.$router.go();
         }
       });

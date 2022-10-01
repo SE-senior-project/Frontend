@@ -1,12 +1,6 @@
 <template>
   <BaseButton
-    class="
-      bg-orange-100
-      text-orange-700
-      hover:bg-orange-300
-      active:bg-orange-500
-      active:text-white
-    "
+    class="bg-orange-100 text-orange-700 hover:bg-orange-300 active:bg-orange-500 active:text-white"
     ><slot
   /></BaseButton>
 </template>
@@ -21,5 +15,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

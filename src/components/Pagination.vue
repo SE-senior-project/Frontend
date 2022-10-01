@@ -2,19 +2,7 @@
   <div class="flex justify-center items-center">
     <a
       href="#"
-      class="
-        flex
-        items-center
-        justify-center
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        capitalize
-        bg-white
-        rounded-md
-        cursor-not-allowed
-      "
+      class="flex items-center justify-center px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md cursor-not-allowed"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,122 +20,42 @@
 
     <a
       href="#"
-      class="
-        hidden
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        sm:inline
-        hover:bg-orange-500 hover:text-white
-      "
+      class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
     >
       1
     </a>
 
     <a
       href="#"
-      class="
-        hidden
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        sm:inline
-        hover:bg-orange-500 hover:text-white
-      "
+      class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
     >
       2
     </a>
 
     <a
       href="#"
-      class="
-        hidden
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        sm:inline
-        hover:bg-orange-500 hover:text-white
-      "
+      class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
     >
       ...
     </a>
 
     <a
       href="#"
-      class="
-        hidden
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        sm:inline
-        hover:bg-orange-500 hover:text-white
-      "
+      class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
     >
       9
     </a>
 
     <a
       href="#"
-      class="
-        hidden
-        px-4
-        py-2
-        mx-1
-        text-gray-500
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        sm:inline
-        hover:bg-orange-500 hover:text-white
-      "
+      class="hidden px-4 py-2 mx-1 text-gray-500 transition-colors duration-200 transform bg-white rounded-md sm:inline hover:bg-orange-500 hover:text-white"
     >
       10
     </a>
 
     <a
       href="#"
-      class="
-        flex
-        items-center
-        justify-center
-        px-4
-        py-2
-        mx-1
-        text-gray-700
-        transition-colors
-        duration-200
-        transform
-        bg-white
-        rounded-md
-        dark:text-gray-200
-        hover:bg-orange-500 hover:text-white
-      "
+      class="flex items-center justify-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-200 transform bg-white rounded-md dark:text-gray-200 hover:bg-orange-500 hover:text-white"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -168,13 +76,8 @@
 <script>
 export default {
   name: "pagination",
-  components: {
-
-  },
-  methods: {
-
-  },
+  components: {},
+  methods: {},
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

@@ -1,30 +1,9 @@
 <template>
   <div
-    class="
-      relative
-      flex
-      justify-center
-      items-center
-      my-10
-      md:my-[150px]
-      w-full
-      h-full
-      px-5
-      py-25
-    "
+    class="relative flex justify-center items-center my-10 md:my-[150px] w-full h-full px-5 py-25"
   >
     <div
-      class="
-        max-w-5xl
-        flex flex-col
-        md:flex-row
-        justify-center
-        items-center
-        bg-white
-        shadow-xl
-        rounded-lg
-        mb-4
-      "
+      class="max-w-5xl flex flex-col md:flex-row justify-center items-center bg-white shadow-xl rounded-lg mb-4"
     >
       <div class="w-full md:w-[390px]">
         <img class="w-full" src="../../../src/assets/LogoOnemeasure.png" />
@@ -51,12 +30,7 @@
             <div class="flex flex-row pb-4 text-sm">
               <p>ลงทะเบียนเข้าใช้เว็บไซต์</p>
               <a
-                class="
-                  text-blue-500
-                  px-1
-                  cursor-pointer
-                  underline underline-offset-1
-                "
+                class="text-blue-500 px-1 cursor-pointer underline underline-offset-1"
                 href="register"
                 >ลงทะเบียน</a
               >
@@ -103,60 +77,61 @@ export default {
   },
   methods: {
     login(user) {
-      AuthService.login(user).then(() => {
-        // if (this.GStore.currentUser_fail == false) {
-        //   Swal.fire({
-        //         icon: "error",
-        //         title: "โปรดลองอีกครั้งภายหลัง",
-        //         showConfirmButton: false,
-        //         timer: 2000,
-        //       }).then(() => {
-        //         this.$router.go();
-        //       });
-        // } else {
-        if (
-          this.GStore.currentUser.role == "contractor" &&
-          this.GStore.currentUser.status == 1 &&
-          this.GStore.currentUser.active == 1
-        ) {
-          this.$router.push({
-            name: "project",
+      AuthService.login(user)
+        .then(() => {
+          // if (this.GStore.currentUser_fail == false) {
+          //   Swal.fire({
+          //         icon: "error",
+          //         title: "โปรดลองอีกครั้งภายหลัง",
+          //         showConfirmButton: false,
+          //         timer: 2000,
+          //       }).then(() => {
+          //         this.$router.go();
+          //       });
+          // } else {
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 1 &&
+            this.GStore.currentUser.active == 1
+          ) {
+            this.$router.push({
+              name: "project",
+            });
+          }
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 1 &&
+            this.GStore.currentUser.active == 0
+          ) {
+            this.$router.push({
+              name: "home",
+            });
+          }
+          if (
+            this.GStore.currentUser.role == "contractor" &&
+            this.GStore.currentUser.status == 0
+          ) {
+            this.$router.push({
+              name: "home",
+            });
+          }
+          if (this.GStore.currentUser.role == "admin") {
+            this.$router.push({
+              name: "admin",
+            });
+          }
+          // }
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "โปรดลองอีกครั้งภายหลัง",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            this.$router.go();
           });
-        }
-        if (
-          this.GStore.currentUser.role == "contractor" &&
-          this.GStore.currentUser.status == 1 &&
-          this.GStore.currentUser.active == 0
-        ) {
-          this.$router.push({
-            name: "home",
-          });
-        }
-        if (
-          this.GStore.currentUser.role == "contractor" &&
-          this.GStore.currentUser.status == 0
-        ) {
-          this.$router.push({
-            name: "home",
-          });
-        }
-        if (this.GStore.currentUser.role == "admin") {
-          this.$router.push({
-            name: "admin",
-          });
-        }
-        // }
-      })
-      .catch(() => {
-        Swal.fire({
-                icon: "error",
-                title: "โปรดลองอีกครั้งภายหลัง",
-                showConfirmButton: false,
-                timer: 2000,
-              }).then(() => {
-                this.$router.go();
-              });
-      });
+        });
     },
   },
 };
